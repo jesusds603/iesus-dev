@@ -4,6 +4,13 @@ const long = 12;
 
 const longKey = long * 0.05;
 
+export interface Keyy {
+  name: string;
+  position: number[];
+  size: number[];
+  symbol: string;
+}
+
 // EL primer grupo de teclas va de -0.445 a 0.261, lon=0.706
 // El segundo grupo de teclas va de 0.295 a 0.445, lon=0.15
 // Espacio horizontal entre teclas = 0.010

@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import {
   GradientTexture,
@@ -22,6 +22,7 @@ function Laptop() {
     "/Bg/bg5.png",
     "/Bg/bg6.png",
   ];
+  const [createdText, setCreatedText] = useState<string[]>([]);
 
   useEffect(() => {
     let index = 0;
@@ -46,19 +47,27 @@ function Laptop() {
   }, []);
 
   return (
-    <Canvas
-      camera={{ position: [-15, 15, 15] }}
-      style={{
-        width: "900px",
-        height: "600px",
-      }}
-      className=" border border-teal-400"
-    >
-      <ambientLight />
-      {/* <OrbitControls /> */}
+    <Fragment>
+      <Canvas
+        camera={{ position: [-15, 15, 15] }}
+        style={{
+          width: "900px",
+          height: "600px",
+        }}
+        className=" border border-teal-400"
+      >
+        <ambientLight />
+        {/* <OrbitControls /> */}
 
-      <GroupLap colorLetters={colorLetters} bgPath={bgPath} />
-    </Canvas>
+        <GroupLap
+          colorLetters={colorLetters}
+          bgPath={bgPath}
+          createdText={createdText}
+          setCreatedText={setCreatedText}
+        />
+      </Canvas>
+      <p>{createdText}</p>
+    </Fragment>
   );
 }
 

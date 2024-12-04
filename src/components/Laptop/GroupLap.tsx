@@ -1,31 +1,24 @@
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import React, { useRef, useState } from "react";
+import { useFrame, useLoader } from "@react-three/fiber";
+import React, { useRef } from "react";
 import * as THREE from "three";
-import {
-  GradientTexture,
-  Box,
-  Text,
-  OrbitControls,
-  Plane,
-  Cylinder,
-} from "@react-three/drei";
+import { GradientTexture, Box } from "@react-three/drei";
 import { keys, width, height, long } from "./keys";
-import Screens from "./Screens";
+import KeyBoard from "./KeyBoard";
 
 function GroupLap({
   colorLetters,
   bgPath,
+  createdText,
+  setCreatedText,
 }: {
   colorLetters: string;
   bgPath: string;
+  createdText: string[];
+  setCreatedText: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const laptopRef = useRef<THREE.Group>(null);
   const topLapRef = useRef<THREE.Group>(null);
   const lastSwitchTime = useRef<number>(0); // Usamos estado para el tiempo
-
-  const rotAngle = -Math.PI * 0.7;
-  const lonRetrZ = (long / 2) * Math.sin(rotAngle - Math.PI / 2);
-  const lonRetrY = (long / 2) * Math.sin(Math.PI - rotAngle);
 
   const texture = useLoader(THREE.TextureLoader, bgPath);
 
@@ -68,101 +61,15 @@ function GroupLap({
 
   return (
     <group ref={laptopRef}>
-      {/* Parte del teclado */}
-      <group>
-        {/* Armazon */}
-        <Box args={[width, height * 0.6, long]}>
-          <meshPhysicalMaterial
-            // emissive={"#ffffff"}
-            // emissiveIntensity={1}
-            metalness={0.5}
-            roughness={0.6}
-            // transmission={1}
-            // opacity={0.9}
-            // transparent={true}
-            reflectivity={0.9}
-          >
-            <GradientTexture stops={[0, 1]} colors={["#f5a7b6", "#ff33ff"]} />
-          </meshPhysicalMaterial>
-        </Box>
+      {/* Teclado */}
+      <KeyBoard colorLetters={colorLetters} setCreatedText={setCreatedText} />
 
-        {/* Touchpad */}
-        <Box args={[width * 0.3, 0.1, long * 0.3]} position={[-2, 0.3, 4]}>
-          <meshPhysicalMaterial
-            // emissive={"#ffffff"}
-            // emissiveIntensity={1}
-            metalness={0.5}
-            roughness={0.6}
-            // transmission={1}
-            // opacity={0.9}
-            // transparent={true}
-            reflectivity={0.9}
-          >
-            <GradientTexture
-              stops={[0, 1]}
-              colors={[colorLetters, "#000000"]}
-            />
-          </meshPhysicalMaterial>
-        </Box>
-
-        {/* Botón Endendido */}
-        <Cylinder
-          args={[width * 0.03, width * 0.03, 0.1, 32, 12]}
-          position={[9, 0.3, -5]}
-        >
-          <meshPhysicalMaterial
-            // emissive={"#ffffff"}
-            // emissiveIntensity={1}
-            metalness={0.5}
-            roughness={0.6}
-            // transmission={1}
-            // opacity={0.9}
-            // transparent={true}
-            reflectivity={0.9}
-          >
-            <GradientTexture
-              stops={[0, 1]}
-              colors={[colorLetters, "#000000"]}
-            />
-          </meshPhysicalMaterial>
-        </Cylinder>
-
-        {/* Teclas */}
-        {keys.map((key, index) => (
-          <Box
-            key={index}
-            args={[key.size[0], key.size[1], key.size[2]]}
-            position={[key.position[0], key.position[1] + 0.5, key.position[2]]}
-            onClick={() => console.log(`Tecla presionada: ${key.name}`)}
-          >
-            <meshStandardMaterial color="black" />
-            <Text
-              color={colorLetters}
-              position={[0, key.size[1] + 0.05, 0]}
-              fontSize={
-                key.symbol.length > 2
-                  ? Math.min(key.size[0], key.size[2]) * 0.3
-                  : Math.min(key.size[0], key.size[2]) * 0.8
-              }
-              rotation={[-Math.PI / 2, 0, 0]}
-            >
-              {key.symbol}
-            </Text>
-          </Box>
-        ))}
-      </group>
-
-      {/* Parte de la pantalla */}
+      {/* Pantalla */}
       <group ref={topLapRef} position={[0, 0.5, 0]}>
         <Box args={[width, height * 0.6, long]}>
           <meshPhysicalMaterial
-            // emissive={"#ffffff"}
-            // emissiveIntensity={1}
             metalness={0.5}
             roughness={0.6}
-            // transmission={1}
-            // opacity={0.9}
-            // transparent={true}
             reflectivity={0.9}
           >
             <GradientTexture stops={[0, 1]} colors={["#f5a7b6", "#ff33ff"]} />

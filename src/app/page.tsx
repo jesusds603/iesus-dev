@@ -6,7 +6,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import Card from "@/components/Card/Card";
 import { subjects as rawSubjects } from "@/components/Card/subjects";
 import Name from "@/components/Name3D/Name";
-import Laptop from "@/components/Laptop/Laptop";
+import Laptop from "@/components/Laptop/LaptopIndex";
 
 const Home: React.FC = () => {
   const { myTheme } = useTheme();
