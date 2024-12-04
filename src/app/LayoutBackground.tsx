@@ -76,6 +76,54 @@ function LayoutBackground() {
       >
         <div className="absolute inset-0 rounded-full border-[2px] border-yellow-200 border-opacity-50 border-b-0 border-r-0"></div>
       </div>
+
+      <div
+        className={`fixed bottom-[300px] left-[550px] w-[180px] h-[180px] rounded-full bg-gradient-to-b ${circleFromColor} via-sky-700 to-violet-500 opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-yellow-200 border-opacity-50 border-b-0 border-r-0"></div>
+      </div>
+
+      <div
+        className={`fixed top-[200px] left-[850px] w-[180px] h-[180px] rounded-full bg-gradient-to-b ${circleFromColor} via-black to-cyan-400 opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-yellow-200 border-opacity-50 border-b-0 border-r-0"></div>
+      </div>
+
+      <div
+        className={`fixed bottom-[100px] right-[550px] w-[280px] h-[280px] rounded-full bg-gradient-to-b ${circleFromColor} via-pink-600 to-transparent opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-yellow-200 border-opacity-50 border-b-0 border-r-0"></div>
+      </div>
+      <div
+        className={`fixed top-[380px] left-[900px] w-[240px] h-[240px] rounded-full bg-gradient-to-tr ${circleFromColor} to-fuchsia-700 opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-white border-opacity-50 border-b-0 border-l-0"></div>
+      </div>
+      <div
+        className={`fixed top-[300px] left-[600px] w-[200px] h-[200px] rounded-full bg-gradient-to-tl ${circleFromColor} via-gray-900 to-teal-500 opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-cyan-400 border-opacity-50 border-b-0 border-r-0"></div>
+      </div>
+      <div
+        className={`fixed bottom-[100px] right-[300px] w-[90px] h-[90px] rounded-full bg-gradient-to-bl ${circleFromColor} via-gray-900 to-cyan-500 opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-cyan-200 border-opacity-50 border-t-0 border-r-0"></div>
+      </div>
+      <div
+        className={`fixed bottom-[400px] right-[500px] w-[150px] h-[150px] rounded-full bg-gradient-to-b ${circleFromColor} via-green-600 to-cyan-400 opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-pink-200 border-opacity-50 border-t-0 border-l-0"></div>
+      </div>
+      <div
+        className={`fixed bottom-[600px] left-[700px] w-[70px] h-[70px] rounded-full bg-gradient-to-br ${circleFromColor} via-gray-900 to-indigo-500 opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-indigo-200 border-opacity-50 border-t-0 border-l-0"></div>
+      </div>
+      <div
+        className={`fixed bottom-[300px] left-[600px] w-[60px] h-[60px] rounded-full bg-gradient-to-l ${circleFromColor} via-lime-700 to-lime-500 opacity-60 shadow-lg`}
+      >
+        <div className="absolute inset-0 rounded-full border-[2px] border-lime-200 border-opacity-50 border-b-0 border-r-0"></div>
+      </div>
     </div>
   );
 }

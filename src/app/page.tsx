@@ -12,8 +12,7 @@ const Home: React.FC = () => {
   const { myTheme } = useTheme();
   const { myLanguage } = useLanguage();
 
-  const backgroundClass =
-    myTheme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-800";
+  const backgroundClass = myTheme === "dark" ? " text-white" : "text-gray-800";
 
   const subjects = rawSubjects(myLanguage);
 
@@ -22,11 +21,9 @@ const Home: React.FC = () => {
       className={`flex flex-col items-center min-h-screen ${backgroundClass}`}
     >
       <header className="text-center">
-        <h1 className="text-4xl font-bold">PlaySol</h1>
+        <h1 className="text-4xl font-bold">IesusDev</h1>
         <p className="text-lg mt-2">
-          {myLanguage === "eng"
-            ? "An interactive math tool"
-            : "Una herramienta matemática interactiva"}
+          {myLanguage === "eng" ? "My Personal Web" : "Mi Web Personal"}
         </p>
         {/* <Boxes /> Aquí se renderiza el componente Boxes */}
         {/* <button

@@ -153,10 +153,7 @@ function GroupLap({
       </group>
 
       {/* Parte de la pantalla */}
-      <group
-        ref={topLapRef}
-        position={[0, -lonRetrY + height / 2, -lonRetrZ - long / 2]}
-      >
+      <group ref={topLapRef} position={[0, 0.5, 0]}>
         <Box args={[width, height * 0.6, long]}>
           <meshPhysicalMaterial
             // emissive={"#ffffff"}

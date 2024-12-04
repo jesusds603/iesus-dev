@@ -47,7 +47,7 @@ function Laptop() {
 
   return (
     <Canvas
-      camera={{ position: [0, 20, 30] }}
+      camera={{ position: [-15, 15, 15] }}
       style={{
         width: "900px",
         height: "600px",
@@ -55,7 +55,7 @@ function Laptop() {
       className=" border border-teal-400"
     >
       <ambientLight />
-      <OrbitControls />
+      {/* <OrbitControls /> */}
 
       <GroupLap colorLetters={colorLetters} bgPath={bgPath} />
     </Canvas>
