@@ -20,8 +20,8 @@ function GroupLap({
   bgPath: string;
 }) {
   const laptopRef = useRef<THREE.Group>(null);
+  const topLapRef = useRef<THREE.Group>(null);
   const lastSwitchTime = useRef<number>(0); // Usamos estado para el tiempo
-  const [bgImg, setBgImg] = useState<string>("bg8");
 
   const rotAngle = -Math.PI * 0.7;
   const lonRetrZ = (long / 2) * Math.sin(rotAngle - Math.PI / 2);
@@ -34,6 +34,8 @@ function GroupLap({
     // Acumulamos el tiempo pasado
     lastSwitchTime.current += delta;
 
+    // topLapRef.current?.rotation.set(0, -Math.PI, 0);
+
     if (lastSwitchTime.current % 10 <= 2) {
       // Aplica la rotación acumulativa durante los primeros 8 segundos
       const rotationSpeed = Math.PI;
@@ -43,8 +45,19 @@ function GroupLap({
         0
       );
     } else {
-      // Mantiene la última rotación después de los primeros 8 segundos
-      laptopRef.current?.rotation.set(0, 2 * Math.PI, 0); // Fija la rotación final después de 8 segundos
+      // laptopRef.current?.rotation.set(0, 2 * Math.PI, 0);
+
+      if (lastSwitchTime.current % 10 <= 5) {
+        const angleRot =
+          -((lastSwitchTime.current % 10) * Math.PI) / 4 - Math.PI / 2;
+        topLapRef.current?.rotation.set(angleRot, Math.PI, Math.PI);
+
+        topLapRef.current?.position.set(
+          0,
+          (long / 2) * Math.sin(angleRot) + 0.5,
+          -(long / 2) * Math.sin(Math.PI / 2 - angleRot) - long / 2
+        );
+      }
     }
 
     // Reinicia lastSwitchTime cada 15 segundos
@@ -141,7 +154,7 @@ function GroupLap({
 
       {/* Parte de la pantalla */}
       <group
-        rotation={[rotAngle, 0, 0]}
+        ref={topLapRef}
         position={[0, -lonRetrY + height / 2, -lonRetrZ - long / 2]}
       >
         <Box args={[width, height * 0.6, long]}>

@@ -19,10 +19,8 @@ function Laptop() {
     "/Bg/bg1.png",
     "/Bg/bg2.png",
     "/Bg/bg3.png",
-    "/Bg/bg4.png",
     "/Bg/bg5.png",
     "/Bg/bg6.png",
-    "/Bg/bg7.png",
   ];
 
   useEffect(() => {
