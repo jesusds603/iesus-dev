@@ -31,6 +31,9 @@ function Screens({ bg }: { bg: string }) {
     case "bg2":
       texturePath = "/Bg/bg2.png";
       break;
+    case "bg8":
+      texturePath = "/Bg/bg8.png";
+      break;
     default:
       console.warn(`No valid texture found for bg: ${bg}, defaulting to bg1`);
       texturePath = "/Bg/bg1.png"; // Valor por defecto

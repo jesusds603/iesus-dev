@@ -44,25 +44,6 @@ export default function Name() {
     return () => clearInterval(interval); // Limpiar intervalo al desmontar
   }, []);
 
-  // function Pillar(props: CylinderProps) {
-  //   const args: CylinderArgs = [0.7, 0.7, 5, 16];
-  //   const [ref] = useCylinder(
-  //     () => ({
-  //       args,
-  //       mass: 10,
-  //       type: "Dynamic",
-  //       ...props,
-  //     }),
-  //     useRef<Mesh>(null)
-  //   );
-  //   return (
-  //     <mesh ref={ref} castShadow>
-  //       <cylinderGeometry args={args} />
-  //       <meshNormalMaterial />
-  //     </mesh>
-  //   );
-  // }
-
   return (
     <Canvas
       camera={{
