@@ -1,0 +1,28 @@
+import { Planet } from "../constants";
+
+function GeneratePlanets(
+  gridHeight: number,
+  gridWidth: number,
+  amountPlanets: number
+): Planet[] {
+  const planets: Planet[] = [];
+  const stepX = Math.floor(gridWidth / Math.ceil(Math.sqrt(amountPlanets)));
+  const stepY = Math.floor(gridHeight / Math.ceil(Math.sqrt(amountPlanets)));
+
+  let count = 0;
+
+  for (let y = stepY / 2; y < gridHeight && count < amountPlanets; y += stepY) {
+    for (
+      let x = stepX / 2;
+      x < gridWidth && count < amountPlanets;
+      x += stepX
+    ) {
+      planets.push({ position: { x: Math.round(x), y: Math.round(y) } });
+      count++;
+    }
+  }
+
+  return planets;
+}
+
+export default GeneratePlanets;
