@@ -12,6 +12,9 @@ function KeyBoard({
   colorLetters: string;
   setCreatedText: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
+  const randomDirs = Array.from({ length: keys.length }, () =>
+    Math.sign(Math.random() - 0.5)
+  );
   return (
     <group>
       {/* Armazon */}
@@ -57,6 +60,7 @@ function KeyBoard({
           colorLetters={colorLetters}
           setCreatedText={setCreatedText}
           tecla={tecla}
+          randomDir={randomDirs[index]}
         />
       ))}
     </group>

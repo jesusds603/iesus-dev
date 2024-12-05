@@ -49,7 +49,7 @@ function Laptop() {
   return (
     <Fragment>
       <Canvas
-        camera={{ position: [-15, 15, 15] }}
+        camera={{ position: [-15, 20, 15] }}
         style={{
           width: "900px",
           height: "600px",
