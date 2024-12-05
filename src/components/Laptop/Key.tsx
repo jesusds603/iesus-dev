@@ -9,13 +9,44 @@ function posVarKeys(
   posInit: number[],
   posEnd: [number, number, number],
   T: number,
-  t: number
+  t: number,
+  name: string
 ) {
-  return [
-    posInit[0] + ((posEnd[0] - posInit[0]) / T) * t,
-    posInit[1] + ((posEnd[1] - posInit[1]) / T) * t,
-    posInit[2] + ((posEnd[2] - posInit[2]) / T) * t,
-  ];
+  let newPos = [0, 0, 0];
+
+  if (name === "I") {
+    newPos = [
+      posInit[0] + ((posEnd[0] - posInit[0]) / T) * t - 1,
+      posInit[1] + ((posEnd[1] - posInit[1]) / T) * t,
+      posInit[2] + ((posEnd[2] - posInit[2]) / T) * t - 1,
+    ];
+  } else if (name === "E") {
+    newPos = [
+      posInit[0] + ((posEnd[0] - posInit[0]) / T) * t - 0.5,
+      posInit[1] + ((posEnd[1] - posInit[1]) / T) * t,
+      posInit[2] + ((posEnd[2] - posInit[2]) / T) * t - 0.5,
+    ];
+  } else if (name === "S") {
+    newPos = [
+      posInit[0] + ((posEnd[0] - posInit[0]) / T) * t,
+      posInit[1] + ((posEnd[1] - posInit[1]) / T) * t,
+      posInit[2] + ((posEnd[2] - posInit[2]) / T) * t,
+    ];
+  } else if (name === "U") {
+    newPos = [
+      posInit[0] + ((posEnd[0] - posInit[0]) / T) * t + 0.5,
+      posInit[1] + ((posEnd[1] - posInit[1]) / T) * t,
+      posInit[2] + ((posEnd[2] - posInit[2]) / T) * t + 0.5,
+    ];
+  } else if (name === "5") {
+    newPos = [
+      posInit[0] + ((posEnd[0] - posInit[0]) / T) * t + 1,
+      posInit[1] + ((posEnd[1] - posInit[1]) / T) * t,
+      posInit[2] + ((posEnd[2] - posInit[2]) / T) * t + 1,
+    ];
+  }
+
+  return newPos;
 }
 
 function Key({
@@ -36,7 +67,7 @@ function Key({
   const heightEsp = Math.random() + 15;
   let progress = 0;
 
-  const posCamera: [number, number, number] = [-14, 19, 14];
+  const posCamera: [number, number, number] = [-13, 18, 13];
   const angleGround = Math.atan(posCamera[0] / posCamera[2]);
   const angleVert = Math.atan(posCamera[1] / posCamera[0]);
 
@@ -70,8 +101,8 @@ function Key({
           tecla.position[1] + 0.4 + verticalOffset,
           tecla.position[2] + radius * Math.sin(angle)
         );
-      } else if (timeElapsed.current >= 5 && timeElapsed.current <= 6) {
-        progress = (timeElapsed.current - 5) / 1; // entre 0 y 1
+      } else if (timeElapsed.current >= 5 && timeElapsed.current <= 5.5) {
+        progress = (timeElapsed.current - 5) / 0.5; // entre 0 y 1
 
         if (
           tecla.name === "I" ||
@@ -81,12 +112,32 @@ function Key({
           tecla.name === "5"
         ) {
           keyRef.current.position.set(
-            posVarKeys(tecla.position, posCamera, 1, progress)[0],
-            posVarKeys(tecla.position, posCamera, 1, progress)[1],
-            posVarKeys(tecla.position, posCamera, 1, progress)[2]
+            posVarKeys(tecla.position, posCamera, 1, progress, tecla.name)[0],
+            posVarKeys(tecla.position, posCamera, 1, progress, tecla.name)[1],
+            posVarKeys(tecla.position, posCamera, 1, progress, tecla.name)[2]
           );
+          keyRef.current.rotation.set(-angleVert, 0, -angleGround);
         }
-      } else if (timeElapsed.current >= 10 && timeElapsed.current <= 11.5) {
+      } else if (timeElapsed.current >= 9.5 && timeElapsed.current <= 10) {
+        progress = (timeElapsed.current - 9.5) / 0.5; // entre 0 y 1
+
+        if (
+          tecla.name === "I" ||
+          tecla.name === "E" ||
+          tecla.name === "S" ||
+          tecla.name === "U" ||
+          tecla.name === "5"
+        ) {
+          keyRef.current.position.set(
+            posVarKeys(posCamera, tecla.position, 1, progress, tecla.name)[0],
+            posVarKeys(posCamera, tecla.position, 1, progress, tecla.name)[1],
+            posVarKeys(posCamera, tecla.position, 1, progress, tecla.name)[2]
+          );
+          keyRef.current.rotation.set(0, 0, 0);
+        }
+      } 
+
+      else if (timeElapsed.current >= 10 && timeElapsed.current <= 11.5) {
         progress = (timeElapsed.current - 10) / 1.5; // entre 0 y 1
         verticalOffset = progress * heightEsp; // Movimiento lineal hacia arriba
         radius = verticalOffset / 2;
