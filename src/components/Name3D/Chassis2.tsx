@@ -1,5 +1,11 @@
 import { forwardRef } from "react";
-import { Box, GradientTexture, Sphere, Cylinder } from "@react-three/drei";
+import {
+  Box,
+  GradientTexture,
+  Sphere,
+  Cylinder,
+  Text,
+} from "@react-three/drei";
 import * as THREE from "three";
 
 export const Chassis2 = forwardRef<
@@ -40,6 +46,15 @@ export const Chassis2 = forwardRef<
               size={1024}
             />
           </meshPhongMaterial>
+          <Text
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[0, 0.6, 0]}
+            fontSize={width * 0.07}
+            fontWeight="Bold"
+            color="#2bf4ee"
+          >
+            🌟
+          </Text>
         </Box>
 
         {/* Roof */}
@@ -55,6 +70,15 @@ export const Chassis2 = forwardRef<
               size={1024}
             />
           </meshPhongMaterial>
+          <Text
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[0, 0.6, 0]}
+            fontWeight="Bold"
+            fontSize={width * 0.07}
+            color="#2bf4ee"
+          >
+            ⊹₊⟡⋆{"\n"} IESUS
+          </Text>
         </Box>
 
         {/* Front windshield */}

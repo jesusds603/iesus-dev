@@ -31,7 +31,7 @@ function PlaneGradient({
       <meshPhongMaterial>
         <GradientTexture
           stops={[0, 1]}
-          colors={["#e00d3d", "#222222"]}
+          colors={["#b00822", "#222222"]}
           size={1024}
         />
       </meshPhongMaterial>

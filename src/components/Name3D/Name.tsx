@@ -44,8 +44,8 @@ export default function Name() {
         far: 300, // Distancia máxima para renderizar objetos
       }}
       style={{
-        width: "90vw", // Ancho fijo
-        height: "60vh", // Alto fijo
+        width: "80vw", // Ancho fijo
+        height: "50vh", // Alto fijo
       }}
     >
       <hemisphereLight intensity={0.7} />
