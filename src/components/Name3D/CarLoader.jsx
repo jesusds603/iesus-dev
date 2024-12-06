@@ -11,101 +11,82 @@ export default function CarLoader() {
       car.children[0].material = new THREE.MeshStandardMaterial({
         color: 0xc80eee,
       }); // *Parte baja Lateral Izq
-      car.children[0].name = "00_Baja_Lat_Izq";
 
       car.children[1].material = new THREE.MeshStandardMaterial({
         color: 0xc80eee,
       }); // *Parte Baja Lateral Der
-      car.children[1].name = "01_Baja_Lat_Der";
 
       car.children[2].material = new THREE.MeshStandardMaterial({
         color: 0x667f7d,
       }); // *Cola Alta
-      car.children[2].name = "02_Cola_Alta";
 
       car.children[3].material = new THREE.MeshPhongMaterial({
         color: 0x21f0e2,
         opacity: 0.2,
         transparent: true,
       }); // *Espejos y Luces Delanteras
-      car.children[3].name = "03_Espejos_Luces_Delanteras";
 
       car.children[5].material = new THREE.MeshStandardMaterial({
         color: 0xb10392,
       }); // *Partes Laterales Frontales
-      car.children[5].name = "01_Lat_Frontales";
 
       car.children[6] = new THREE.MeshStandardMaterial({
         color: 0x7d054e,
       }); // *Cofre Delantero
-      car.children[6].name = "06_Cofre_Delantero";
 
       car.children[7].material = new THREE.MeshStandardMaterial({
         color: 0xf53e7e,
       }); // *Asientos
-      car.children[7].name = "07_Asientos";
 
       car.children[8].material = new THREE.MeshStandardMaterial({
         color: 0xf53e7e,
       }); // *Puerta Izquierda y espejo
-      car.children[8].name = "08_Izq_y_Espejo";
 
       car.children[17].material = new THREE.MeshStandardMaterial({
         color: 0xf53e7e,
       }); // *Puerta Derecha y Espejo
-      car.children[17].name = "17_Der_y_Espejo";
 
       car.children[9].material = new THREE.MeshStandardMaterial({
         color: 0x4e66f5,
       }); // *Parte Baja Trasera y Frontal
-      car.children[9].name = "09_Baja_Trasera_Y_Frontal";
 
       car.children[14].material = new THREE.MeshStandardMaterial({
         color: 0xf03975,
       }); // *Cuerpo Superior y lateral trasero
-      car.children[14].name = "14_Superior_Y_Lateral_Trasero";
 
       // Llantas
       car.children[15].material = new THREE.MeshStandardMaterial({
         color: 0x111111,
       }); // *Llanta Trasera Izquierda
-      car.children[15].name = "15_Llanta_Trasera_Izq";
 
       car.children[4].material = new THREE.MeshStandardMaterial({
         color: 0x111111,
       }); // *Llanta Trasera Derecha
-      car.children[4].name = "04_Llanta_Trasera_Der";
 
       car.children[16].material = new THREE.MeshStandardMaterial({
         color: 0x111111,
       }); // *Llanta Delantera Izquierda
-      car.children[16].name = "16_Llanta_Delantera_Izq";
 
       car.children[18].material = new THREE.MeshStandardMaterial({
         color: 0x111111,
       }); // *LLanta Delantera Derecha
-      car.children[18].name = "18_Llanta_Delantera_Der";
 
       // Frenos
       car.children[10].material = new THREE.MeshStandardMaterial({
         color: 0x999999,
       }); // *Freno llanta delantera izquierda
-      car.children[10].name = "10_Freno_Delantero_Izq";
 
       car.children[11].material = new THREE.MeshStandardMaterial({
         color: 0x999999,
       }); // *Freno llanta trasera izquierda
-      car.children[11].name = "011_Freno_Trasero_Izq";
 
       car.children[12].material = new THREE.MeshStandardMaterial({
         color: 0x999999,
       }); // *Freno llanta trasera derecha
-      car.children[12].name = "12_Freno_Trasero_Der";
 
       car.children[13].material = new THREE.MeshStandardMaterial({
         color: 0x999999,
       }); // *Freno llanta delantera derecha
-      car.children[13].name = "13_Freno_Delantero_Der";
     } else {
       console.error("No se pudo encontrar el objeto en car.children[17]");
     }

@@ -42,7 +42,7 @@ function Box({
     const elapsedTime = state.clock.getElapsedTime();
 
     // Si han pasado más de 5 segundos desde el último cambio
-    if (elapsedTime - lastSwitchTime.current > 15) {
+    if (elapsedTime - lastSwitchTime.current > 10) {
       // Resetear el tiempo de alternancia
       lastSwitchTime.current = elapsedTime;
     }
@@ -52,7 +52,7 @@ function Box({
       setTypeObj(() => "Static");
     } else if (
       elapsedTime - lastSwitchTime.current > 4 &&
-      elapsedTime - lastSwitchTime.current <= 15
+      elapsedTime - lastSwitchTime.current <= 10
     ) {
       setTypeObj(() => "Dynamic");
       api.applyForce([forceX, 0, forceZ], [0, 0, 0]);

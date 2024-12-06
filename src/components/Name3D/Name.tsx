@@ -5,14 +5,14 @@ import PlaneGroup from "./PlaneGradient";
 import { Physics, useCylinder, useSphere } from "@react-three/cannon";
 import RenderLetter from "./RenderLetter";
 import Car from "./Car";
-import Vehicle from "./Vehicle";
+import Vehicle2 from "./Vehicle2";
 import type {
   CylinderArgs,
   CylinderProps,
   PlaneProps,
 } from "@react-three/cannon";
 import { Mesh } from "three";
-import { Edges, GradientTexture } from "@react-three/drei";
+import { Edges, GradientTexture, OrbitControls } from "@react-three/drei";
 import Spheres from "./Spheres";
 
 export default function Name() {
@@ -70,12 +70,14 @@ export default function Name() {
       />
       <pointLight decay={0} intensity={1} position={[0, 20, 10]} />
 
+      <OrbitControls />
+
       <Physics>
         <PlaneGroup width={width} length={length} height={height} />
 
         {/* <Car /> */}
-        <Vehicle
-          position={[-30, 1, 0]}
+        <Vehicle2
+          position={[-30, 2, 0]}
           rotation={[0, 0, 0]}
           angularVelocity={[0, 1, 0]}
         />

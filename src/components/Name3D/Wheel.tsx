@@ -20,7 +20,7 @@ type WheelProps = CylinderProps & {
 };
 
 export const Wheel = forwardRef<Group, WheelProps>(
-  ({ leftSide, radius = 0.7, ...props }, ref) => {
+  ({ leftSide, radius, ...props }, ref) => {
     const {
       materials: { Chrom, Rubber, Steel },
       nodes,
@@ -45,7 +45,7 @@ export const Wheel = forwardRef<Group, WheelProps>(
     );
 
     return (
-      <group ref={ref}>
+      <group ref={ref} scale={16}>
         <group rotation={[0, 0, ((leftSide ? 1 : -1) * Math.PI) / 2]}>
           <mesh material={Rubber} geometry={nodes.wheel_1.geometry} />
           <mesh material={Steel} geometry={nodes.wheel_2.geometry} />

@@ -7,7 +7,7 @@ import { useFrame } from "@react-three/fiber";
 
 function posVarKeys(
   posInit: number[],
-  posEnd: [number, number, number],
+  posEnd: number[],
   T: number,
   t: number,
   name: string
@@ -135,9 +135,7 @@ function Key({
           );
           keyRef.current.rotation.set(0, 0, 0);
         }
-      } 
-
-      else if (timeElapsed.current >= 10 && timeElapsed.current <= 11.5) {
+      } else if (timeElapsed.current >= 10 && timeElapsed.current <= 11.5) {
         progress = (timeElapsed.current - 10) / 1.5; // entre 0 y 1
         verticalOffset = progress * heightEsp; // Movimiento lineal hacia arriba
         radius = verticalOffset / 2;

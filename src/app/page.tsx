@@ -36,7 +36,7 @@ const Home: React.FC = () => {
       </header>
 
       <main className="flex flex-col items-center w-full">
-        <Laptop />
+        {/* <Laptop /> */}
         <Name />
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 w-full max-w-4xl mt-4">
