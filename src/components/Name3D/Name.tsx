@@ -1,26 +1,17 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Canvas, MeshPhongMaterialProps, useFrame } from "@react-three/fiber";
+import React, { useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber";
 import { letter_E, letter_I, letter_S, letter_U } from "./positions";
 import PlaneGroup from "./PlaneGradient";
-import { Physics, useCylinder, useSphere } from "@react-three/cannon";
+import { Physics } from "@react-three/cannon";
 import RenderLetter from "./RenderLetter";
-import Car from "./Car";
 import Vehicle2 from "./Vehicle2";
-import type {
-  CylinderArgs,
-  CylinderProps,
-  PlaneProps,
-} from "@react-three/cannon";
-import { Mesh } from "three";
-import { Edges, GradientTexture, OrbitControls } from "@react-three/drei";
-import Spheres from "./Spheres";
 
 export default function Name() {
   const width = 80; // Ancho del grupo de planos
   const length = 80; // Largo del grupo de planos
   const height = 20; // Altura de las paredes
 
-  const yOffset = 14;
+  const yOffset = 0.5;
 
   const [colorBox, setColorBox] = useState<[string, string]>([
     "#07c5cb",
@@ -47,37 +38,35 @@ export default function Name() {
   return (
     <Canvas
       camera={{
-        position: [0, 17, 30], // Posición inicial de la cámara
+        position: [-15, 10, 15], // Posición inicial de la cámara
         fov: 75, // Campo de visión
         near: 0.1, // Distancia mínima para renderizar objetos
         far: 300, // Distancia máxima para renderizar objetos
       }}
       style={{
-        width: "1200px", // Ancho fijo
-        height: "600px", // Alto fijo
+        width: "90vw", // Ancho fijo
+        height: "60vh", // Alto fijo
       }}
     >
-      <hemisphereLight intensity={1} />
-      <spotLight
-        angle={Math.PI / 4}
-        castShadow
-        decay={0}
-        intensity={1}
-        penumbra={1}
-        position={[0, 30, 0]}
-        shadow-mapSize-width={256}
-        shadow-mapSize-height={256}
-      />
-      <pointLight decay={0} intensity={1} position={[0, 20, 10]} />
+      <hemisphereLight intensity={0.7} />
 
-      <OrbitControls />
+      {/* <pointLight decay={0} intensity={1} position={[0, 20, 10]} /> */}
+      {/* Luz que apunta desde arriba */}
+      {/* <spotLight
+        position={[0, 10, 0]} // Posición de la luz (directamente encima del origen)
+        angle={Math.PI / 3} // Ángulo del cono de luz
+        intensity={5} // Intensidad de la luz
+        castShadow // Proyectar sombras
+      /> */}
+
+      {/* <OrbitControls /> */}
 
       <Physics>
         <PlaneGroup width={width} length={length} height={height} />
 
         {/* <Car /> */}
         <Vehicle2
-          position={[-30, 2, 0]}
+          position={[-30, 2, -30]}
           rotation={[0, 0, 0]}
           angularVelocity={[0, 1, 0]}
         />
@@ -113,11 +102,8 @@ export default function Name() {
           colorBox={colorBox}
         />
         {/* 
-        <Pillar position={[-5, 2.5, -5]} />
-        <Pillar position={[0, 2.5, -5]} />
-        <Pillar position={[5, 2.5, -5]} /> */}
-
-        <Spheres size={76} numSpheres={50} />
+       
+        {/* <Spheres size={76} numSpheres={50} /> */}
       </Physics>
     </Canvas>
   );

@@ -32,7 +32,7 @@ function Vehicle2({
   steer = 0.5,
   width = 1.2,
 }: VehicleProps) {
-  const scale = 1;
+  const scale = 2;
   const chassisDimensions: [number, number, number] = [
     1.8 * scale,
     1.5 * scale,
@@ -121,43 +121,32 @@ function Vehicle2({
     useRef<Group>(null)
   );
 
-  const [currentStep, setCurrentStep] = useState(0); // Paso actual en la secuencia
   const timeElapsed = useRef(0); // Tiempo transcurrido dentro del paso actual
 
-  const sequence = [
-    { force: -1000, steering: 0.0, duration: 4 },
-    { force: -800, steering: 0.1, duration: 2 },
-    { force: -900, steering: 0.2, duration: 4 },
-    { force: -900, steering: 0.1, duration: 3 },
-    { force: -1200, steering: 0.1, duration: 3 },
-    { force: -1000, steering: 0.1, duration: 4 },
-    { force: -1100, steering: 0.2, duration: 4 },
-  ];
-
   useFrame((_, delta) => {
-    const step = sequence[currentStep];
-    if (!step) return;
-
+    // Incrementar el tiempo transcurrido
     timeElapsed.current += delta;
 
-    // Aplicar fuerza y dirección de giro
-    vehicleApi.applyEngineForce(step.force, 2); // Llanta trasera izquierda
-    vehicleApi.applyEngineForce(step.force, 3); // Llanta trasera derecha
-    vehicleApi.setSteeringValue(step.steering, 0); // Llanta delantera izquierda
-    vehicleApi.setSteeringValue(step.steering, 1); // Llanta delantera derecha
-
-    // Verificar si hemos completado el intervalo del paso actual
-    if (timeElapsed.current >= step.duration) {
-      timeElapsed.current = 0; // Reiniciar el tiempo transcurrido
-      setCurrentStep((prev) => (prev + 1) % sequence.length); // Siguiente paso o reiniciar
-
-      if (currentStep === sequence.length - 1) {
-        // Reiniciar posición al finalizar la secuencia
-        chassisApi.position.set(-30, 1, 0);
-        chassisApi.rotation.set(0, 0, 0);
-        chassisApi.velocity.set(0, 0, 0);
-        chassisApi.angularVelocity.set(0, 0, 0);
-      }
+    // Condicionales para aplicar fuerza y dirección
+    if (timeElapsed.current < 2) {
+      // Primer intervalo: Aplicar fuerza y dirección iniciales
+      vehicleApi.applyEngineForce(-4000, 2); // Llanta trasera izquierda
+      vehicleApi.applyEngineForce(-4000, 3); // Llanta trasera derecha
+      vehicleApi.setSteeringValue(0.3, 0); // Llanta delantera izquierda
+      vehicleApi.setSteeringValue(0.3, 1); // Llanta delantera derecha
+    } else if (timeElapsed.current < 10) {
+      // Segundo intervalo: Cambiar fuerza y dirección
+      vehicleApi.applyEngineForce(-4000, 2); // Llanta trasera izquierda
+      vehicleApi.applyEngineForce(-4000, 3); // Llanta trasera derecha
+      vehicleApi.setSteeringValue(0, 0); // Llanta delantera izquierda
+      vehicleApi.setSteeringValue(0, 1); // Llanta delantera derecha
+    } else {
+      // Reiniciar el tiempo transcurrido
+      chassisApi.position.set(-30, 2, -30);
+      chassisApi.rotation.set(0, 0, 0);
+      chassisApi.velocity.set(0, 0, 0);
+      chassisApi.angularVelocity.set(0, 0, 0);
+      timeElapsed.current = 0;
     }
   });
 

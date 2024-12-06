@@ -34,31 +34,22 @@ function Box({
     useRef<THREE.Mesh>(null)
   );
 
-  const randomAngle = Math.random() * Math.PI * 2; // Ángulo entre 0 y 2π
-  const forceX = Math.cos(randomAngle) * 200;
-  const forceZ = Math.sin(randomAngle) * 200;
-
-  useFrame((state) => {
-    const elapsedTime = state.clock.getElapsedTime();
+  useFrame((state, delta) => {
+    lastSwitchTime.current += delta;
 
     // Si han pasado más de 5 segundos desde el último cambio
-    if (elapsedTime - lastSwitchTime.current > 10) {
+    if (lastSwitchTime.current > 10) {
       // Resetear el tiempo de alternancia
-      lastSwitchTime.current = elapsedTime;
+      lastSwitchTime.current = 0;
     }
 
     // Alternar tipo de objeto basado en el tiempo transcurrido
-    if (elapsedTime - lastSwitchTime.current <= 4) {
+    if (lastSwitchTime.current <= 3) {
       setTypeObj(() => "Static");
-    } else if (
-      elapsedTime - lastSwitchTime.current > 4 &&
-      elapsedTime - lastSwitchTime.current <= 10
-    ) {
+    } else if (lastSwitchTime.current > 3 && lastSwitchTime.current <= 10) {
       setTypeObj(() => "Dynamic");
-      api.applyForce([forceX, 0, forceZ], [0, 0, 0]);
     }
 
-    // Si es "Static", reiniciar la posición
     if (typeObj === "Static") {
       api.position.set(position[0], position[1], position[2]); // Reinicia la posición si vuelve a estático
       api.velocity.set(0, 0, 0); // Asegurarse de que no haya velocidad residual

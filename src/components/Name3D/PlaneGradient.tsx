@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { usePlane } from "@react-three/cannon";
 import { useRef } from "react";
+import { GradientTexture, Plane } from "@react-three/drei";
 
 function PlaneGradient({
   color1,
@@ -25,33 +26,16 @@ function PlaneGradient({
     useRef<THREE.Mesh>(null)
   );
 
-  const material = new THREE.ShaderMaterial({
-    uniforms: {
-      color1: { value: new THREE.Color(color1) },
-      color2: { value: new THREE.Color(color2) },
-    },
-    vertexShader: `
-      varying vec2 vUv;
-      void main() {
-        vUv = uv;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    `,
-    fragmentShader: `
-      uniform vec3 color1;
-      uniform vec3 color2;
-      varying vec2 vUv;
-      void main() {
-        gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
-      }
-    `,
-  });
-
   return (
-    <mesh ref={ref} {...props}>
-      <planeGeometry args={dimensions} />
-      <primitive attach="material" object={material} />
-    </mesh>
+    <Plane ref={ref} {...props} args={dimensions}>
+      <meshPhongMaterial>
+        <GradientTexture
+          stops={[0, 1]}
+          colors={["#e00d3d", "#222222"]}
+          size={1024}
+        />
+      </meshPhongMaterial>
+    </Plane>
   );
 }
 
@@ -107,15 +91,6 @@ function PlaneGroup({
         position={[width / 2, height / 2, 0]}
         rotation={[0, -Math.PI / 2, 0]}
       />
-
-      {/* Techo */}
-      {/* <PlaneGradient
-        color1="#f64191"
-        color2="#f67280"
-        dimensions={[width, length]}
-        position={[0, 50, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      /> */}
     </group>
   );
 }
