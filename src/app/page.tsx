@@ -7,6 +7,7 @@ import Card from "@/components/Card/Card";
 import { subjects as rawSubjects } from "@/components/Card/subjects";
 import Name from "@/components/Name3D/Name";
 import Laptop from "@/components/Laptop/LaptopIndex";
+import CV from "@/components/CV";
 
 const Home: React.FC = () => {
   const { myTheme } = useTheme();
@@ -52,6 +53,8 @@ const Home: React.FC = () => {
             />
           ))}
         </div>
+
+        <CV />
       </main>
     </div>
   );

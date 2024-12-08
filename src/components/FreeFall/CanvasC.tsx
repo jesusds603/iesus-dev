@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import React from "react";
 import { MovingSphere } from "./MovingSphere";
-import { OrbitControls, Plane } from "@react-three/drei";
+import { OrbitControls, Plane, GradientTexture } from "@react-three/drei";
 import Spaceship from "./SpaceShip";
 import * as THREE from "three";
 import { FormState } from "./constants";
@@ -34,11 +34,9 @@ function CanvasC({
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, 0, 0]}
       >
-        <meshStandardMaterial
-          attach="material"
-          color="lightblue"
-          side={THREE.DoubleSide}
-        />
+        <meshPhongMaterial attach="material" side={THREE.DoubleSide}>
+          <GradientTexture stops={[0, 1]} colors={["#ec43e2", "#da1e43"]} />
+        </meshPhongMaterial>
       </Plane>
       {/* <gridHelper
               args={[100000, 100000, "#000000", "#CA49F9"]}
