@@ -33,8 +33,8 @@ export const menuItems = [
     name: "About",
     link: "/about",
     icon: AiOutlineUser,
-    labelEn: "About",
-    labelEs: "Acerca de",
+    labelEn: "About me",
+    labelEs: "Sobre mí",
     submenus: [],
   },
   {
