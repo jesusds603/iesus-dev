@@ -5,6 +5,8 @@ import PlaneGroup from "./PlaneGradient";
 import { Physics } from "@react-three/cannon";
 import RenderLetter from "./RenderLetter";
 import Vehicle2 from "./Vehicle2";
+import Camera from "./Camera";
+import Spheres from "./Spheres";
 
 export default function Name() {
   const width = 80; // Ancho del grupo de planos
@@ -37,27 +39,13 @@ export default function Name() {
 
   return (
     <Canvas
-      camera={{
-        position: [-15, 10, 15], // Posición inicial de la cámara
-        fov: 75, // Campo de visión
-        near: 0.1, // Distancia mínima para renderizar objetos
-        far: 300, // Distancia máxima para renderizar objetos
-      }}
       style={{
-        width: "80vw", // Ancho fijo
-        height: "50vh", // Alto fijo
+        // width: "800px", // Ancho fijo
+        height: "300px", // Alto fijo
       }}
     >
-      <hemisphereLight intensity={0.7} />
-
-      {/* <pointLight decay={0} intensity={1} position={[0, 20, 10]} /> */}
-      {/* Luz que apunta desde arriba */}
-      {/* <spotLight
-        position={[0, 10, 0]} // Posición de la luz (directamente encima del origen)
-        angle={Math.PI / 3} // Ángulo del cono de luz
-        intensity={5} // Intensidad de la luz
-        castShadow // Proyectar sombras
-      /> */}
+      <hemisphereLight intensity={1} />
+      <Camera />
 
       {/* <OrbitControls /> */}
 
@@ -101,9 +89,14 @@ export default function Name() {
           yOffset={yOffset}
           colorBox={colorBox}
         />
-        {/* 
-       
-        {/* <Spheres size={76} numSpheres={50} /> */}
+
+        <Spheres
+          radius={0.8}
+          numSpheres={20}
+          startPoint={[10, 15, -10]}
+          endPoint={[5, 3, 10]}
+          width={7}
+        />
       </Physics>
     </Canvas>
   );

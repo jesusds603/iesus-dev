@@ -128,12 +128,12 @@ function Vehicle2({
     timeElapsed.current += delta;
 
     // Condicionales para aplicar fuerza y dirección
-    if (timeElapsed.current < 2) {
+    if (timeElapsed.current < 3) {
       // Primer intervalo: Aplicar fuerza y dirección iniciales
       vehicleApi.applyEngineForce(-4000, 2); // Llanta trasera izquierda
       vehicleApi.applyEngineForce(-4000, 3); // Llanta trasera derecha
-      vehicleApi.setSteeringValue(0.3, 0); // Llanta delantera izquierda
-      vehicleApi.setSteeringValue(0.3, 1); // Llanta delantera derecha
+      vehicleApi.setSteeringValue(0.4, 0); // Llanta delantera izquierda
+      vehicleApi.setSteeringValue(0.4, 1); // Llanta delantera derecha
     } else if (timeElapsed.current < 10) {
       // Segundo intervalo: Cambiar fuerza y dirección
       vehicleApi.applyEngineForce(-4000, 2); // Llanta trasera izquierda

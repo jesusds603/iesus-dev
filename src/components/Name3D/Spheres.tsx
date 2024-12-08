@@ -2,11 +2,20 @@ import React, { useMemo } from "react";
 import SphereU from "./SphereU";
 
 interface SpheresProps {
-  size: number;
-  numSpheres: number;
+  radius: number; // Tamaño del área, no se usa directamente en la curva
+  numSpheres: number; // Número total de esferas
+  startPoint: [number, number, number]; // Punto inicial (a, b, c)
+  endPoint: [number, number, number]; // Punto final (d, e, f)
+  width: number; // Ancho del camino
 }
 
-export default function Spheres({ size, numSpheres }: SpheresProps) {
+export default function Spheres({
+  radius,
+  numSpheres,
+  startPoint,
+  endPoint,
+  width,
+}: SpheresProps) {
   const spheres = useMemo(() => {
     const gradients: string[][] = [
       ["#ff0000", "#ff7f00"], // Rojo a Naranja
@@ -21,23 +30,39 @@ export default function Spheres({ size, numSpheres }: SpheresProps) {
       ["#7f00ff", "#ff00ff"], // Azul-violeta a Magenta
     ];
 
-    const numColumns = Math.floor(Math.sqrt(numSpheres)); // Número de columnas basado en la raíz cuadrada
-    const numRows = Math.ceil(numSpheres / numColumns); // Número de filas
-    const spacing = size / (numColumns + 1); // Espaciado entre esferas
+    const [ax, ay, az] = startPoint;
+    const [dx, dy, dz] = endPoint;
+
+    // Longitud del camino
+    const pathLength = Math.sqrt(
+      (dx - ax) ** 2 + (dy - ay) ** 2 + (dz - az) ** 2
+    );
 
     return new Array(numSpheres).fill(null).map((_, i) => {
-      // Calculamos la posición en la cuadrícula
-      const x = (i % numColumns) * spacing - size / 2; // Columna
-      const y = 10; // Altura fija para todas las esferas
-      const z = Math.floor(i / numColumns) * spacing - size / 2; // Fila
+      // Fracción del camino basada en el índice
+      const t = i / (numSpheres - 1);
 
-      const radius = 0.5;
+      // Interpolación lineal para calcular la posición central del camino
+      const x = ax + t * (dx - ax);
+      const y = ay + t * (dy - ay);
+      const z = az + t * (dz - az);
+
+      // Desplazamiento sinusoidal para agregar variación
+      const offset = Math.sin(t * Math.PI * 2) * width; // Amplitud sinusoidal según el ancho
+      const perpendicularX = offset * ((dz - az) / pathLength); // Proyección en el eje X
+      const perpendicularZ = offset * (-(dx - ax) / pathLength); // Proyección en el eje Z
+
+      // Radio y colores
       const colorIndex = Math.floor(i / (numSpheres / gradients.length));
       const colors = gradients[colorIndex];
 
-      return { position: [x, y, z], radius, colors };
+      return {
+        position: [x + perpendicularX, y, z + perpendicularZ],
+        radius,
+        colors,
+      };
     });
-  }, [numSpheres, size]);
+  }, [numSpheres, startPoint, endPoint, width]);
 
   return (
     <>

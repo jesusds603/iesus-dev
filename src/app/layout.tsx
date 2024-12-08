@@ -6,6 +6,8 @@ import MenuProvider from "@/hooks/useMenu";
 import ThemeProvider from "@/hooks/useTheme";
 import LayoutContent from "./LayoutContent";
 import HeaderApp from "@/components/HeaderApp";
+import { ShipProvider } from "../../context/useShip";
+import { SphereProvider } from "../../context/useSphere";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,14 +34,18 @@ export default function RootLayout({
     <ThemeProvider>
       <MenuProvider>
         <LanguageProvider>
-          <html lang="en">
-            <body
-              className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-              <HeaderApp />
-              <LayoutContent> {children}</LayoutContent>
-            </body>
-          </html>
+          <ShipProvider>
+            <SphereProvider>
+              <html lang="en">
+                <body
+                  className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                >
+                  <HeaderApp />
+                  <LayoutContent> {children}</LayoutContent>
+                </body>
+              </html>
+            </SphereProvider>
+          </ShipProvider>
         </LanguageProvider>
       </MenuProvider>
     </ThemeProvider>

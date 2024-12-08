@@ -51,8 +51,8 @@ function Laptop() {
       <Canvas
         camera={{ position: [-15, 20, 15] }}
         style={{
-          width: "900px",
-          height: "600px",
+          // width: "800px",
+          height: "300px",
         }}
         className=" border border-teal-400"
       >

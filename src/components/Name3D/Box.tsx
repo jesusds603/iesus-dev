@@ -17,9 +17,6 @@ function Box({
   );
   const lastSwitchTime = useRef(0); // Referencia para guardar el tiempo de la última alternancia
 
-  // Audio setup
-  const sound = useRef<THREE.Audio | null>(null);
-
   const [ref, api] = useBox(
     () => ({
       mass: 20, // Si es estático, no tiene masa
