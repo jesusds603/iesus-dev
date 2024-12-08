@@ -6,8 +6,8 @@ import MenuProvider from "@/hooks/useMenu";
 import ThemeProvider from "@/hooks/useTheme";
 import LayoutContent from "./LayoutContent";
 import HeaderApp from "@/components/HeaderApp";
-import { ShipProvider } from "../../context/useShip";
-import { SphereProvider } from "../../context/useSphere";
+import { ShipProvider } from "../hooks/useShip";
+import { SphereProvider } from "../hooks/useSphere";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

@@ -9,7 +9,7 @@ import {
 import * as THREE from "three";
 import { useLoader, useFrame, useThree } from "@react-three/fiber";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { useShip } from "../../context/useShip";
+import { useShip } from "../../hooks/useShip";
 
 // Tipos para el manejo de teclas
 type KeysPressed = { [key: string]: boolean };

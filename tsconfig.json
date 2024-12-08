@@ -27,8 +27,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/Name3D/CarLoader.jsx",
-    "context/useSphere.tsx",
-    "context/useShip.tsx"
+    "src/hooks/useSphere.tsx",
+    "src/hooks/useShip.tsx"
   ],
   "exclude": ["node_modules"]
 }
