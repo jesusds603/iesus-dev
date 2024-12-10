@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
+import { InlineMath, BlockMath } from "react-katex";
+import "katex/dist/katex.min.css";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -141,12 +143,13 @@ const Page: React.FC = () => {
     myTheme === "dark" ? "bg-teal-400 text-white" : "bg-teal-700 text-white";
 
   return (
-    <div className={`mx-auto p-1 `}>
+    <div className={`mx-auto p-1 min-h-screen `}>
       <h1 className="text-3xl font-bold text-center mb-4">
         {myLanguage === "eng"
           ? "Collatz Conjecture Graph"
           : "Gráfico de la Conjetura de Collatz"}
       </h1>
+
       <div className="flex flex-col items-center mb-4">
         <input
           type="number"
@@ -161,6 +164,7 @@ const Page: React.FC = () => {
           {myLanguage === "eng" ? "Generate Graph" : "Generar Gráfico"}
         </button>
       </div>
+
       {error ? (
         <div className="text-red-500 text-center mb-4">{error}</div>
       ) : (
@@ -172,12 +176,61 @@ const Page: React.FC = () => {
             <Line data={chartData} options={chartOptions} />
           </div>
 
+          <div className={`text-lg `}>
+            {myLanguage === "eng" ? (
+              <span>
+                The{" "}
+                <span className="font-bold text-yellow-400">
+                  Collatz Conjecture
+                </span>{" "}
+                is a mathematical hypothesis that suggests that starting with
+                any positive integer, if the number is even, divide it by 2, and
+                if it's odd, multiply it by 3 and add 1. The conjecture claims
+                that, no matter the starting number, the sequence will always
+                eventually reach 1.
+              </span>
+            ) : (
+              <span>
+                La{" "}
+                <span className="font-bold text-yellow-400">
+                  Conjetura de Collatz
+                </span>{" "}
+                es una hipótesis matemática que sugiere que, comenzando con
+                cualquier número entero positivo, si el número es par, divídelo
+                entre 2, y si es impar, multiplícalo por 3 y súmale 1. La
+                conjetura afirma que, sin importar el número inicial, la
+                secuencia siempre llegará eventualmente al 1.
+              </span>
+            )}
+          </div>
+
+          <div className=" p-4 rounded-md font-mono">
+            <BlockMath math="n_0 = \text{initial number}" />
+            <BlockMath
+              math="n_{k+1} = \left\{
+          \begin{array}{ll}
+          \frac{n_k}{2} & \text{if } n_k \text{ is even} \\
+          3n_k + 1 & \text{if } n_k \text{ is odd}
+          \end{array}
+        \right."
+            />
+
+            <p>
+              {" "}
+              {myLanguage === "eng"
+                ? "The sequence continues until "
+                : "La sucesión termina hasta que "}{" "}
+              <InlineMath math=" n_k = 1." />
+            </p>
+          </div>
+
           <div className={`p-4 rounded-xl border ${borderClasses} w-full`}>
             <h2 className="text-xl font-semibold text-teal-400 mb-2 text-center">
               {myLanguage === "eng"
                 ? "Sequence Steps"
                 : "Pasos de la Secuencia"}
             </h2>
+
             <div className="flex flex-wrap">
               {Array.from({ length: columns }).map((_, colIndex) => (
                 <table

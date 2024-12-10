@@ -3,8 +3,8 @@ import React from "react";
 
 export default function CV() {
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 font-sans p-6 mt-4">
-      <div className="max-w-4xl mx-auto bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+    <div className="min-h-screen bg-gray-900 text-gray-100 font-sans p-6 mt-4 overflow-scroll">
+      <div className="max-w-4xl mx-auto bg-gray-800 shadow-lg rounded-lg ">
         {/* Header */}
         <div className="bg-gray-700 p-6 flex items-center">
           <img

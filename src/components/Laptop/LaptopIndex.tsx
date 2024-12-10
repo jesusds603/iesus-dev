@@ -1,13 +1,5 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import React, { Fragment, useEffect, useRef, useState } from "react";
-import * as THREE from "three";
-import {
-  GradientTexture,
-  Box,
-  Text,
-  OrbitControls,
-  Plane,
-} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import React, { Fragment, useEffect, useState } from "react";
 import GroupLap from "./GroupLap";
 
 function Laptop() {
@@ -50,11 +42,8 @@ function Laptop() {
     <Fragment>
       <Canvas
         camera={{ position: [-15, 20, 15] }}
-        style={{
-          // width: "800px",
-          height: "300px",
-        }}
-        className=" border border-teal-400"
+        className="  border border-teal-400"
+        style={{ height: "400px" }}
       >
         <ambientLight />
         {/* <OrbitControls /> */}
@@ -66,7 +55,7 @@ function Laptop() {
           setCreatedText={setCreatedText}
         />
       </Canvas>
-      <p>{createdText}</p>
+      {/* <p>{createdText}</p> */}
     </Fragment>
   );
 }

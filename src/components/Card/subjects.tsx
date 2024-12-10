@@ -1,4 +1,17 @@
-export const subjects = (myLanguage: string) => [
+export const subjects = (myLanguage: string, myTheme: string) => [
+  {
+    title: myLanguage === "eng" ? "About Me" : "Sobre Mí",
+    description:
+      myLanguage === "eng"
+        ? "Play with the known Hanoi Tower and get rewards"
+        : "Juega con la conocida torre de Hanoi y obtén recompensas",
+
+    gradientColor:
+      myTheme === "dark"
+        ? "bg-gradient-to-r from-pink-800 via-red-800 to-yellow-800"
+        : "bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300",
+    link: "/about",
+  },
   {
     title: myLanguage === "eng" ? "Hanoi Tower" : "Torre de Hanoi",
     description:
@@ -7,7 +20,9 @@ export const subjects = (myLanguage: string) => [
         : "Juega con la conocida torre de Hanoi y obtén recompensas",
 
     gradientColor:
-      "linear-gradient(135deg, hsl(180, 70%, 50%), hsl(180, 70%, 60%))",
+      myTheme === "dark"
+        ? "bg-gradient-to-r from-pink-800 via-purple-800 to-indigo-900"
+        : "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400",
     link: "/hanoi",
   },
   {
@@ -17,7 +32,9 @@ export const subjects = (myLanguage: string) => [
         ? "Play the classical snake game and get rewards"
         : "Juega al clásico juego de la serpiente y obtén recompensas",
     gradientColor:
-      "linear-gradient(rgb(17, 24, 39), rgb(88, 28, 135), rgb(124, 58, 237))",
+      myTheme === "dark"
+        ? "bg-gradient-to-r from-gray-800 via-gray-900 to-black"
+        : "bg-gradient-to-r from-gray-500 via-gray-400 to-slate-400",
     link: "/snake",
   },
   {
@@ -27,7 +44,9 @@ export const subjects = (myLanguage: string) => [
         ? "A simple 2D game where you control a plane and must shoot down enemy aircraft while avoiding their attacks."
         : "Un sencillo juego 2D donde controlas un avión y debes derribar naves enemigas mientras evitas sus ataques.",
     gradientColor:
-      "conic-gradient(at left center, rgb(234, 179, 8), rgb(168, 85, 247), rgb(59, 130, 246))",
+      myTheme === "dark"
+        ? "bg-gradient-to-r from-rose-700 via-red-600 to-red-700"
+        : "bg-gradient-to-r from-rose-400 via-red-300 to-red-400",
     link: "/plane-block",
   },
   {
@@ -37,7 +56,9 @@ export const subjects = (myLanguage: string) => [
         ? "Visualize the Collatz conjecture algorithm for any number"
         : "Visualiza el algoritmo de la conjetura de Collatz para el número que quieras",
     gradientColor:
-      "linear-gradient(135deg, hsl(0, 70%, 50%), hsl(0, 70%, 60%))",
+      myTheme === "dark"
+        ? "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-800 via-emerald-800 to-teal-800"
+        : "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-200 via-emerald-200 to-yellow-200",
     link: "/math/collatz",
   },
   {
@@ -47,7 +68,9 @@ export const subjects = (myLanguage: string) => [
         ? "Graph and calculate sequences of prime numbers"
         : "Grafica y calcula sucesiones de números primos",
     gradientColor:
-      "linear-gradient(135deg, hsl(90, 70%, 50%), hsl(90, 70%, 60%))",
+      myTheme === "dark"
+        ? "bg-gradient-to-r from-sky-900 via-rose-900 to-lime-900"
+        : "bg-gradient-to-r from-sky-400 via-rose-400 to-lime-400",
     link: "/math/primes",
   },
 ];

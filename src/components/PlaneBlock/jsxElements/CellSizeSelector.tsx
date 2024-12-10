@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface CellSizeSelectorProps {
   cellSize: number;
@@ -9,13 +10,17 @@ const CellSizeSelector: React.FC<CellSizeSelectorProps> = ({
   cellSize,
   onChange,
 }) => {
+  const { myLanguage } = useLanguage();
+
   const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(parseInt(event.target.value));
   };
 
   return (
     <div className="my-2">
-      <label className="mr-2 font-semibold">Tamaño de celda:</label>
+      <label className="mr-2 font-semibold">
+        {myLanguage === "eng" ? "Cell Size:" : "Tamaño de celda:"}
+      </label>
       <select
         value={cellSize}
         onChange={handleSizeChange}

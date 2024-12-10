@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/hooks/useLanguage";
 import {
   Plane,
   PlayerPlane,
@@ -40,8 +41,9 @@ import {
 import GenerateStars from "@/components/PlaneBlock/functions/GenerateStars";
 
 function PlaneBlockPage() {
+  const { myLanguage } = useLanguage();
   const MIN_DIM = 40;
-  const MAX_DIM = 70;
+  const MAX_DIM = 50;
   const [cellSize, setCellSize] = useState<number>(10);
   const [isGridHorizontal, setIsGridHorizontal] = useState<boolean>(false);
   const [gridHeight, setGridHeight] = useState<number>(
@@ -53,16 +55,28 @@ function PlaneBlockPage() {
 
   type LevelKeys = `L${number}`; // Tipos de claves válidas
   const amountToKill: Record<LevelKeys, number> = {
-    L1: 10,
-    L2: 12,
-    L3: 14,
-    L4: 18,
+    L1: 8,
+    L2: 10,
+    L3: 12,
+    L4: 14,
+    L5: 16,
+    L6: 18,
+    L7: 20,
+    L8: 22,
+    L9: 24,
+    L10: 26,
   };
   const amountInScreen: Record<LevelKeys, number> = {
-    L1: 5,
-    L2: 6,
-    L3: 7,
-    L4: 9,
+    L1: 4,
+    L2: 5,
+    L3: 6,
+    L4: 7,
+    L5: 8,
+    L6: 9,
+    L7: 10,
+    L8: 11,
+    L9: 12,
+    L10: 13,
   };
 
   const [amountEnemies, setAmountEnemies] = useState<number>(amountInScreen.L1);
@@ -427,14 +441,23 @@ function PlaneBlockPage() {
 
       <div>
         <p>
-          Killed enemies: {amountKilledEnemies} /{" "}
-          {amountToKill[`L${currentLevel}`]}
+          {myLanguage === "eng" ? "Killed enemies:" : "Enemigos muertos:"}{" "}
+          {amountKilledEnemies} / {amountToKill[`L${currentLevel}`]}
         </p>
-        <p>Level: {currentLevel}</p>
+        <p>
+          {" "}
+          {myLanguage === "eng" ? "Level:" : "Nivel:"} {currentLevel}
+        </p>
       </div>
 
       {levelIsPassed ? (
-        <p>¡Felicidades!, pasaste el nivel {currentLevel}</p>
+        <p>
+          {" "}
+          {myLanguage === "eng"
+            ? "Contratulations! You passed to the level:"
+            : "¡Felicidades! Pasaste al nivel:"}{" "}
+          {currentLevel}
+        </p>
       ) : (
         ""
       )}
@@ -449,6 +472,20 @@ function PlaneBlockPage() {
         playerBullets={playerBullets}
         stars={stars}
       />
+
+      <p className="text-[24px] mt-2">
+        {myLanguage === "eng" ? (
+          <span>
+            Use the <span className="font-mono">WASD</span> keys to move and the{" "}
+            <span className="font-mono">P</span> key to shoot.
+          </span>
+        ) : (
+          <span>
+            Usa las teclas <span className="font-mono ">WASD</span> para moverte
+            y la <span className="font-mono ">P</span> para disparar.
+          </span>
+        )}
+      </p>
 
       <EnemyPlanesInfo enemyPlanes={enemyPlanes} />
     </div>

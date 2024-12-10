@@ -16,13 +16,17 @@ function LayoutBackground() {
       ></div>
       <div
         className={`absolute inset-0 w-full h-full bg-gradient-to-r ${
-          myTheme === "dark" ? "from-emerald-950" : "from-emerald-300"
-        } to-purple-800 opacity-20`}
+          myTheme === "dark"
+            ? "from-emerald-950 to-purple-800 "
+            : "from-emerald-300 to-purple-300 "
+        } opacity-20`}
       ></div>
       <div
         className={`absolute inset-0 w-full h-full bg-gradient-to-tr ${
-          myTheme === "dark" ? "from-teal-600" : "from-teal-300"
-        } to-purple-700 opacity-10`}
+          myTheme === "dark"
+            ? "from-teal-600 to-purple-700"
+            : "from-teal-300 to-purple-200"
+        }  opacity-10`}
       ></div>
 
       {/* Círculos fijos con efecto de gota de agua y gradientes condicionados */}

@@ -92,15 +92,15 @@ function SnakeGame() {
             <div>Game Over</div>
             <div className="">
               <p className="text-red-600">{collisionMessage}</p>
-              <p>Recompensas: {reward} SHUNA</p>
+              {/* <p>Recompensas: {reward} SHUNA</p> */}
             </div>
 
-            <button
+            {/* <button
               onClick={handleClaimReward}
               className="mt-4 px-4 py-2 bg-teal-500 text-white font-semibold rounded-lg shadow-lg hover:bg-teal-600 transition duration-200"
             >
               Reclamar Recompensas
-            </button>
+            </button> */}
           </>
         ) : (
           "Snake Game"

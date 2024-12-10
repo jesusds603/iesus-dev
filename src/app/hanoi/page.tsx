@@ -82,22 +82,20 @@ function HanoiGame() {
       newTowers[2].length === numRings &&
       newTowers[2].every((ring, i) => ring === numRings - i)
     ) {
-      let reward;
-      // existe un retraso en el contador
-      if (moveCount + 1 <= minMoves) {
-        reward = 3 * minMoves;
-      } else if (moveCount + 1 <= upperBoundMoves) {
-        reward = 2 * minMoves;
-      } else {
-        reward = minMoves;
-      }
-
       setMessage({
         type: "success",
         text:
           myLanguage === "eng"
-            ? `Congratulations! You solved the Tower of Hanoi.\nYou earned ${reward} SHUNA!`
-            : `¡Felicidades! Has resuelto la Torre de Hanoi.\nGanaste ${reward} SHUNA!`,
+            ? `Congratulations! You solved the Tower of Hanoi.\n ${
+                moveCount <= minMoves
+                  ? "¡You are amazing! You completed the game in the minimum number of moves!"
+                  : ""
+              }`
+            : `¡Felicidades! Has resuelto la Torre de Hanoi.\n ${
+                moveCount <= minMoves
+                  ? "¡Eres asombroso! Completaste el juego en la mínima cantidad de movimientos!"
+                  : ""
+              } `,
       });
     }
   };

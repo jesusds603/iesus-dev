@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface StartButtonProps {
   gameIsStarted: boolean;
@@ -22,13 +23,15 @@ const StartButton: React.FC<StartButtonProps> = ({
   onReset,
   onNext,
 }) => {
+  const { myLanguage } = useLanguage();
+
   if (gameIsOver) {
     return (
       <button
         onClick={onReset}
         className="bg-red-500 text-white p-2 rounded mb-4"
       >
-        Restart
+        {myLanguage === "eng" ? "Restart" : "Reiniciar"}
       </button>
     );
   }
@@ -39,7 +42,7 @@ const StartButton: React.FC<StartButtonProps> = ({
         onClick={onNext}
         className="bg-yellow-500 text-white p-2 rounded mb-4"
       >
-        Next Level
+        {myLanguage === "eng" ? "Next Level" : "Siguiente Nivel"}
       </button>
     );
   }
@@ -50,7 +53,13 @@ const StartButton: React.FC<StartButtonProps> = ({
         onClick={gameIsPaused ? onStart : onPause}
         className="bg-yellow-500 text-white p-2 rounded mb-4"
       >
-        {gameIsPaused ? "Continue" : "Stop"}
+        {gameIsPaused
+          ? myLanguage === "eng"
+            ? "Continue"
+            : "Continuar"
+          : myLanguage === "eng"
+          ? "Stop"
+          : "Detener"}
       </button>
     );
   }
@@ -60,7 +69,7 @@ const StartButton: React.FC<StartButtonProps> = ({
       onClick={onStart}
       className="bg-green-500 text-white p-2 rounded mb-4"
     >
-      Start
+      {myLanguage === "eng" ? "Start" : "Iniciar"}
     </button>
   );
 };

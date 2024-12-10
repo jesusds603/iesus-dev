@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useTheme } from "@/hooks/useTheme";
 
 interface CardProps {
   title: string;
@@ -14,13 +15,14 @@ const Card: React.FC<CardProps> = ({
   gradientColor,
   link,
 }) => {
+  const { myTheme } = useTheme();
+
   return (
     <Link href={link}>
       <div
-        className={`p-6 rounded-xl shadow-lg font-semibold transform transition duration-200 ease-in-out hover:scale-105 hover:cursor-pointer text-white`}
-        style={{
-          backgroundImage: gradientColor,
-        }}
+        className={`p-6 rounded-xl shadow-lg font-semibold transform transition duration-200 ease-in-out hover:scale-105 hover:cursor-pointer ${
+          myTheme === "dark" ? "text-white" : "text-black"
+        }  ${gradientColor}`}
       >
         <h2 className="text-2xl">{title}</h2>
         <p className="mt-2 text-sm">{description}</p>

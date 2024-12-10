@@ -41,7 +41,7 @@ export default function Name() {
     <Canvas
       style={{
         // width: "800px", // Ancho fijo
-        height: "300px", // Alto fijo
+        height: "400px", // Alto fijo
       }}
     >
       <hemisphereLight intensity={1} />

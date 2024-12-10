@@ -19,3 +19,23 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Estilo del scroll vertical */
+::-webkit-scrollbar {
+  width: 5px;
+  /* Anchura del scroll vertical */
+  height: 5px;
+  /* Altura del scroll horizontal */
+}
+
+/* Estilo del pulgar del scroll */
+::-webkit-scrollbar-thumb {
+  background-color: fuchsia;
+  /* Color del pulgar */
+}
+
+/* Estilo del scroll horizontal */
+::-webkit-scrollbar:horizontal {
+  height: 5px;
+  /* Altura del scroll horizontal */
+}
