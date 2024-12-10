@@ -2,13 +2,10 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useTheme } from "@/hooks/useTheme";
 import {
-  GRID_HEIGHT,
-  GRID_WIDTH,
   Position,
   INITIAL_DIRECTION,
   INITIAL_SNAKE,
 } from "@/components/Snake/constants";
-import { calculateReward } from "@/components/Snake/calculateReward";
 import { generateFood } from "@/components/Snake/generateFood";
 import { getNewDirection } from "@/components/Snake/getNewDirection";
 import Grid from "@/components/Snake/Grid";

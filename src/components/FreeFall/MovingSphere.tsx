@@ -54,7 +54,7 @@ export const MovingSphere = ({
       const theta = parseFloat(formState.theta);
       const velocity = parseFloat(formState.velocity);
       const gravity = parseFloat(formState.gravity);
-      const mass = parseFloat(formState.mass);
+      // const mass = parseFloat(formState.mass);
 
       const v0x =
         velocity *
@@ -70,9 +70,9 @@ export const MovingSphere = ({
       const z = parseFloat(formState.initialZ) + v0z * t;
       let y = parseFloat(formState.initialY) + v0y * t - 0.5 * gravity * t * t;
 
-      const vx = v0x;
-      const vy = v0y - gravity * t;
-      const vz = v0z;
+      // const vx = v0x;
+      // const vy = v0y - gravity * t;
+      // const vz = v0z;
       // const speed = Math.sqrt(vx * vx + vy * vy + vz * vz);
 
       // let kineticEnergy = 0.5 * mass * speed * speed;
