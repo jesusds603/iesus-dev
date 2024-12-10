@@ -1,13 +1,13 @@
 "use client";
-import React, { useState } from "react";
-import { useLanguage } from "@/hooks/useLanguage";
-import Section from "@/components/AboutMe/Section";
-import HomeSection from "@/components/AboutMe/HomeSection";
-import JobSection from "@/components/AboutMe/JobSection";
-import SkillsSection from "@/components/AboutMe/SkillsSection";
-import InterestsSection from "@/components/AboutMe/InterestsSection";
 import EducationSection from "@/components/AboutMe/EducationSection";
+import HomeSection from "@/components/AboutMe/HomeSection";
+import InterestsSection from "@/components/AboutMe/InterestsSection";
+import JobSection from "@/components/AboutMe/JobSection";
 import ReferencesSection from "@/components/AboutMe/ReferencesSection";
+import Section from "@/components/AboutMe/Section";
+import SkillsSection from "@/components/AboutMe/SkillsSection";
+import { useLanguage } from "@/hooks/useLanguage";
+import { useState } from "react";
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState(0);
@@ -67,11 +67,12 @@ export default function Page() {
         <Section
           id={sections[activeSection].id}
           title={sections[activeSection].title}
-          children={sections[activeSection].content}
           activeSection={activeSection}
           totalSections={sections.length}
           handleNavigation={handleNavigation}
-        />
+        >
+          {sections[activeSection].content}
+        </Section>
       </div>
     </div>
   );

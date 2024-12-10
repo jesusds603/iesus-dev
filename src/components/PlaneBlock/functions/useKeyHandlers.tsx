@@ -1,4 +1,4 @@
-import constants, { Plane, Bullet } from "@/components/PlaneBlock/constants";
+import { Plane, Bullet, directionMap } from "@/components/PlaneBlock/constants";
 import { rotateAndMovePlayer } from "@/components/PlaneBlock/functions/MovePlanes";
 
 const createPlayerBullet = (playerPlane: Plane): Bullet => {
@@ -68,7 +68,7 @@ export const handleKeyDown = (
   }
 
   // Si la tecla no está en directionMap o ya está en activeKeysRef, no hacemos nada
-  if (!constants.directionMap[key] || activeKeysRef.current.includes(key)) {
+  if (!directionMap[key] || activeKeysRef.current.includes(key)) {
     return;
   }
 

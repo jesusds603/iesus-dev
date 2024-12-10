@@ -1,7 +1,6 @@
 "use client";
 import React, { Fragment, useState } from "react";
 import "katex/dist/katex.min.css";
-import { useShip } from "../../hooks/useShip";
 import { useSphere } from "../../hooks/useSphere";
 import { FormState, defaultState } from "@/components/FreeFall/constants";
 import MainC from "@/components/FreeFall/MainC";

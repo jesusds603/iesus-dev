@@ -61,7 +61,7 @@ function SnakeGame() {
   }, [direction, food, isGameOver, moveQueue, gameStarted]);
 
   //* Rewards
-  const reward = calculateReward(snake.length, GRID_WIDTH, GRID_HEIGHT);
+  // const reward = calculateReward(snake.length, GRID_WIDTH, GRID_HEIGHT);
 
   const startGame = () => {
     setSnake(INITIAL_SNAKE);

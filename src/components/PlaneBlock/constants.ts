@@ -36,8 +36,6 @@ interface Planet {
   position: Position;
 }
 
-export default {
-  directionMap,
-};
+export { directionMap };
 
 export type { Position, Direction, Plane, Bullet, Star, Planet };

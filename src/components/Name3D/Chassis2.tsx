@@ -580,3 +580,5 @@ const Trapezoid = forwardRef<
     );
   }
 );
+
+Trapezoid.displayName = "Trapezoid";

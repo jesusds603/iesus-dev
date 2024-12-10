@@ -84,7 +84,7 @@ export const rotateAndMovePlayer = (
 
   setPlayerPlane((prev: Plane) => {
     // Calcula la nueva posición según la nueva dirección
-    let newPosition = { ...prev.position };
+    const newPosition = { ...prev.position };
 
     switch (newDirection) {
       case "x+":

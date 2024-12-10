@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
 import { Plane, Bullet, Star } from "@/components/PlaneBlock/constants";
 import {
@@ -48,18 +48,21 @@ function PlaneBlockPage() {
   );
 
   type LevelKeys = `L${number}`; // Tipos de claves válidas
-  const amountToKill: Record<LevelKeys, number> = {
-    L1: 8,
-    L2: 10,
-    L3: 12,
-    L4: 14,
-    L5: 16,
-    L6: 18,
-    L7: 20,
-    L8: 22,
-    L9: 24,
-    L10: 26,
-  };
+  const amountToKill: Record<LevelKeys, number> = useMemo(
+    () => ({
+      L1: 8,
+      L2: 10,
+      L3: 12,
+      L4: 14,
+      L5: 16,
+      L6: 18,
+      L7: 20,
+      L8: 22,
+      L9: 24,
+      L10: 26,
+    }),
+    []
+  ); // Dependencias vacías para que solo se cree una vez
   const amountInScreen: Record<LevelKeys, number> = {
     L1: 4,
     L2: 5,

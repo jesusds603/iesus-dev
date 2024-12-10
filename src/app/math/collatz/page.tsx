@@ -170,7 +170,7 @@ const Page: React.FC = () => {
       </Head>
 
       {/* Contenido principal */}
-      <div className={`mx-auto p-1 min-h-screen `}>
+      <div className={`mx-auto p-1 min-h-screen`}>
         <h1 className="text-3xl font-bold text-center mb-4">
           {myLanguage === "eng"
             ? "Collatz Conjecture Graph"
@@ -212,9 +212,9 @@ const Page: React.FC = () => {
                   </span>{" "}
                   is a mathematical hypothesis that suggests that starting with
                   any positive integer, if the number is even, divide it by 2,
-                  and if it's odd, multiply it by 3 and add 1. The conjecture
-                  claims that, no matter the starting number, the sequence will
-                  always eventually reach 1.
+                  and if it&apos;s odd, multiply it by 3 and add 1. The
+                  conjecture claims that, no matter the starting number, the
+                  sequence will always eventually reach 1.
                 </span>
               ) : (
                 <span>

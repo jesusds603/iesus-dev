@@ -73,21 +73,21 @@ export const MovingSphere = ({
       const vx = v0x;
       const vy = v0y - gravity * t;
       const vz = v0z;
-      const speed = Math.sqrt(vx * vx + vy * vy + vz * vz);
+      // const speed = Math.sqrt(vx * vx + vy * vy + vz * vz);
 
       // let kineticEnergy = 0.5 * mass * speed * speed;
-      let potentialEnergy = mass * gravity * y;
+      // let potentialEnergy = mass * gravity * y;
 
-      const tFloor =
-        (parseFloat(formState.velocity) *
-          Math.sin((parseFloat(formState.angle) * Math.PI) / 180) +
-          Math.sqrt(
-            (parseFloat(formState.velocity) *
-              Math.sin((parseFloat(formState.angle) * Math.PI) / 180)) **
-              2 +
-              2 * parseFloat(formState.gravity) * parseFloat(formState.initialY)
-          )) /
-        parseFloat(formState.gravity);
+      // const tFloor =
+      //   (parseFloat(formState.velocity) *
+      //     Math.sin((parseFloat(formState.angle) * Math.PI) / 180) +
+      //     Math.sqrt(
+      //       (parseFloat(formState.velocity) *
+      //         Math.sin((parseFloat(formState.angle) * Math.PI) / 180)) **
+      //         2 +
+      //         2 * parseFloat(formState.gravity) * parseFloat(formState.initialY)
+      //     )) /
+      //   parseFloat(formState.gravity);
       // const xFloor = parseFloat(formState.initialX) + v0x * tFloor;
       // const zFloor = parseFloat(formState.initialZ) + v0z * tFloor;
 
@@ -97,7 +97,7 @@ export const MovingSphere = ({
         setTime(t);
       } else {
         y = 0;
-        potentialEnergy = 0;
+        // potentialEnergy = 0;
         meshRef.current.position.set(x, y, z);
         setTime(t);
         resetSimulation(); //* Stop simulation
