@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { useLanguage } from "@/hooks/useLanguage";
-import { useTheme } from "@/hooks/useTheme";
 import SidebarSubItem from "./SidebarSubItem";
 
 interface SidebarItemProps {
@@ -27,11 +26,15 @@ interface SidebarItemProps {
       }>;
     }>;
   };
+  myLanguage: string;
+  myTheme: string;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
-  const { myTheme } = useTheme();
-  const { isLanguageEng } = useLanguage();
+const SidebarItem: React.FC<SidebarItemProps> = ({
+  item,
+  myLanguage,
+  myTheme,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
@@ -46,7 +49,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
 
   const activeClasses = isActive ? "bg-green-500" : "";
 
-  const label = isLanguageEng ? item.labelEn : item.labelEs;
+  const label = myLanguage === "eng" ? item.labelEn : item.labelEs;
 
   const toggleExpansion = (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -72,7 +75,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
       {isExpanded && item.submenus.length > 0 && (
         <nav className="ml-4 border-l-4 pl-2 rainbow-border">
           {item.submenus.map((submenu) => (
-            <SidebarSubItem key={submenu.link} item={submenu} />
+            <SidebarSubItem
+              key={submenu.link}
+              item={submenu}
+              myLanguage={myLanguage}
+              myTheme={myTheme}
+            />
           ))}
         </nav>
       )}

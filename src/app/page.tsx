@@ -44,7 +44,7 @@ const Home: React.FC = () => {
           <Name />
         </div>
 
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-3 w-full mt-4 px-10">
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2   xl:grid-cols-3 w-full mt-4 px-10">
           {subjects.map((subject, index) => (
             <Card
               key={index}
@@ -52,6 +52,7 @@ const Home: React.FC = () => {
               description={subject.description}
               gradientColor={subject.gradientColor}
               link={subject.link}
+              imageUrl={subject.imageUrl}
             />
           ))}
         </div>

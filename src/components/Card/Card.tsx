@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useTheme } from "@/hooks/useTheme";
+import Image from "next/image";
 
 interface CardProps {
   title: string;
   description: string;
   gradientColor: string;
   link: string;
+  imageUrl: string;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -14,6 +16,7 @@ const Card: React.FC<CardProps> = ({
   description,
   gradientColor,
   link,
+  imageUrl,
 }) => {
   const { myTheme } = useTheme();
 
@@ -26,6 +29,16 @@ const Card: React.FC<CardProps> = ({
       >
         <h2 className="text-2xl">{title}</h2>
         <p className="mt-2 text-sm">{description}</p>
+
+        <div className="w-full h-[300px] relative overflow-hidden mt-4">
+          <Image
+            src={imageUrl}
+            alt={title}
+            layout="fill"
+            objectFit="contain" // Ajusta la imagen para mantener la proporción
+            className="object-contain"
+          />
+        </div>
       </div>
     </Link>
   );

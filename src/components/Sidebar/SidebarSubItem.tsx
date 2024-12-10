@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import { useLanguage } from "@/hooks/useLanguage";
-import { useTheme } from "@/hooks/useTheme";
 import SidebarLink from "./SidebarLink";
 
 interface SidebarSubItemProps {
@@ -20,11 +18,15 @@ interface SidebarSubItemProps {
       labelEs: string;
     }>;
   };
+  myLanguage: string;
+  myTheme: string;
 }
 
-const SidebarSubItem: React.FC<SidebarSubItemProps> = ({ item }) => {
-  const { myTheme } = useTheme();
-  const { isLanguageEng } = useLanguage();
+const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
+  item,
+  myLanguage,
+  myTheme,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
@@ -39,7 +41,7 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({ item }) => {
 
   const activeClasses = isActive ? "bg-green-500" : "";
 
-  const label = isLanguageEng ? item.labelEn : item.labelEs;
+  const label = myLanguage === "eng" ? item.labelEn : item.labelEs;
 
   const toggleExpansion = (event: React.MouseEvent) => {
     event.stopPropagation();

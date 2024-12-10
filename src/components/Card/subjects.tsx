@@ -11,19 +11,21 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-pink-800 via-red-800 to-yellow-800"
         : "bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300",
     link: "/about",
+    imageUrl: "/about.png",
   },
   {
     title: myLanguage === "eng" ? "Hanoi Tower" : "Torre de Hanoi",
     description:
       myLanguage === "eng"
-        ? "Play with the known Hanoi Tower and get rewards"
-        : "Juega con la conocida torre de Hanoi y obtén recompensas",
+        ? "Play with the known Hanoi Tower and try making the minimum amount of moves."
+        : "Juega con la conocida torre de Hanoi e intenta hacer la mínima cantidad de movimientos.",
 
     gradientColor:
       myTheme === "dark"
         ? "bg-gradient-to-r from-pink-800 via-purple-800 to-indigo-900"
         : "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400",
     link: "/hanoi",
+    imageUrl: "/hanoi.png",
   },
   {
     title:
@@ -42,6 +44,7 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         : "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400",
 
     link: "/freefall",
+    imageUrl: "/freefall.png",
   },
   {
     title: myLanguage === "eng" ? "Snake" : "Serpiente",
@@ -54,6 +57,7 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-gray-800 via-gray-900 to-black"
         : "bg-gradient-to-r from-gray-500 via-gray-400 to-slate-400",
     link: "/snake",
+    imageUrl: "/snake.png",
   },
   {
     title: "Plane Block",
@@ -66,6 +70,7 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-rose-700 via-red-600 to-red-700"
         : "bg-gradient-to-r from-rose-400 via-red-300 to-red-400",
     link: "/plane-block",
+    imageUrl: "/plane.png",
   },
   {
     title: "Collatz",
@@ -78,6 +83,7 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-800 via-emerald-800 to-teal-800"
         : "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-200 via-emerald-200 to-yellow-200",
     link: "/math/collatz",
+    imageUrl: "/collatz.png",
   },
   {
     title: myLanguage === "eng" ? "Prime Numbers" : "Números Primos",
@@ -90,5 +96,6 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-sky-900 via-rose-900 to-lime-900"
         : "bg-gradient-to-r from-sky-400 via-rose-400 to-lime-400",
     link: "/math/primes",
+    imageUrl: "/primes.png",
   },
 ];

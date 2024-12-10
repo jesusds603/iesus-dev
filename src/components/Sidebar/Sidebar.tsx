@@ -1,11 +1,13 @@
 import { useMenu } from "@/hooks/useMenu";
 import { useTheme } from "@/hooks/useTheme";
+import { useLanguage } from "@/hooks/useLanguage";
 import { menuItems } from "./menu-items";
 import SidebarItem from "./SidebarItem";
 
 function Sidebar() {
   const { isMenuOpen } = useMenu();
   const { myTheme } = useTheme();
+  const { myLanguage } = useLanguage();
 
   const borderClasses =
     myTheme === "dark" ? "border-gray-700" : "border-gray-300";
@@ -39,7 +41,12 @@ function Sidebar() {
       {/* Menu de navegación */}
       <nav className="relative flex flex-col justify-between max-h-[calc(100vh-48px-64px-48px-40px)] mt-0 overflow-y-auto">
         {menuItems.map((item) => (
-          <SidebarItem key={item.link} item={item} />
+          <SidebarItem
+            key={item.link}
+            item={item}
+            myLanguage={myLanguage}
+            myTheme={myTheme}
+          />
         ))}
       </nav>
     </div>

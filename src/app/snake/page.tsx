@@ -104,7 +104,7 @@ function SnakeGame() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center">
         <div
           className={`text-2xl font-bold mb-4 p-4 rounded-xl text-center ${
             myTheme === "dark"
