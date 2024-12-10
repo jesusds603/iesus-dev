@@ -1,20 +1,15 @@
 import { Dispatch, SetStateAction, MutableRefObject } from "react";
-import {
-  Plane,
-  PlayerPlane,
-  Bullet,
-  Direction,
-} from "@/components/PlaneBlock/constants";
+import { Plane, Bullet, Direction } from "@/components/PlaneBlock/constants";
 import generateEnemyPlanes from "@/components/PlaneBlock/functions/GenerateEnemyPlanes";
 import { shootBulletFromPlane } from "@/components/PlaneBlock/functions/shootMoveBullets";
 
 interface ResetGameParams {
-  initialPlayerPlane: PlayerPlane;
+  initialPlayerPlane: Plane;
   isGridHorizontal: boolean;
   gridHeight: number;
   gridWidth: number;
   amountEnemies: number;
-  setPlayerPlane: Dispatch<SetStateAction<PlayerPlane>>;
+  setPlayerPlane: Dispatch<SetStateAction<Plane>>;
   setEnemyPlanes: Dispatch<SetStateAction<Plane[]>>;
   setIsCollisionPlayer: Dispatch<SetStateAction<boolean>>;
   setGameIsOver: Dispatch<SetStateAction<boolean>>;
@@ -94,7 +89,7 @@ interface HandleStartParams {
   amountInScreen: Record<string, number>;
   currentLevel: number;
   enemyPlanesRef: MutableRefObject<Plane[]>;
-  playerPlane: PlayerPlane;
+  playerPlane: Plane;
 }
 
 export function handleStart({
@@ -120,7 +115,7 @@ export function handleStart({
   setGameIsPaused(false);
 
   // Configurar los tiempos de disparo iniciales de forma escalonada
-  let lastShotTimes = enemyPlanes.map(
+  const lastShotTimes = enemyPlanes.map(
     (_, index) => Date.now() + index * intervalBetweenPlanesShoot
   );
 
@@ -263,12 +258,12 @@ interface HandleNextLevelParams {
   intervalRef: MutableRefObject<NodeJS.Timeout | null>;
   setBullets: Dispatch<SetStateAction<Bullet[]>>;
   setPlayerBullets: Dispatch<SetStateAction<Bullet[]>>;
-  initialPlayerPlane: PlayerPlane;
+  initialPlayerPlane: Plane;
   isGridHorizontal: boolean;
   gridHeight: number;
   gridWidth: number;
   amountEnemies: number;
-  setPlayerPlane: Dispatch<SetStateAction<PlayerPlane>>;
+  setPlayerPlane: Dispatch<SetStateAction<Plane>>;
   setEnemyPlanes: Dispatch<SetStateAction<Plane[]>>;
   setIsCollisionPlayer: Dispatch<SetStateAction<boolean>>;
   setGameIsOver: Dispatch<SetStateAction<boolean>>;

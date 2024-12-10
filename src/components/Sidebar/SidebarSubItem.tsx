@@ -32,7 +32,7 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
 
   useEffect(() => {
     setIsActive(window.location.pathname === item.link);
-  }, []);
+  }, [item.link]);
 
   const themeClasses =
     myTheme === "dark"
@@ -74,6 +74,7 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
               icon={submenu.icon}
               labelEn={submenu.labelEn}
               labelEs={submenu.labelEs}
+              myLanguage={myLanguage}
             />
           ))}
         </nav>

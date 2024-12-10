@@ -14,7 +14,7 @@ const Page = () => {
   const [formState, setFormState] = useState<FormState>(defaultState);
   const [simulationRunning, setSimulationRunning] = useState<boolean>(false);
   const [sliderTime, setSliderTime] = useState<number>(0);
-  const { position, updatePosition } = useShip();
+  // const { position, updatePosition } = useShip();
   const { posSphere, timeS } = useSphere();
   const { myLanguage } = useLanguage();
 
@@ -30,9 +30,9 @@ const Page = () => {
     setSimulationRunning(false);
   };
 
-  const setShipPosition = (x: number, y: number, z: number) => {
-    updatePosition({ x, y, z });
-  };
+  // const setShipPosition = (x: number, y: number, z: number) => {
+  //   updatePosition({ x, y, z });
+  // };
 
   const v0x =
     parseFloat(formState.velocity) *
@@ -77,7 +77,7 @@ const Page = () => {
   const totalEnergy = initialKineticEnergy + initialPotentialEnergy;
 
   // Valores ajustados para la posición final
-  const finalY = posSphere.y < 0 ? 0 : posSphere.y;
+  // const finalY = posSphere.y < 0 ? 0 : posSphere.y;
   const finalKineticEnergy =
     posSphere.y <= 0
       ? totalEnergy

@@ -19,8 +19,8 @@ const RenderPlayerBullet: React.FC<RenderPlayerBulletProps> = ({
   const direction = bullet.direction;
 
   // Ajusta la posición y rotación de la bala según su dirección
-  let bottom = y * cellSize;
-  let left = x * cellSize;
+  const bottom = y * cellSize;
+  const left = x * cellSize;
   let rotation = 0;
 
   switch (direction) {

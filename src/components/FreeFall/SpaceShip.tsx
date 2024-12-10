@@ -1,13 +1,7 @@
 "use client";
-import {
-  useRef,
-  useState,
-  useEffect,
-  useContext,
-  MutableRefObject,
-} from "react";
+import { useRef, useState, useEffect, MutableRefObject } from "react";
 import * as THREE from "three";
-import { useLoader, useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { useShip } from "../../hooks/useShip";
 

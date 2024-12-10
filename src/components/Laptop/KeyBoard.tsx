@@ -1,17 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { GradientTexture, Box, Text, Cylinder } from "@react-three/drei";
+import { GradientTexture, Box, Cylinder } from "@react-three/drei";
 import { keys, width, height, long } from "./keys";
 import Key from "./Key";
 
-function KeyBoard({
-  colorLetters,
-
-  setCreatedText,
-}: {
-  colorLetters: string;
-  setCreatedText: React.Dispatch<React.SetStateAction<string[]>>;
-}) {
+function KeyBoard({ colorLetters }: { colorLetters: string }) {
   const randomDirs = Array.from({ length: keys.length }, () =>
     Math.sign(Math.random() - 0.5)
   );
@@ -58,7 +51,6 @@ function KeyBoard({
         <Key
           key={index}
           colorLetters={colorLetters}
-          setCreatedText={setCreatedText}
           tecla={tecla}
           randomDir={randomDirs[index]}
         />

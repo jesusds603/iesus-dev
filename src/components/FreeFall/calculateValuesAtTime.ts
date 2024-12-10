@@ -19,15 +19,15 @@ export const calculateValuesAtTime = (t: number, formState: FormState) => {
 
   const x = parseFloat(formState.initialX) + v0x * t;
   const z = parseFloat(formState.initialZ) + v0z * t;
-  let y = parseFloat(formState.initialY) + v0y * t - 0.5 * gravity * t * t;
+  const y = parseFloat(formState.initialY) + v0y * t - 0.5 * gravity * t * t;
 
   const vx = v0x;
   const vy = v0y - gravity * t;
   const vz = v0z;
   const speed = Math.sqrt(vx * vx + vy * vy + vz * vz);
 
-  let kineticEnergy = 0.5 * mass * speed * speed;
-  let potentialEnergy = mass * gravity * y;
+  const kineticEnergy = 0.5 * mass * speed * speed;
+  const potentialEnergy = mass * gravity * y;
 
   // if (y < 0) {
   //   y = 0;

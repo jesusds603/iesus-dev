@@ -1,5 +1,5 @@
 import React from "react";
-import { InlineMath, BlockMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import { calculateValuesAtTime } from "./calculateValuesAtTime";
 import { FormState } from "./constants";
 

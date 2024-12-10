@@ -1,6 +1,6 @@
 import { useBox } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import * as THREE from "three";
 
 // Componente Box que representa un cubo

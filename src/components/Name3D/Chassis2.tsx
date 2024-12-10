@@ -475,6 +475,8 @@ export const Chassis2 = forwardRef<
   );
 });
 
+Chassis2.displayName = "Chassis2"; // Agregar un display name
+
 const Trapezoid = forwardRef<
   THREE.Mesh,
   {

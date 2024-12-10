@@ -1,13 +1,7 @@
-import constants, {
-  PlayerPlane,
-  Bullet,
-} from "@/components/PlaneBlock/constants";
-import {
-  movePlane,
-  rotateAndMovePlayer,
-} from "@/components/PlaneBlock/functions/MovePlanes";
+import constants, { Plane, Bullet } from "@/components/PlaneBlock/constants";
+import { rotateAndMovePlayer } from "@/components/PlaneBlock/functions/MovePlanes";
 
-const createPlayerBullet = (playerPlane: PlayerPlane): Bullet => {
+const createPlayerBullet = (playerPlane: Plane): Bullet => {
   let newPosition;
 
   // Dependiendo de la dirección del avión, ajustamos la posición de la bala
@@ -55,14 +49,14 @@ export const handleKeyDown = (
   event: KeyboardEvent,
   activeKeysRef: React.MutableRefObject<string[]>,
   isCollisionPlayer: boolean,
-  setPlayerPlane: React.Dispatch<React.SetStateAction<PlayerPlane>>,
+  setPlayerPlane: React.Dispatch<React.SetStateAction<Plane>>,
   intervalRef: React.MutableRefObject<NodeJS.Timeout | null>,
   cellSize: number,
   gridHeight: number,
   gridWidth: number,
   playerSpeed: number,
   setPlayerBullets: React.Dispatch<React.SetStateAction<Bullet[]>>,
-  playerPlane: PlayerPlane
+  playerPlane: Plane
 ) => {
   const key = event.key.toLowerCase();
 
@@ -108,7 +102,7 @@ export const handleKeyUp = (
   event: KeyboardEvent,
   activeKeysRef: React.MutableRefObject<string[]>,
   isCollisionPlayer: boolean,
-  setPlayerPlane: React.Dispatch<React.SetStateAction<PlayerPlane>>,
+  setPlayerPlane: React.Dispatch<React.SetStateAction<Plane>>,
   intervalRef: React.MutableRefObject<NodeJS.Timeout | null>,
   cellSize: number,
   gridHeight: number,

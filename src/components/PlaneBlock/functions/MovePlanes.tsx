@@ -1,4 +1,4 @@
-import { Direction, Plane, PlayerPlane } from "../constants";
+import { Direction, Plane } from "../constants";
 
 //* Function to update the position of a plane based on its direction
 export const movePlane = (
@@ -7,8 +7,8 @@ export const movePlane = (
   gridHeight: number,
   gridWidth: number
 ): Plane => {
-  let { position, direction } = plane;
-  let newPosition = { ...position };
+  const { position, direction } = plane;
+  const newPosition = { ...position };
 
   switch (direction) {
     case "x+":
@@ -56,13 +56,13 @@ export const movePlane = (
 export const rotateAndMovePlayer = (
   key: string,
   isCollisionPlayer: boolean,
-  setPlayerPlane: React.Dispatch<React.SetStateAction<PlayerPlane>>,
+  setPlayerPlane: React.Dispatch<React.SetStateAction<Plane>>,
   cellSize: number,
   gridHeight: number,
   gridWidth: number
 ) => {
   let newDirection: Direction;
-  let advance1: number = isCollisionPlayer ? 0 : 1;
+  // let advance1: number = isCollisionPlayer ? 0 : 1;
 
   // Determina la nueva dirección según la tecla presionada
   switch (key) {
@@ -82,7 +82,7 @@ export const rotateAndMovePlayer = (
       return; // Si la tecla no es válida, no hacemos nada
   }
 
-  setPlayerPlane((prev) => {
+  setPlayerPlane((prev: Plane) => {
     // Calcula la nueva posición según la nueva dirección
     let newPosition = { ...prev.position };
 

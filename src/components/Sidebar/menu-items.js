@@ -1,22 +1,9 @@
 import { AiFillHome, AiOutlineUser } from "react-icons/ai";
-import { BiMath } from "react-icons/bi";
-import { FaTools } from "react-icons/fa";
-import {
-  GiConwayLifeGlider,
-  GiFallingBoulder,
-  GiMaterialsScience,
-} from "react-icons/gi";
 import { IoGameController } from "react-icons/io5";
-import { IoMdPlanet } from "react-icons/io";
-import { MdCompareArrows, MdAccountCircle } from "react-icons/md";
-import { PiMathOperationsDuotone } from "react-icons/pi";
 import {
   TbHexagonNumber7Filled,
   TbMathFunction,
-  TbMathFunctionY,
   TbMathXDivide2,
-  TbMathIntegral,
-  TbBrandMatrix,
 } from "react-icons/tb";
 
 // *Lista de menús y submenús

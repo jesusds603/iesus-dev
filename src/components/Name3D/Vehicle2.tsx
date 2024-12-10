@@ -1,7 +1,7 @@
 import type { BoxProps, WheelInfoOptions } from "@react-three/cannon";
 import { useBox, useRaycastVehicle } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import type { Group, Mesh } from "three";
 import { Chassis2 } from "./Chassis2";
 import { Wheel2 } from "./Wheel2";
@@ -21,16 +21,9 @@ export type VehicleProps = Required<
 
 function Vehicle2({
   angularVelocity,
-  back = -1.15,
-  force = -2000,
-  front = 1.3,
-  height = -0.04,
-  maxBrake = 50,
   position,
   radius = 0.5,
   rotation,
-  steer = 0.5,
-  width = 1.2,
 }: VehicleProps) {
   const scale = 2;
   const chassisDimensions: [number, number, number] = [

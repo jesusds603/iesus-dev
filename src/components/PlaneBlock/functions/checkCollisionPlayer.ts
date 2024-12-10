@@ -1,9 +1,4 @@
-import {
-  Plane,
-  PlayerPlane,
-  Bullet,
-  Position,
-} from "@/components/PlaneBlock/constants";
+import { Plane, Bullet, Position } from "@/components/PlaneBlock/constants";
 
 // Tipo para representar una coordenada en el espacio 2D
 type Coordinate = [number, number];
@@ -71,7 +66,7 @@ const getBulletPlayerArea = (
 
 //* Función que verifica si hay colisión entre el área 3x3 del jugador y las áreas 3x3 de los enemigos
 export const checkCollisionPlayer = (
-  playerPlane: PlayerPlane,
+  playerPlane: Plane,
   enemyPlanes: Plane[]
 ): boolean => {
   const playerArea = getPlayerOccupiedCells(playerPlane.position);
@@ -87,7 +82,7 @@ export const checkCollisionPlayer = (
 };
 
 export const checkCollisionPlayerBullet = (
-  playerPlane: PlayerPlane,
+  playerPlane: Plane,
   bullets: Bullet[]
 ): boolean => {
   const playerArea = getCollisionArea(
@@ -97,7 +92,7 @@ export const checkCollisionPlayerBullet = (
 
   return bullets.some((bullet) => {
     //* Ajustar la posición de la bala según su dirección porque hay un atraso en la posicion no por actualizar sino por definición
-    let adjustedBulletPosition = { ...bullet.position };
+    const adjustedBulletPosition = { ...bullet.position };
     switch (bullet.direction) {
       case "x+":
         adjustedBulletPosition.x += 2;
@@ -150,7 +145,7 @@ export const checkCollisionBullets = (
 
     bullets.forEach((bulletE) => {
       // Crea una copia ajustada de la posición de la bala enemiga según su dirección
-      let adjustedBulletPosition = { ...bulletE.position };
+      const adjustedBulletPosition = { ...bulletE.position };
 
       switch (bulletE.direction) {
         case "x+":
@@ -193,7 +188,7 @@ export const checkCollisionBullets = (
   // Filtra las balas que no colisionaron en ambas listas
   const updatedBullets = bullets.filter((bulletE) => {
     // Crea una copia ajustada de la posición de la bala enemiga para la verificación
-    let adjustedBulletPosition = { ...bulletE.position };
+    const adjustedBulletPosition = { ...bulletE.position };
     switch (bulletE.direction) {
       case "x+":
         adjustedBulletPosition.x += 2;
@@ -244,7 +239,7 @@ export const checkCollisionEnemyBullets = (
 
     enemyPlanes.forEach((enemy) => {
       // Ajustar posición del avión enemigo según su dirección
-      let adjustedEnemyPosition = { ...enemy.position };
+      const adjustedEnemyPosition = { ...enemy.position };
       switch (enemy.direction) {
         case "x+":
           adjustedEnemyPosition.x -= 1;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "@/hooks/useTheme"; // Importamos el hook para el tema
-import { FaFileCode, FaDocker } from "react-icons/fa"; // Importamos los íconos
+import { FaFileCode } from "react-icons/fa"; // Importamos los íconos
 import { TbMathIntegrals } from "react-icons/tb";
 import { useLanguage } from "@/hooks/useLanguage";
 import { MdOutlineHistoryEdu } from "react-icons/md";

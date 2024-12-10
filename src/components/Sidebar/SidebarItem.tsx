@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import { useLanguage } from "@/hooks/useLanguage";
 import SidebarSubItem from "./SidebarSubItem";
 
 interface SidebarItemProps {
@@ -40,7 +39,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 
   useEffect(() => {
     setIsActive(window.location.pathname === item.link);
-  }, []);
+  }, [item.link]);
 
   const themeClasses =
     myTheme === "dark"

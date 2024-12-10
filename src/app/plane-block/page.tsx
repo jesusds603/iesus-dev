@@ -1,14 +1,7 @@
 "use client";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
-import {
-  Plane,
-  PlayerPlane,
-  Bullet,
-  Direction,
-  Star,
-  Planet,
-} from "@/components/PlaneBlock/constants";
+import { Plane, Bullet, Star } from "@/components/PlaneBlock/constants";
 import {
   handleKeyDown,
   handleKeyUp,
@@ -91,16 +84,18 @@ function PlaneBlockPage() {
   const [gameIsOver, setGameIsOver] = useState<boolean>(false);
   const [isCollisionPlayer, setIsCollisionPlayer] = useState<boolean>(false);
 
-  const initialPlayerPlane: PlayerPlane = {
+  const initialPlayerPlane: Plane = {
     position: { x: 2, y: 30 },
     direction: "y+",
   };
 
-  const [enemySpeed, setEnemySpeed] = useState<number>(400); // Intervalo de tiempo de cada cuánto un enemigo se mueve un cuadrito
-  const [playerSpeed, setPlayerSpeed] = useState<number>(100); // Intervalo de tiempo el jugador se mueve un cuadrito
+  // const [enemySpeed, setEnemySpeed] = useState<number>(400); // Intervalo de tiempo de cada cuánto un enemigo se mueve un cuadrito
+  // const [playerSpeed, setPlayerSpeed] = useState<number>(100); // Intervalo de tiempo el jugador se mueve un cuadrito
 
-  const [playerPlane, setPlayerPlane] =
-    useState<PlayerPlane>(initialPlayerPlane);
+  const enemySpeed: number = 400;
+  const playerSpeed: number = 100;
+
+  const [playerPlane, setPlayerPlane] = useState<Plane>(initialPlayerPlane);
   const [enemyPlanes, setEnemyPlanes] = useState<Plane[]>(
     generateEnemyPlanes(isGridHorizontal, gridHeight, gridWidth, amountEnemies)
   );
@@ -109,23 +104,28 @@ function PlaneBlockPage() {
   const [bullets, setBullets] = useState<Bullet[]>([]);
   const [playerBullets, setPlayerBullets] = useState<Bullet[]>([]);
 
-  const [amountStars, setAmountStars] = useState<number>(50);
+  // const [amountStars, setAmountStars] = useState<number>(50);
+  const amountStars: number = 50;
   const [stars, setStars] = useState<Star[]>(
     GenerateStars(gridHeight, gridWidth, amountStars)
   );
 
-  const [amountPlanets, setAmountPlanets] = useState<number>(10);
-  const [planets, setPlanets] = useState<Planet[]>([]);
+  // const [amountPlanets, setAmountPlanets] = useState<number>(10);
+  // const [planets, setPlanets] = useState<Planet[]>([]);
 
   const activeKeysRef = useRef<string[]>([]); // Para rastrear teclas activas
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const bulletIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const [firingSpeed, setFiringSpeed] = useState<number>(200); // Intervalo de tiempo de cada cuánto una bala enemiga se mueve un cuadrito
-  const [firingSpeedPlayer, setFiringSpeedPlayer] = useState<number>(70); // Intervalo de tiempo de cada cuánto una bala se mueve un cuadrito
-  const [intervalFiringPlane, setIntervalFiringPlane] = useState<number>(4000); // Distancia de tiempo de cada cuánto un avión dispara una bala
-  const [intervalBetweenPlanesShoot, setIntervalBetweenPlanesShoot] =
-    useState<number>(500); // Distancia de disparos entre dos aviones consecutivos
+  // const [firingSpeed, setFiringSpeed] = useState<number>(200); // Intervalo de tiempo de cada cuánto una bala enemiga se mueve un cuadrito
+  const firingSpeed: number = 200;
+  // const [firingSpeedPlayer, setFiringSpeedPlayer] = useState<number>(70); // Intervalo de tiempo de cada cuánto una bala se mueve un cuadrito
+  const firingSpeedPlayer = 70;
+  // const [intervalFiringPlintervalFiringPlaneane, setIntervalFiringPlane] = useState<number>(4000); // Distancia de tiempo de cada cuánto un avión dispara una bala
+  const intervalFiringPlane: number = 4000;
+  // const [intervalBetweenPlanesShoot, setIntervalBetweenPlanesShoot] =
+  useState<number>(500); // Distancia de disparos entre dos aviones consecutivos
+  const intervalBetweenPlanesShoot: number = 500;
 
   const { updateEnemyPlanes } = EnemyPlaneUpdater({
     setEnemyPlanes,
@@ -153,7 +153,7 @@ function PlaneBlockPage() {
     );
 
     setStars(GenerateStars(gridHeight, gridWidth, amountStars));
-  }, [gridWidth, gridHeight, amountEnemies]);
+  }, [gridWidth, gridHeight, amountEnemies, amountStars, isGridHorizontal]);
 
   //* Movimiento del avión del jugador mediante teclas y generación de balas
   useEffect(() => {
@@ -205,6 +205,10 @@ function PlaneBlockPage() {
     isCollisionPlayer,
     playerPlane,
     playerBullets,
+    cellSize,
+    gridHeight,
+    gridWidth,
+    playerSpeed,
   ]);
 
   //* Update positions of enemy planes every interval of time and detect collisions among them
@@ -214,7 +218,7 @@ function PlaneBlockPage() {
     const interval = setInterval(updateEnemyPlanes, enemySpeed);
 
     return () => clearInterval(interval);
-  }, [gameIsStarted, gameIsPaused]);
+  }, [gameIsStarted, gameIsPaused, enemySpeed, updateEnemyPlanes]);
 
   //* Update positions of enemy planes every interval of time and detect collisions
   useEffect(() => {
@@ -251,7 +255,7 @@ function PlaneBlockPage() {
     return () => {
       clearInterval(moveBulletsInterval);
     };
-  }, [gameIsStarted, gameIsPaused]);
+  }, [gameIsStarted, gameIsPaused, firingSpeed, gridHeight, gridWidth]);
 
   //* Update positions bullets every interval of time and detect collisions
   useEffect(() => {
@@ -289,7 +293,7 @@ function PlaneBlockPage() {
     return () => {
       clearInterval(moveBulletsInterval);
     };
-  }, [gameIsStarted, gameIsPaused]);
+  }, [gameIsStarted, gameIsPaused, firingSpeedPlayer, gridHeight, gridWidth]);
 
   //* Detectar colisiones entre balas del jugador y balas enemigas
   useEffect(() => {
@@ -349,7 +353,7 @@ function PlaneBlockPage() {
       setGameIsPaused(true); // Detiene el juego automáticamente
       setLevelIsPassed(true);
     }
-  }, [amountKilledEnemies, currentLevel, gameIsStarted]);
+  }, [amountKilledEnemies, currentLevel, gameIsStarted, amountToKill]);
 
   return (
     <Fragment>

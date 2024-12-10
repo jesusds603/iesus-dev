@@ -54,22 +54,6 @@ const Page: React.FC = () => {
   );
   const [error, setError] = useState<string | null>(null);
 
-  // Contenido dinámico de metadatos
-  const metadata = {
-    title:
-      myLanguage === "eng"
-        ? "Collatz Conjecture - Iesus Dev"
-        : "Conjetura de Collatz - Iesus Dev",
-    description:
-      myLanguage === "eng"
-        ? "Explore the Collatz Conjecture through interactive charts and visualizations."
-        : "Explora la Conjetura de Collatz a través de gráficos y visualizaciones interactivas.",
-    keywords:
-      myLanguage === "eng"
-        ? "Collatz, Mathematics, Graphs, Charts, Sequences, Iesus Dev"
-        : "Collatz, Matemáticas, Gráficos, Secuencias, Iesus Dev",
-  };
-
   const generateGraph = () => {
     if (number < 1) {
       setError(
@@ -182,6 +166,7 @@ const Page: React.FC = () => {
         />
         <meta property="og:image" content="/collatz.png" />
         <meta property="og:type" content="article" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       {/* Contenido principal */}
@@ -246,7 +231,7 @@ const Page: React.FC = () => {
               )}
             </div>
 
-            <div className=" p-4 rounded-md font-mono">
+            <div className="p-4 rounded-md font-mono">
               <BlockMath math="n_0 = \text{initial number}" />
               <BlockMath
                 math="n_{k+1} = \left\{

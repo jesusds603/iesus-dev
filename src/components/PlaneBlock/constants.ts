@@ -18,9 +18,10 @@ interface Plane {
   direction: Direction;
 }
 
-interface PlayerPlane extends Plane {
-  // Aquí puedes agregar cualquier otra propiedad que necesites
-}
+// interface PlayerPlane extends Plane {
+//   // Aquí puedes agregar cualquier otra propiedad que necesites
+//   name: string;
+// }
 
 interface Bullet {
   position: Position;
@@ -39,4 +40,4 @@ export default {
   directionMap,
 };
 
-export type { Position, Direction, Plane, PlayerPlane, Bullet, Star, Planet };
+export type { Position, Direction, Plane, Bullet, Star, Planet };

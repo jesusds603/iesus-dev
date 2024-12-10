@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Physics, useSphere } from "@react-three/cannon";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 function Particle({ startTime }: { startTime: number }) {

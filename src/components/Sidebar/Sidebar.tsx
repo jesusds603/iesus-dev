@@ -9,13 +9,10 @@ function Sidebar() {
   const { myTheme } = useTheme();
   const { myLanguage } = useLanguage();
 
-  const borderClasses =
-    myTheme === "dark" ? "border-gray-700" : "border-gray-300";
   const textClasses = myTheme === "dark" ? "text-white" : "text-black";
 
   // Definir colores de fondo y gradientes según el tema
   const backgroundFromColor = myTheme === "dark" ? "from-black" : "from-white";
-  const circleFromColor = myTheme === "dark" ? "from-black" : "from-pink-400";
 
   return (
     <div

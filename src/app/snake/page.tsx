@@ -58,7 +58,7 @@ function SnakeGame() {
     }, 200);
 
     return () => clearInterval(gameInterval);
-  }, [direction, food, isGameOver, moveQueue]);
+  }, [direction, food, isGameOver, moveQueue, gameStarted]);
 
   //* Rewards
   const reward = calculateReward(snake.length, GRID_WIDTH, GRID_HEIGHT);
@@ -73,11 +73,11 @@ function SnakeGame() {
     setGameStarted(true);
   };
 
-  const handleClaimReward = () => {
-    // Lógica para reclamar recompensas
-    console.log("Recompensas reclamadas:", reward);
-    // Resetear el juego o manejar recompensas aquí
-  };
+  // const handleClaimReward = () => {
+  //   // Lógica para reclamar recompensas
+  //   console.log("Recompensas reclamadas:", reward);
+  //   // Resetear el juego o manejar recompensas aquí
+  // };
 
   return (
     <Fragment>

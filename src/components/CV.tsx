@@ -1,5 +1,6 @@
 // pages/cv.tsx
 import React from "react";
+import Image from "next/image";
 
 export default function CV() {
   return (
@@ -7,11 +8,14 @@ export default function CV() {
       <div className="max-w-4xl mx-auto bg-gray-800 shadow-lg rounded-lg ">
         {/* Header */}
         <div className="bg-gray-700 p-6 flex items-center">
-          <img
-            src="/miFoto.jpeg"
-            alt="Jesús Dávila Sánchez"
-            className="w-28 h-28 rounded-full object-cover border-4 border-gray-500"
-          />
+          <div className="w-28 h-28 rounded-full object-cover border-4 border-gray-500">
+            <Image
+              src="/miFoto.jpeg"
+              alt="Jesús Dávila Sánchez"
+              layout="fill"
+            />
+          </div>
+
           <div className="ml-6">
             <h1 className="text-3xl font-bold text-white">
               Jesús Dávila Sánchez

@@ -2,7 +2,7 @@ const width = 20;
 const height = 1;
 const long = 12;
 
-const longKey = long * 0.05;
+// const longKey = long * 0.05;
 
 export interface Keyy {
   name: string;

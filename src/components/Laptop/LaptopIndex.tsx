@@ -14,7 +14,7 @@ function Laptop() {
     "/Bg/bg5.png",
     "/Bg/bg6.png",
   ];
-  const [createdText, setCreatedText] = useState<string[]>([]);
+  // const [createdText, setCreatedText] = useState<string[]>([]);
 
   useEffect(() => {
     let index = 0;
@@ -25,7 +25,7 @@ function Laptop() {
     }, 2000);
 
     return () => clearInterval(interval); // Limpiar intervalo al desmontar
-  }, []);
+  }, [colors]);
 
   useEffect(() => {
     let index = 0;
@@ -36,7 +36,7 @@ function Laptop() {
     }, 8000);
 
     return () => clearInterval(interval); // Limpiar intervalo al desmontar
-  }, []);
+  }, [bgPaths]);
 
   return (
     <Fragment>
@@ -51,8 +51,8 @@ function Laptop() {
         <GroupLap
           colorLetters={colorLetters}
           bgPath={bgPath}
-          createdText={createdText}
-          setCreatedText={setCreatedText}
+
+          // setCreatedText={setCreatedText}
         />
       </Canvas>
       {/* <p>{createdText}</p> */}

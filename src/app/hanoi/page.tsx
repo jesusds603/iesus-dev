@@ -29,7 +29,7 @@ function HanoiGame() {
   });
   const [hoveredTower, setHoveredTower] = useState<number | null>(null); // Estado para la torre en hover
   const minMoves = 2 ** numRings - 1;
-  const upperBoundMoves = Math.ceil(minMoves * 1.2);
+  // const upperBoundMoves = Math.ceil(minMoves * 1.2);
 
   // Colores intensos para los anillos
   const ringColors = ["#a008e7", "#e7082e", "#e8d706", "#24e806", "#06e8d7"];

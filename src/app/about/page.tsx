@@ -9,7 +9,7 @@ import InterestsSection from "@/components/AboutMe/InterestsSection";
 import EducationSection from "@/components/AboutMe/EducationSection";
 import ReferencesSection from "@/components/AboutMe/ReferencesSection";
 
-export default function page() {
+export default function Page() {
   const [activeSection, setActiveSection] = useState(0);
   const { myLanguage } = useLanguage();
 

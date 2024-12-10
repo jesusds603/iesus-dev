@@ -2,19 +2,17 @@ import { useFrame, useLoader } from "@react-three/fiber";
 import React, { useRef } from "react";
 import * as THREE from "three";
 import { GradientTexture, Box } from "@react-three/drei";
-import { keys, width, height, long } from "./keys";
+import { width, height, long } from "./keys";
 import KeyBoard from "./KeyBoard";
 
 function GroupLap({
   colorLetters,
   bgPath,
-  createdText,
-  setCreatedText,
-}: {
+}: // setCreatedText,
+{
   colorLetters: string;
   bgPath: string;
-  createdText: string[];
-  setCreatedText: React.Dispatch<React.SetStateAction<string[]>>;
+  // setCreatedText: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   const laptopRef = useRef<THREE.Group>(null);
   const topLapRef = useRef<THREE.Group>(null);
@@ -78,7 +76,7 @@ function GroupLap({
   return (
     <group ref={laptopRef}>
       {/* Teclado */}
-      <KeyBoard colorLetters={colorLetters} setCreatedText={setCreatedText} />
+      <KeyBoard colorLetters={colorLetters} />
 
       {/* Pantalla */}
       <group ref={topLapRef} position={[0, 0.3, 0]}>

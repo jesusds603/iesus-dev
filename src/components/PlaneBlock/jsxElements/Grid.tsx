@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Plane,
-  PlayerPlane,
-  Bullet,
-  Star,
-} from "@/components/PlaneBlock/constants";
+import { Plane, Bullet, Star } from "@/components/PlaneBlock/constants";
 import { useTheme } from "@/hooks/useTheme";
 import {
   MainBackgroundGradient,
@@ -17,7 +12,7 @@ import RenderPlayerBullet from "./RenderPlayerBullet";
 import RenderStar from "./RenderStar";
 
 interface GridPlaneProps {
-  playerPlane: PlayerPlane;
+  playerPlane: Plane;
   enemyPlanes: Plane[];
   cellSize: number;
   gridHeight: number;

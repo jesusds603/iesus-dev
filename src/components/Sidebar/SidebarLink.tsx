@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useLanguage } from "@/hooks/useLanguage";
 import { useTheme } from "@/hooks/useTheme";
 
 const SidebarLink = ({
@@ -8,19 +7,20 @@ const SidebarLink = ({
   icon: Icon,
   labelEn,
   labelEs,
+  myLanguage,
 }: {
   href: string;
   icon: React.ElementType;
   labelEn: string;
   labelEs: string;
+  myLanguage: string;
 }) => {
   const { myTheme } = useTheme();
-  const { isLanguageEng } = useLanguage();
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     setIsActive(window.location.pathname === href);
-  }, []);
+  }, [href]);
 
   const themeClasses =
     myTheme === "dark"
@@ -29,7 +29,7 @@ const SidebarLink = ({
 
   const activeClasses = isActive ? "bg-green-500" : "";
 
-  const label = isLanguageEng ? labelEn : labelEs;
+  const label = myLanguage === "eng" ? labelEn : labelEs;
 
   return (
     <Link

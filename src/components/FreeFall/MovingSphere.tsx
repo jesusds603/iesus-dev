@@ -1,7 +1,7 @@
 "use client";
-import React, { useRef, useState, useEffect, useContext } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere, OrbitControls, Plane, Line } from "@react-three/drei";
+import React, { useRef, useState, useEffect } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Sphere, Line } from "@react-three/drei";
 import { Vector3 } from "three";
 import * as THREE from "three";
 import "katex/dist/katex.min.css";
@@ -75,7 +75,7 @@ export const MovingSphere = ({
       const vz = v0z;
       const speed = Math.sqrt(vx * vx + vy * vy + vz * vz);
 
-      let kineticEnergy = 0.5 * mass * speed * speed;
+      // let kineticEnergy = 0.5 * mass * speed * speed;
       let potentialEnergy = mass * gravity * y;
 
       const tFloor =
@@ -88,8 +88,8 @@ export const MovingSphere = ({
               2 * parseFloat(formState.gravity) * parseFloat(formState.initialY)
           )) /
         parseFloat(formState.gravity);
-      const xFloor = parseFloat(formState.initialX) + v0x * tFloor;
-      const zFloor = parseFloat(formState.initialZ) + v0z * tFloor;
+      // const xFloor = parseFloat(formState.initialX) + v0x * tFloor;
+      // const zFloor = parseFloat(formState.initialZ) + v0z * tFloor;
 
       if (y >= 0) {
         meshRef.current.position.set(x, y, z);

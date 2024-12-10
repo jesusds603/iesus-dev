@@ -13,7 +13,7 @@ function CurrentInformation({
   totalEnergy: number;
 }) {
   const { posSphere, timeS } = useSphere();
-  const { position, updatePosition } = useShip();
+  const { position } = useShip();
   return (
     <div className="flex flex-col relative w-full md:w-[49%] p-2 m-1 bg-black rounded-xl border-2 border-teal-400">
       <h2 className="text-lg font-semibold text-white mb-2">

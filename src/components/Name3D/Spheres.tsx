@@ -62,7 +62,7 @@ export default function Spheres({
         colors,
       };
     });
-  }, [numSpheres, startPoint, endPoint, width]);
+  }, [numSpheres, startPoint, endPoint, width, radius]);
 
   return (
     <>

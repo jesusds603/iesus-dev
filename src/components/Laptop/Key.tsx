@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
-import { GradientTexture, Box, Text, Cylinder } from "@react-three/drei";
-import { keys, width, height, long, Keyy } from "./keys";
+import { Box, Text } from "@react-three/drei";
+import { Keyy } from "./keys";
 import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";
 
@@ -51,19 +51,17 @@ function posVarKeys(
 
 function Key({
   colorLetters,
-  setCreatedText,
   tecla,
   randomDir,
 }: {
   colorLetters: string;
-  setCreatedText: React.Dispatch<React.SetStateAction<string[]>>;
   tecla: Keyy;
   randomDir: number;
 }) {
   const keyRef = useRef<Mesh>(null);
   const timeElapsed = useRef<number>(0);
   const cycleTime = 20; // Tiempo total de un ciclo (subir + bajar)
-  const heightUp = 10;
+  // const heightUp = 10;
   const heightEsp = Math.random() + 15;
   let progress = 0;
 
@@ -170,10 +168,10 @@ function Key({
       ref={keyRef}
       args={[tecla.size[0], tecla.size[1], tecla.size[2]]}
       position={[tecla.position[0], tecla.position[1] + 0.5, tecla.position[2]]}
-      onClick={() => {
-        setCreatedText((prev) => [...prev, tecla.name]);
-        // console.log(`Tecla presionada: ${tecla.name}`);
-      }}
+      // onClick={() => {
+      //   setCreatedText((prev) => [...prev, tecla.name]);
+      //   // console.log(`Tecla presionada: ${tecla.name}`);
+      // }}
     >
       <meshStandardMaterial color="black" />
       <Text

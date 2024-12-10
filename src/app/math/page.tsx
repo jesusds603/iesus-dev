@@ -5,7 +5,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { subjects as rawSubjects } from "@/components/Card/subjects";
 import Card from "@/components/Card/Card";
 
-function page() {
+function Page() {
   const { myTheme } = useTheme();
   const { myLanguage } = useLanguage();
   const subjects = rawSubjects(myLanguage, myTheme);
@@ -34,4 +34,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

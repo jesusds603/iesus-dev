@@ -55,12 +55,6 @@ function HomeSection() {
 
   const t = translations[myLanguage as "esp" | "eng"];
 
-  // Tema y estilo dinámico
-  const themeClasses =
-    myTheme === "dark"
-      ? "bg-gray-900 text-white"
-      : "bg-white text-gray-900 shadow-md";
-
   return (
     <div className={`flex flex-col items-center p-6 rounded-lg `}>
       {/* Imagen */}

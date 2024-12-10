@@ -1,5 +1,5 @@
 import React from "react";
-import constants, { Bullet } from "@/components/PlaneBlock/constants";
+import { Bullet } from "@/components/PlaneBlock/constants";
 
 // Tipo para las propiedades de RenderBullet
 interface RenderBulletProps {
