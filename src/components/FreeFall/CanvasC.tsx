@@ -35,7 +35,7 @@ function CanvasC({
         position={[0, 0, 0]}
       >
         <meshPhongMaterial attach="material" side={THREE.DoubleSide}>
-          <GradientTexture stops={[0, 1]} colors={["#ec43e2", "#da1e43"]} />
+          <GradientTexture stops={[0, 1]} colors={["#37efe1", "#37efe1"]} />
         </meshPhongMaterial>
       </Plane>
       {/* <gridHelper

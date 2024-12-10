@@ -2,6 +2,7 @@ import React from "react";
 import { InlineMath } from "react-katex";
 import { calculateValuesAtTime } from "./calculateValuesAtTime";
 import { FormState } from "./constants";
+import { useLanguage } from "@/hooks/useLanguage";
 
 function Calculator({
   formState,
@@ -16,15 +17,22 @@ function Calculator({
   handleSliderChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleTimeInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
+  const { myLanguage } = useLanguage();
+
   const valuesAtTime = calculateValuesAtTime(sliderTime, formState);
 
   return (
     <div className="w-full flex flex-col mt-4">
       <div className="w-full mt-4 px-4">
-        <h1 className="text-xl font-bold text-teal-400 my-2">Calculadora</h1>
+        <h1 className="text-xl font-bold text-teal-400 my-2">
+          {myLanguage === "eng" ? "Calculator" : "Calculadora"}
+        </h1>
+
         <label htmlFor="timeSlider" className="text-white font-semibold">
-          Tiempo (t): {sliderTime.toFixed(2)} s
+          {myLanguage === "eng" ? "Time " : "Tiempo "} (t):{" "}
+          {sliderTime.toFixed(2)} s
         </label>
+
         <div className="flex flex-row">
           <p className="flex flex-row mr-2">
             0 <InlineMath math="s" />
@@ -48,7 +56,8 @@ function Calculator({
 
         <div className="mt-2">
           <label htmlFor="timeInput" className="text-white font-semibold mr-2">
-            Tiempo (t):
+            {myLanguage === "eng" ? "Time " : "Tiempo "}
+            (t):
           </label>
           <input
             id="timeInput"
@@ -65,7 +74,10 @@ function Calculator({
 
       <div className="flex flex-col relative w-full md:w-[49%] p-2 m-1 bg-black rounded-xl border-2 border-teal-400 mt-4 ">
         <h2 className="text-lg font-semibold text-white mb-2">
-          Información a Tiempo <InlineMath math="t" />
+          {myLanguage === "eng"
+            ? "Information at time "
+            : "Información a tiempo "}
+          <InlineMath math="t" />
         </h2>
         <div>
           <InlineMath math="t" /> = {sliderTime.toFixed(2)} s

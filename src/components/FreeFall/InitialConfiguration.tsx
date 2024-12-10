@@ -2,6 +2,7 @@ import React from "react";
 import { StyledInput } from "./StyledInput";
 import { InlineMath } from "react-katex";
 import { FormState } from "./constants";
+import { useLanguage } from "@/hooks/useLanguage";
 
 function InitialConfiguration({
   formState,
@@ -12,11 +13,16 @@ function InitialConfiguration({
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleStartSimulation: () => void;
 }) {
+  const { myLanguage } = useLanguage();
+
   return (
     <div className="flex flex-col rounded-xl border-2 border-teal-400 p-4 bg-gray-800 space-y-4 md:max-w-md mx-auto mt-4 w-full md:w-[200px]">
       <h2 className="text-xl font-semibold text-teal-400 mb-4 text-center">
-        Configuración Inicial
+        {myLanguage === "eng"
+          ? "Initial Confuguration"
+          : "Configuración Inicial"}
       </h2>
+
       <StyledInput
         label={
           <>
@@ -111,7 +117,7 @@ function InitialConfiguration({
         onClick={handleStartSimulation}
         className="w-full py-2 px-4 my-2 bg-[#280a7a] hover:bg-[#1C86EE] text-white font-semibold rounded-lg transition duration-300 ease-in-out"
       >
-        Iniciar
+        {myLanguage === "eng" ? "Start" : "Iniciar"}
       </button>
       {/* <button
             onClick={() =>
