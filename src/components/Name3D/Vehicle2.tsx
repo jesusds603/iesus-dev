@@ -135,7 +135,7 @@ function Vehicle2({
       vehicleApi.setSteeringValue(0, 1); // Llanta delantera derecha
     } else {
       // Reiniciar el tiempo transcurrido
-      chassisApi.position.set(-30, 2, -30);
+      chassisApi.position.set(position[0], position[1], position[2]);
       chassisApi.rotation.set(0, 0, 0);
       chassisApi.velocity.set(0, 0, 0);
       chassisApi.angularVelocity.set(0, 0, 0);

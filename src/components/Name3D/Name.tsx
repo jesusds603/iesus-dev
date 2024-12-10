@@ -44,7 +44,7 @@ export default function Name() {
         height: "400px", // Alto fijo
       }}
     >
-      <hemisphereLight intensity={1} />
+      <hemisphereLight intensity={3} />
       <Camera />
 
       {/* <OrbitControls /> */}
@@ -54,7 +54,7 @@ export default function Name() {
 
         {/* <Car /> */}
         <Vehicle2
-          position={[-30, 2, -30]}
+          position={[-20, 2, -30]}
           rotation={[0, 0, 0]}
           angularVelocity={[0, 1, 0]}
         />

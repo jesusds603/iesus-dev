@@ -4,7 +4,7 @@ import { useThree, useFrame } from "@react-three/fiber";
 function Camera() {
   const camera = useThree((state) => state.camera);
   const clock = useRef(0);
-  const originalP = [-15, 10, 15];
+  const originalP = [-20, 10, 15];
   const angleXZ = Math.atan(originalP[0] / originalP[2]);
   const angleToMove = Math.PI * 0.3;
   const radius = Math.sqrt(originalP[0] ** 2 + originalP[2] ** 2);

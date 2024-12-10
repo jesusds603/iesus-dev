@@ -52,7 +52,7 @@ function Laptop() {
         className="  border border-teal-400"
         style={{ height: "400px" }}
       >
-        <ambientLight />
+        <ambientLight intensity={3} />
         {/* <OrbitControls /> */}
 
         <GroupLap
