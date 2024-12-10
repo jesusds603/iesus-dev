@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import "katex/dist/katex.min.css";
 import { useShip } from "../../hooks/useShip";
 import { useSphere } from "../../hooks/useSphere";
@@ -7,6 +7,8 @@ import { FormState, defaultState } from "@/components/FreeFall/constants";
 import MainC from "@/components/FreeFall/MainC";
 import Formulas from "@/components/FreeFall/Formulas";
 import Calculator from "@/components/FreeFall/Calculator";
+import Head from "next/head";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Page = () => {
   const [formState, setFormState] = useState<FormState>(defaultState);
@@ -14,6 +16,7 @@ const Page = () => {
   const [sliderTime, setSliderTime] = useState<number>(0);
   const { position, updatePosition } = useShip();
   const { posSphere, timeS } = useSphere();
+  const { myLanguage } = useLanguage();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -98,37 +101,68 @@ const Page = () => {
 
   //* RETURN
   return (
-    <div className="flex flex-col">
-      <MainC
-        formState={formState}
-        handleChange={handleChange}
-        handleStartSimulation={handleStartSimulation}
-        initialKineticEnergy={initialKineticEnergy}
-        finalKineticEnergy={finalKineticEnergy}
-        initialPotentialEnergy={initialPotentialEnergy}
-        finalPotentialEnergy={finalPotentialEnergy}
-        totalEnergy={totalEnergy}
-        tMax={tMax}
-        yMax={yMax}
-        v0x={v0x}
-        v0z={v0z}
-        tFloor={tFloor}
-        xFloor={xFloor}
-        zFloor={zFloor}
-        simulationRunning={simulationRunning}
-        resetSimulation={resetSimulation}
-      />
+    <Fragment>
+      <Head>
+        <title>3D Free Fall and Projectile Motion Calculator - Iesus Dev</title>
+        <meta
+          name="description"
+          content="Explore free fall and projectile motion with this interactive 3D calculator. Visualize trajectories, velocities, energies, and simulate real-time physics!"
+        />
+        <meta
+          name="keywords"
+          content="Free Fall, Projectile Motion, Physics Calculator, 3D Simulation, Motion Trajectory, Energy Analysis, Iesus Dev"
+        />
+        <meta
+          property="og:title"
+          content="3D Free Fall & Projectile Motion Calculator"
+        />
+        <meta
+          property="og:description"
+          content="Simulate free fall and projectile motion in 3D! Visualize trajectories, analyze velocities, and understand energy transformations in physics."
+        />
+        <meta property="og:image" content="/freefall.png" />
+        <meta property="og:type" content="website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
-      <Calculator
-        formState={formState}
-        sliderTime={sliderTime}
-        tFloor={tFloor}
-        handleSliderChange={handleSliderChange}
-        handleTimeInputChange={handleTimeInputChange}
-      />
+      <div className="flex flex-col">
+        <p className="text-center">
+          {myLanguage === "eng"
+            ? "Use the WASD keys to rotate the ship and the arrow keys to move it."
+            : "Usa las teclas WASD para rotar la nave y las teclas de flecha para moverla."}
+        </p>
 
-      <Formulas />
-    </div>
+        <MainC
+          formState={formState}
+          handleChange={handleChange}
+          handleStartSimulation={handleStartSimulation}
+          initialKineticEnergy={initialKineticEnergy}
+          finalKineticEnergy={finalKineticEnergy}
+          initialPotentialEnergy={initialPotentialEnergy}
+          finalPotentialEnergy={finalPotentialEnergy}
+          totalEnergy={totalEnergy}
+          tMax={tMax}
+          yMax={yMax}
+          v0x={v0x}
+          v0z={v0z}
+          tFloor={tFloor}
+          xFloor={xFloor}
+          zFloor={zFloor}
+          simulationRunning={simulationRunning}
+          resetSimulation={resetSimulation}
+        />
+
+        <Calculator
+          formState={formState}
+          sliderTime={sliderTime}
+          tFloor={tFloor}
+          handleSliderChange={handleSliderChange}
+          handleTimeInputChange={handleTimeInputChange}
+        />
+
+        <Formulas />
+      </div>
+    </Fragment>
   );
 };
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -14,6 +14,7 @@ import {
 import { useLanguage } from "@/hooks/useLanguage";
 import { useTheme } from "@/hooks/useTheme";
 import "tailwindcss/tailwind.css";
+import Head from "next/head";
 
 ChartJS.register(
   CategoryScale,
@@ -156,90 +157,117 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className={`container mx-auto p-4 ${themeClasses} w-full`}>
-      <h1 className="text-3xl font-bold text-center mb-4">
-        {myLanguage === "eng"
-          ? "Prime Number Generator"
-          : "Generador de Números Primos"}
-      </h1>
+    <Fragment>
+      <Head>
+        <title>Prime Numbers - Iesus Dev</title>
+        <meta
+          name="description"
+          content="Explore prime numbers interactively. Generate prime numbers up to a limit or find the first N primes with visual charts and tables."
+        />
+        <meta
+          name="keywords"
+          content="Prime Numbers, Mathematics, Primes, Charts, Graphs, Visualization, Iesus Dev"
+        />
+        <meta
+          property="og:title"
+          content="Prime Numbers - Interactive Visualization"
+        />
+        <meta
+          property="og:description"
+          content="An interactive way to explore prime numbers using charts and tables. Learn about prime sequences and their distribution visually."
+        />
+        <meta property="og:image" content="/primes.png" />
+        <meta property="og:type" content="article" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
-      <div className="flex flex-col items-center mb-4">
-        <div className="flex space-x-2 mb-4">
-          <input
-            type="number"
-            className={`p-2 border ${borderClasses} rounded ${themeClasses} w-full`}
-            placeholder={
-              myLanguage === "eng"
-                ? "Enter upper limit"
-                : "Ingrese límite superior"
-            }
-            value={upperLimit}
-            onChange={(e) => setUpperLimit(Number(e.target.value))}
-          />
-          <button
-            className={`${buttonClasses} p-2 rounded`}
-            onClick={handleCalculateUpTo}
-          >
-            {myLanguage === "eng" ? "Generate Up To" : "Generar Hasta"}
-          </button>
+      <div className={`container mx-auto p-4 ${themeClasses} w-full`}>
+        <h1 className="text-3xl font-bold text-center mb-4">
+          {myLanguage === "eng"
+            ? "Prime Number Generator"
+            : "Generador de Números Primos"}
+        </h1>
+
+        <div className="flex flex-col items-center mb-4">
+          <div className="flex space-x-2 mb-4">
+            <input
+              type="number"
+              className={`p-2 border ${borderClasses} rounded ${themeClasses} w-full`}
+              placeholder={
+                myLanguage === "eng"
+                  ? "Enter upper limit"
+                  : "Ingrese límite superior"
+              }
+              value={upperLimit}
+              onChange={(e) => setUpperLimit(Number(e.target.value))}
+            />
+            <button
+              className={`${buttonClasses} p-2 rounded`}
+              onClick={handleCalculateUpTo}
+            >
+              {myLanguage === "eng" ? "Generate Up To" : "Generar Hasta"}
+            </button>
+          </div>
+
+          <div className="flex space-x-2">
+            <input
+              type="number"
+              className={`p-2 border ${borderClasses} rounded ${themeClasses} w-full`}
+              placeholder={
+                myLanguage === "eng"
+                  ? "Enter number of primes"
+                  : "Ingrese número de primos"
+              }
+              value={countPrimes}
+              onChange={(e) => setCountPrimes(Number(e.target.value))}
+            />
+            <button
+              className={`${buttonClasses} p-2 rounded`}
+              onClick={handleCalculateCount}
+            >
+              {myLanguage === "eng" ? "Generate First N" : "Generar Primeros N"}
+            </button>
+          </div>
         </div>
 
-        <div className="flex space-x-2">
-          <input
-            type="number"
-            className={`p-2 border ${borderClasses} rounded ${themeClasses} w-full`}
-            placeholder={
-              myLanguage === "eng"
-                ? "Enter number of primes"
-                : "Ingrese número de primos"
-            }
-            value={countPrimes}
-            onChange={(e) => setCountPrimes(Number(e.target.value))}
-          />
-          <button
-            className={`${buttonClasses} p-2 rounded`}
-            onClick={handleCalculateCount}
-          >
-            {myLanguage === "eng" ? "Generate First N" : "Generar Primeros N"}
-          </button>
-        </div>
-      </div>
+        {error && <p className="text-red-500">{error}</p>}
 
-      {error && <p className="text-red-500">{error}</p>}
+        <div className="mt-4">
+          <h2 className="text-xl font-bold text-center">
+            {myLanguage === "eng" ? "Results" : "Resultados"}
+          </h2>
 
-      <div className="mt-4">
-        <h2 className="text-xl font-bold text-center">
-          {myLanguage === "eng" ? "Results" : "Resultados"}
-        </h2>
+          <div className="mt-4" style={{ height: "400px" }}>
+            <Line data={chartData} options={chartOptions} />
+          </div>
 
-        <div className="mt-4" style={{ height: "400px" }}>
-          <Line data={chartData} options={chartOptions} />
-        </div>
-
-        {tableData.length > 0 && (
-          <table className="min-w-full border border-gray-300 mt-2">
-            <thead>
-              <tr>
-                <th className={`border ${borderClasses} p-2`}>
-                  {myLanguage === "eng" ? "Index" : "Índice"}
-                </th>
-                <th className={`border ${borderClasses} p-2`}>
-                  {myLanguage === "eng" ? "Prime Number" : "Número Primo"}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.map((prime, index) => (
-                <tr key={index}>
-                  <td className={`border ${borderClasses} p-2`}>{index + 1}</td>
-                  <td className={`border ${borderClasses} p-2`}>{prime}</td>
+          {tableData.length > 0 && (
+            <table className="min-w-full border border-gray-300 mt-2">
+              <thead>
+                <tr>
+                  <th className={`border ${borderClasses} p-2`}>
+                    {myLanguage === "eng" ? "Index" : "Índice"}
+                  </th>
+                  <th className={`border ${borderClasses} p-2`}>
+                    {myLanguage === "eng" ? "Prime Number" : "Número Primo"}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+              </thead>
+              <tbody>
+                {tableData.map((prime, index) => (
+                  <tr key={index}>
+                    <td className={`border ${borderClasses} p-2`}>
+                      {index + 1}
+                    </td>
+                    <td className={`border ${borderClasses} p-2`}>{prime}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

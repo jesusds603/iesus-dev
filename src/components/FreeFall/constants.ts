@@ -14,7 +14,7 @@ export const defaultState: FormState = {
   initialY: "0",
   initialZ: "0",
   angle: "45",
-  velocity: "10",
+  velocity: "20",
   theta: "0", // Dirección inicial en el plano XZ
   mass: "1",
   gravity: "9.81",

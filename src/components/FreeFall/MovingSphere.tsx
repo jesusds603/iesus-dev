@@ -49,7 +49,7 @@ export const MovingSphere = ({
 
   useFrame(() => {
     if (startSimulation && meshRef.current) {
-      const t = time + 0.02;
+      const t = time + 0.15;
       const angle = parseFloat(formState.angle);
       const theta = parseFloat(formState.theta);
       const velocity = parseFloat(formState.velocity);

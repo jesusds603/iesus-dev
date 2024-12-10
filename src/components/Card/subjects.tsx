@@ -26,6 +26,24 @@ export const subjects = (myLanguage: string, myTheme: string) => [
     link: "/hanoi",
   },
   {
+    title:
+      myLanguage === "eng"
+        ? "3D Free Fall Calculator"
+        : "Calculadora 3D de Caída Libre",
+
+    description:
+      myLanguage === "eng"
+        ? "Simulate the motion of a particle in free fall or projectile motion in a 3D environment. Observe the particle's movement in real-time, while tracking the position, velocity, and time in all three dimensions. "
+        : "Simula el movimiento de una partícula en caída libre o tiro proyectado en un entorno 3D. Observa el movimiento de la partícula en tiempo real, mientras sigues la posición, velocidad y tiempo en las tres dimensiones.",
+
+    gradientColor:
+      myTheme === "dark"
+        ? "bg-gradient-to-r from-pink-800 via-purple-800 to-indigo-900"
+        : "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400",
+
+    link: "/freefall",
+  },
+  {
     title: myLanguage === "eng" ? "Snake" : "Serpiente",
     description:
       myLanguage === "eng"

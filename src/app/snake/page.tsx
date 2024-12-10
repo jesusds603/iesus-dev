@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useTheme } from "@/hooks/useTheme";
 import {
   GRID_HEIGHT,
@@ -13,6 +13,7 @@ import { generateFood } from "@/components/Snake/generateFood";
 import { getNewDirection } from "@/components/Snake/getNewDirection";
 import Grid from "@/components/Snake/Grid";
 import { updateSnake } from "@/components/Snake/updateSnake";
+import Head from "next/head";
 
 function SnakeGame() {
   const [snake, setSnake] = useState<Position[]>(INITIAL_SNAKE);
@@ -79,58 +80,83 @@ function SnakeGame() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <div
-        className={`text-2xl font-bold mb-4 p-4 rounded-xl text-center ${
-          myTheme === "dark"
-            ? "bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600"
-            : "bg-gradient-to-r from-green-500 to-blue-500"
-        } opacity-90`}
-      >
-        {isGameOver ? (
-          <>
-            <div>Game Over</div>
-            <div className="">
-              <p className="text-red-600">{collisionMessage}</p>
-              {/* <p>Recompensas: {reward} SHUNA</p> */}
-            </div>
+    <Fragment>
+      <Head>
+        <title>Snake Game - Iesus Dev</title>
+        <meta
+          name="description"
+          content="Play Snake game, earn rewards, and improve your score. Challenge yourself with each level and claim your achievements!"
+        />
+        <meta
+          name="keywords"
+          content="Snake Game, Rewards, Challenge, Iesus Dev, High Score, Fun Game"
+        />
+        <meta
+          property="og:title"
+          content="Snake Game - Play and Earn Rewards"
+        />
+        <meta
+          property="og:description"
+          content="An interactive Snake game where you can improve your skills, achieve high scores, and earn rewards."
+        />
+        <meta property="og:image" content="/snake.png" />
+        <meta property="og:type" content="article" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
-            {/* <button
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <div
+          className={`text-2xl font-bold mb-4 p-4 rounded-xl text-center ${
+            myTheme === "dark"
+              ? "bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600"
+              : "bg-gradient-to-r from-green-500 to-blue-500"
+          } opacity-90`}
+        >
+          {isGameOver ? (
+            <>
+              <div>Game Over</div>
+              <div className="">
+                <p className="text-red-600">{collisionMessage}</p>
+                {/* <p>Recompensas: {reward} SHUNA</p> */}
+              </div>
+
+              {/* <button
               onClick={handleClaimReward}
               className="mt-4 px-4 py-2 bg-teal-500 text-white font-semibold rounded-lg shadow-lg hover:bg-teal-600 transition duration-200"
             >
               Reclamar Recompensas
             </button> */}
-          </>
-        ) : (
-          "Snake Game"
-        )}
-      </div>
+            </>
+          ) : (
+            "Snake Game"
+          )}
+        </div>
 
-      <h2 className="text-lg mb-4">
-        Food Count: <span className="font-bold">{snake.length}</span>
-      </h2>
+        <h2 className="text-lg mb-4">
+          Food Count: <span className="font-bold">{snake.length}</span>
+        </h2>
 
-      {!gameStarted ? (
-        <button
-          onClick={startGame}
-          className="mb-4 p-2 bg-blue-500 text-white rounded"
-        >
-          Start Game
-        </button>
-      ) : (
-        isGameOver && (
+        {!gameStarted ? (
           <button
             onClick={startGame}
             className="mb-4 p-2 bg-blue-500 text-white rounded"
           >
-            Restart Game
+            Start Game
           </button>
-        )
-      )}
+        ) : (
+          isGameOver && (
+            <button
+              onClick={startGame}
+              className="mb-4 p-2 bg-blue-500 text-white rounded"
+            >
+              Restart Game
+            </button>
+          )
+        )}
 
-      <Grid snake={snake} direction={direction} food={food} />
-    </div>
+        <Grid snake={snake} direction={direction} food={food} />
+      </div>
+    </Fragment>
   );
 }
 

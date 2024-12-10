@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
 import {
   Plane,
@@ -39,6 +39,7 @@ import {
   handleNextLevel,
 } from "@/components/PlaneBlock/functions/gameFunctions";
 import GenerateStars from "@/components/PlaneBlock/functions/GenerateStars";
+import Head from "next/head";
 
 function PlaneBlockPage() {
   const { myLanguage } = useLanguage();
@@ -351,144 +352,169 @@ function PlaneBlockPage() {
   }, [amountKilledEnemies, currentLevel, gameIsStarted]);
 
   return (
-    <div className="min-h-[calc(100vh-48px)] flex flex-col items-center justify-center">
-      {!gameIsStarted && (
-        <GridOrientationToggle
-          isGridHorizontal={isGridHorizontal}
-          onToggle={toggleGridOrientation}
+    <Fragment>
+      <Head>
+        <title>Space Shooter - Iesus Dev</title>
+        <meta
+          name="description"
+          content="Engage in intense space battles in the ultimate space shooter game. Destroy enemy ships, level up, and become the ultimate space warrior!"
         />
-      )}
+        <meta
+          name="keywords"
+          content="Space Shooter, Space Battle, Space Game, Level Up, Arcade Game, Shoot 'Em Up, Iesus Dev"
+        />
+        <meta
+          property="og:title"
+          content="Space Shooter - Become the Ultimate Space Warrior"
+        />
+        <meta
+          property="og:description"
+          content="A thrilling space shooter where you battle enemies in the galaxy, destroy their ships, and level up your own ship to become the strongest."
+        />
+        <meta property="og:image" content="/plane.png" />
+        <meta property="og:type" content="article" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
 
-      {!gameIsStarted && (
-        <CellSizeSelector cellSize={cellSize} onChange={setCellSize} />
-      )}
-
-      <StartButton
-        gameIsStarted={gameIsStarted}
-        gameIsPaused={gameIsPaused}
-        gameIsOver={gameIsOver}
-        levelIsPassed={levelIsPassed}
-        onStart={() =>
-          handleStart({
-            gameIsOver,
-            setGameIsStarted,
-            setGameIsPaused,
-            enemyPlanes,
-            setEnemyPlanes,
-            setBullets,
-            intervalFiringPlane,
-            intervalBetweenPlanesShoot,
-            bulletIntervalRef,
-            activeKeysRef,
-            gridWidth,
-            gridHeight,
-            amountInScreen,
-            currentLevel,
-            enemyPlanesRef,
-            playerPlane,
-          })
-        }
-        onPause={() => handlePause({ setGameIsPaused, bulletIntervalRef })}
-        onReset={() =>
-          resetGame({
-            initialPlayerPlane,
-            isGridHorizontal,
-            gridHeight,
-            gridWidth,
-            amountEnemies,
-            setPlayerPlane,
-            setEnemyPlanes,
-            setIsCollisionPlayer,
-            setGameIsOver,
-            setGameIsPaused,
-            activeKeysRef,
-            setBullets,
-            intervalRef,
-            bulletIntervalRef,
-            setPlayerBullets,
-            setAmountKilledEnemies,
-          })
-        }
-        onNext={() =>
-          handleNextLevel({
-            currentLevel,
-            setCurrentLevel,
-            amountInScreen,
-            setAmountEnemies,
-            setGameIsStarted,
-            bulletIntervalRef,
-            activeKeysRef,
-            intervalRef,
-            setBullets,
-            setPlayerBullets,
-            initialPlayerPlane,
-            isGridHorizontal,
-            gridHeight,
-            gridWidth,
-            amountEnemies,
-            setPlayerPlane,
-            setEnemyPlanes,
-            setIsCollisionPlayer,
-            setGameIsOver,
-            setGameIsPaused,
-            setAmountKilledEnemies,
-            setLevelIsPassed,
-          })
-        }
-      />
-
-      <ParagraphPosition position={playerPlane.position} />
-
-      <div>
-        <p>
-          {myLanguage === "eng" ? "Killed enemies:" : "Enemigos muertos:"}{" "}
-          {amountKilledEnemies} / {amountToKill[`L${currentLevel}`]}
-        </p>
-        <p>
-          {" "}
-          {myLanguage === "eng" ? "Level:" : "Nivel:"} {currentLevel}
-        </p>
-      </div>
-
-      {levelIsPassed ? (
-        <p>
-          {" "}
-          {myLanguage === "eng"
-            ? "Contratulations! You passed to the level:"
-            : "¡Felicidades! Pasaste al nivel:"}{" "}
-          {currentLevel}
-        </p>
-      ) : (
-        ""
-      )}
-
-      <GridPlane
-        playerPlane={playerPlane}
-        enemyPlanes={enemyPlanes}
-        cellSize={cellSize}
-        gridHeight={gridHeight}
-        gridWidth={gridWidth}
-        bullets={bullets}
-        playerBullets={playerBullets}
-        stars={stars}
-      />
-
-      <p className="text-[24px] mt-2">
-        {myLanguage === "eng" ? (
-          <span>
-            Use the <span className="font-mono">WASD</span> keys to move and the{" "}
-            <span className="font-mono">P</span> key to shoot.
-          </span>
-        ) : (
-          <span>
-            Usa las teclas <span className="font-mono ">WASD</span> para moverte
-            y la <span className="font-mono ">P</span> para disparar.
-          </span>
+      <div className="min-h-[calc(100vh-48px)] flex flex-col items-center justify-center">
+        {!gameIsStarted && (
+          <GridOrientationToggle
+            isGridHorizontal={isGridHorizontal}
+            onToggle={toggleGridOrientation}
+          />
         )}
-      </p>
 
-      <EnemyPlanesInfo enemyPlanes={enemyPlanes} />
-    </div>
+        {!gameIsStarted && (
+          <CellSizeSelector cellSize={cellSize} onChange={setCellSize} />
+        )}
+
+        <StartButton
+          gameIsStarted={gameIsStarted}
+          gameIsPaused={gameIsPaused}
+          gameIsOver={gameIsOver}
+          levelIsPassed={levelIsPassed}
+          onStart={() =>
+            handleStart({
+              gameIsOver,
+              setGameIsStarted,
+              setGameIsPaused,
+              enemyPlanes,
+              setEnemyPlanes,
+              setBullets,
+              intervalFiringPlane,
+              intervalBetweenPlanesShoot,
+              bulletIntervalRef,
+              activeKeysRef,
+              gridWidth,
+              gridHeight,
+              amountInScreen,
+              currentLevel,
+              enemyPlanesRef,
+              playerPlane,
+            })
+          }
+          onPause={() => handlePause({ setGameIsPaused, bulletIntervalRef })}
+          onReset={() =>
+            resetGame({
+              initialPlayerPlane,
+              isGridHorizontal,
+              gridHeight,
+              gridWidth,
+              amountEnemies,
+              setPlayerPlane,
+              setEnemyPlanes,
+              setIsCollisionPlayer,
+              setGameIsOver,
+              setGameIsPaused,
+              activeKeysRef,
+              setBullets,
+              intervalRef,
+              bulletIntervalRef,
+              setPlayerBullets,
+              setAmountKilledEnemies,
+            })
+          }
+          onNext={() =>
+            handleNextLevel({
+              currentLevel,
+              setCurrentLevel,
+              amountInScreen,
+              setAmountEnemies,
+              setGameIsStarted,
+              bulletIntervalRef,
+              activeKeysRef,
+              intervalRef,
+              setBullets,
+              setPlayerBullets,
+              initialPlayerPlane,
+              isGridHorizontal,
+              gridHeight,
+              gridWidth,
+              amountEnemies,
+              setPlayerPlane,
+              setEnemyPlanes,
+              setIsCollisionPlayer,
+              setGameIsOver,
+              setGameIsPaused,
+              setAmountKilledEnemies,
+              setLevelIsPassed,
+            })
+          }
+        />
+
+        <ParagraphPosition position={playerPlane.position} />
+
+        <div>
+          <p>
+            {myLanguage === "eng" ? "Killed enemies:" : "Enemigos muertos:"}{" "}
+            {amountKilledEnemies} / {amountToKill[`L${currentLevel}`]}
+          </p>
+          <p>
+            {" "}
+            {myLanguage === "eng" ? "Level:" : "Nivel:"} {currentLevel}
+          </p>
+        </div>
+
+        {levelIsPassed ? (
+          <p>
+            {" "}
+            {myLanguage === "eng"
+              ? "Contratulations! You passed to the level:"
+              : "¡Felicidades! Pasaste al nivel:"}{" "}
+            {currentLevel}
+          </p>
+        ) : (
+          ""
+        )}
+
+        <GridPlane
+          playerPlane={playerPlane}
+          enemyPlanes={enemyPlanes}
+          cellSize={cellSize}
+          gridHeight={gridHeight}
+          gridWidth={gridWidth}
+          bullets={bullets}
+          playerBullets={playerBullets}
+          stars={stars}
+        />
+
+        <p className="text-[24px] mt-2">
+          {myLanguage === "eng" ? (
+            <span>
+              Use the <span className="font-mono">WASD</span> keys to move and
+              the <span className="font-mono">P</span> key to shoot.
+            </span>
+          ) : (
+            <span>
+              Usa las teclas <span className="font-mono ">WASD</span> para
+              moverte y la <span className="font-mono ">P</span> para disparar.
+            </span>
+          )}
+        </p>
+
+        <EnemyPlanesInfo enemyPlanes={enemyPlanes} />
+      </div>
+    </Fragment>
   );
 }
 
