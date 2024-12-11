@@ -7,6 +7,7 @@ import Card from "@/components/Card/Card";
 import { subjects as rawSubjects } from "@/components/Card/subjects";
 import Name from "@/components/Name3D/Name";
 import Laptop from "@/components/Laptop/LaptopIndex";
+import CubeMain from "@/components/Cube/CubeMain";
 // import CV from "@/components/CV";
 
 const Home: React.FC = () => {
@@ -39,9 +40,10 @@ const Home: React.FC = () => {
       </header>
 
       <main className="flex flex-col items-center w-full">
-        <div className="flex flex-col md:flex-row w-full px-10">
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2   xl:grid-cols-3 w-full mt-4 px-10">
           <Laptop />
           <Name />
+          <CubeMain />
         </div>
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2   xl:grid-cols-3 w-full mt-4 px-10">

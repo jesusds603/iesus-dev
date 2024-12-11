@@ -5,7 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 
 function CubeMain() {
   return (
-    <Canvas style={{ height: "400px", width: "600px" }}>
+    <Canvas style={{ height: "400px" }}>
       <ambientLight intensity={1.5} />
       <OrbitControls />
 
