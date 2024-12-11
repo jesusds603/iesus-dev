@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import SingleCube from "./SingleCube2";
+import SingleCube from "./SingleCube";
 
 function BigCube() {
   const { camera } = useThree();
