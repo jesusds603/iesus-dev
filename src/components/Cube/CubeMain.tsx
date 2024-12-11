@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import React from "react";
 import BigCube from "./BigCube";
-import { GradientTexture, OrbitControls, Plane } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 
 function CubeMain() {
   return (
@@ -11,7 +11,7 @@ function CubeMain() {
 
       <BigCube />
 
-      <Plane
+      {/* <Plane
         args={[10, 10]}
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, -1.5, 0]}
@@ -19,7 +19,7 @@ function CubeMain() {
         <meshPhongMaterial>
           <GradientTexture stops={[0, 1]} colors={["#68eeea", "#68ee8f"]} />
         </meshPhongMaterial>
-      </Plane>
+      </Plane> */}
     </Canvas>
   );
 }

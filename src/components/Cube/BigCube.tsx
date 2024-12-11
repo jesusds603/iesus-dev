@@ -1,10 +1,10 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import SingleCube from "./SingleCube";
+import SingleCube from "./SingleCube2";
 
 function BigCube() {
   const { camera } = useThree();
-  const [center, setCenter] = useState<[number, number, number]>([0, 0, 0]);
+  const center: [number, number, number] = [0, 0, 0];
 
   const timeElapsed = useRef(0); // Acumula el tiempo total
   const lastPosition = useRef({ cameraY: 5, lookAtY: 0 }); // Guarda la última posición alcanzada

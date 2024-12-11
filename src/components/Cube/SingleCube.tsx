@@ -1,5 +1,5 @@
 import { Box, Edges, GradientTexture } from "@react-three/drei";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Group, Mesh } from "three";
 
