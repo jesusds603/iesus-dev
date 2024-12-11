@@ -1,10 +1,12 @@
 import { AiFillHome, AiOutlineUser } from "react-icons/ai";
+import { FaCubes } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
 import {
   TbHexagonNumber7Filled,
   TbMathFunction,
   TbMathXDivide2,
 } from "react-icons/tb";
+import { VscRunAll } from "react-icons/vsc";
 
 // *Lista de menús y submenús
 export const menuItems = [
@@ -76,6 +78,22 @@ export const menuItems = [
         icon: TbHexagonNumber7Filled,
         labelEn: "Primes",
         labelEs: "Primos",
+      },
+    ],
+  },
+  {
+    name: "Animations",
+    link: "/animations",
+    icon: VscRunAll,
+    labelEn: "Animations",
+    labelEs: "Animaciones",
+    submenus: [
+      {
+        name: "Cube",
+        link: "/animations/cube",
+        icon: FaCubes,
+        labelEn: "Cube",
+        labelEs: "Cubo",
       },
     ],
   },
