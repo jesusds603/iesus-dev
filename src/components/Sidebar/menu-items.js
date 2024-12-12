@@ -1,5 +1,4 @@
 import { AiFillHome, AiOutlineUser } from "react-icons/ai";
-import { FaCubes } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
 import {
   TbHexagonNumber7Filled,
