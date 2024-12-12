@@ -87,14 +87,6 @@ export const menuItems = [
     icon: VscRunAll,
     labelEn: "Animations",
     labelEs: "Animaciones",
-    submenus: [
-      {
-        name: "Cube",
-        link: "/animations/cube",
-        icon: FaCubes,
-        labelEn: "Cube",
-        labelEs: "Cubo",
-      },
-    ],
+    submenus: [],
   },
 ];

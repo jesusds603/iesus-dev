@@ -14,18 +14,17 @@ const HeaderApp = () => {
   const { myTheme, toggleTheme } = useTheme();
   const { myLanguage, toggleLanguage } = useLanguage(); // Usar el estado del idioma del proveedor
 
-  const themeClasses =
-    myTheme === "dark"
-      ? "text-white bg-gray-800 border-gray-800"
-      : "text-gray-900 bg-gray-200 border-gray-300";
-
   const buttonClasses = `text-2xl p-2 rounded-full transition-transform duration-300 ${
     myTheme === "dark" ? "text-yellow-400" : "text-blue-600"
   }`;
 
   return (
     <div
-      className={`fixed h-[48px] z-30 top-0 left-0 w-full flex items-center justify-between p-0 ${themeClasses}`}
+      className={`fixed h-[48px] z-30 top-0 left-0 w-full flex items-center justify-between p-0 ${
+        myTheme === "dark"
+          ? "text-white bg-black border-gray-800"
+          : "text-gray-900 bg-pink-100 border-gray-300"
+      }`}
     >
       {/* Menu button */}
       <button onClick={toggleMenu} className={buttonClasses}>
@@ -37,7 +36,12 @@ const HeaderApp = () => {
       </button>
 
       {/* Brand logo or title */}
-      <Link href={"/"} className="text-xl font-semibold">
+      <Link
+        href={"/"}
+        className={`text-xl font-semibold ${
+          myTheme === "dark" ? "text-teal-300" : "text-fuchsia-950"
+        }`}
+      >
         IesusDev
       </Link>
 

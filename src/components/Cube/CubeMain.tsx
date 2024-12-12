@@ -1,13 +1,11 @@
 import { Canvas } from "@react-three/fiber";
 import React from "react";
 import BigCube from "./BigCube";
-import { OrbitControls } from "@react-three/drei";
 
 function CubeMain() {
   return (
-    <Canvas style={{ height: "400px" }}>
+    <Canvas style={{ height: "600px" }}>
       <ambientLight intensity={1.5} />
-      <OrbitControls />
 
       <BigCube />
 

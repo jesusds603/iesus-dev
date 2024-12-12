@@ -17,33 +17,29 @@ const Home: React.FC = () => {
   const backgroundClass = myTheme === "dark" ? "text-white" : "text-gray-800";
 
   // Clases de estilo para el título y la descripción
-  const headingClass =
-    myTheme === "dark"
-      ? "text-yellow-400 shadow-lg hover:text-yellow-500 transition-all duration-500 transform hover:scale-110"
-      : "text-blue-600 shadow-lg hover:text-blue-500 transition-all duration-500 transform hover:scale-110";
-  const descriptionClass =
-    myTheme === "dark"
-      ? "text-gray-300 hover:text-gray-100 transition-all duration-500"
-      : "text-gray-700 hover:text-gray-500 transition-all duration-500";
 
   const subjects = rawSubjects(myLanguage, myTheme);
 
   return (
-    <div
-      className={`flex flex-col items-center min-h-screen ${backgroundClass}`}
-    >
-      <header className="text-center">
-        <h1 className={`text-4xl font-bold ${headingClass}`}>IesusDev</h1>
-        <p className={`text-lg mt-2 ${descriptionClass}`}>
-          {myLanguage === "eng" ? "My Personal Web" : "Mi Web Personal"}
-        </p>
+    <div className={`flex flex-col  min-h-screen ${backgroundClass}`}>
+      <header className="grid gap-6 grid-cols-1 sm:grid-cols-2 justify-between place-items-center">
+        <span
+          className={`${
+            myTheme === "dark"
+              ? "text-teal-300 hover:text-teal-400"
+              : "text-fuchsia-900 hover:text-fuchsia-800"
+          } p-8 text-[100px] text-center font-bold rounded-lg hover:scale-110 shadow-lg transition-all duration-500 transform`}
+        >
+          <h2 className={` items-center $`}>IESUS</h2>
+          <h2 className={` items-center $`}>DEV</h2>
+        </span>
+        <CubeMain />
       </header>
 
       <main className="flex flex-col items-center w-full">
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2   xl:grid-cols-3 w-full mt-4 px-10">
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 w-full mt-4 px-10">
           <Laptop />
           <Name />
-          <CubeMain />
         </div>
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2   xl:grid-cols-3 w-full mt-4 px-10">

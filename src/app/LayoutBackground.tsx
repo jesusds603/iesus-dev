@@ -15,16 +15,16 @@ function LayoutBackground() {
         className={`absolute inset-0 w-full h-full bg-gradient-to-b ${backgroundFromColor} to-transparent opacity-100`}
       ></div>
       <div
-        className={`absolute inset-0 w-full h-full bg-gradient-to-r ${
+        className={`absolute inset-0 w-full h-full bg-gradient-to-br ${
           myTheme === "dark"
-            ? "from-emerald-950 to-purple-800 "
-            : "from-emerald-300 to-purple-300 "
-        } opacity-20`}
+            ? "from-black via-fuchsia-950 to-purple-950"
+            : "from-fuchsia-200 to-purple-200 "
+        } opacity-40`}
       ></div>
       <div
         className={`absolute inset-0 w-full h-full bg-gradient-to-tr ${
           myTheme === "dark"
-            ? "from-teal-600 to-purple-700"
+            ? "from-teal-950 to-purple-900"
             : "from-teal-300 to-purple-200"
         }  opacity-10`}
       ></div>

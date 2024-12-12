@@ -15,8 +15,7 @@ function BigCube() {
   useFrame((_, delta) => {
     timeElapsed.current += delta;
 
-    // Reiniciar el ciclo a los 16 segundos
-    if (timeElapsed.current >= 16) {
+    if (timeElapsed.current >= 25) {
       timeElapsed.current = 0;
       lastPosition.current = {
         cameraY: initialCameraY,

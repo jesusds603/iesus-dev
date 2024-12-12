@@ -32,47 +32,47 @@ export const getAmountSteps = (iz: number) => {
 export const getTimeStart = (ix: number, iy: number, iz: number) => {
   // Cubo en medio de la primer fila
   if (iz === 1 && ix === 0) {
-    return 1 + (iy + 1) * 7;
+    return 1 + (iy + 1) * 8;
   }
 
   // Cubo a la derecha de la primer fila
   if (iz === 1 && ix === 1) {
-    return 2 + (iy + 1) * 7;
+    return 2 + (iy + 1) * 8;
   }
 
   // Cubo a la izquierda de la primer fila
   if (iz === 1 && ix === -1) {
-    return 3 + (iy + 1) * 7;
+    return 3 + (iy + 1) * 8;
   }
 
   // Cubo en medio de la segunda fila
   if (iz === 0 && ix === 0) {
-    return 5 + (iy + 1) * 7;
+    return 9 + (iy + 1) * 8;
   }
 
   // Cubo a la izquierda de la segunda fila
   if (iz === 0 && ix === -1) {
-    return 6 + (iy + 1) * 7;
+    return 10 + (iy + 1) * 8;
   }
 
   // Cubo a la derecha de la segunda fila
   if (iz === 0 && ix === 1) {
-    return 7 + (iy + 1) * 7;
+    return 11 + (iy + 1) * 8;
   }
 
   // Cubo a la izquierda de la tercera fila
   if (iz === -1 && ix === -1) {
-    return 9 + (iy + 1) * 7;
+    return 17 + (iy + 1) * 8;
   }
 
   // Cubo a la derecha de la tercera fila
   if (iz === -1 && ix === 1) {
-    return 10 + (iy + 1) * 7;
+    return 18 + (iy + 1) * 8;
   }
 
   // Cubo en medio de la tercera fila
   if (iz === -1 && ix === 0) {
-    return 11 + (iy + 1) * 7;
+    return 19 + (iy + 1) * 8;
   }
 
   return 1;
