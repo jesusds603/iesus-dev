@@ -15,7 +15,7 @@ function BigCube() {
   useFrame((_, delta) => {
     timeElapsed.current += delta;
 
-    if (timeElapsed.current >= 25) {
+    if (timeElapsed.current >= 30) {
       timeElapsed.current = 0;
       lastPosition.current = {
         cameraY: initialCameraY,

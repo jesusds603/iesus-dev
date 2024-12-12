@@ -24,7 +24,7 @@ function SingleCube({
   useFrame((_, delta) => {
     timeElapsed.current += delta;
 
-    if (timeElapsed.current >= 25) {
+    if (timeElapsed.current >= 30) {
       timeElapsed.current = 0;
       if (groupRef.current) {
         groupRef.current.position.set(x, y, z);
