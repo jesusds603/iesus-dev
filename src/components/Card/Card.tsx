@@ -31,13 +31,17 @@ const Card: React.FC<CardProps> = ({
         <p className="mt-2 text-sm">{description}</p>
 
         <div className="w-full h-[300px] relative overflow-hidden mt-4">
-          <Image
-            src={imageUrl}
-            alt={title}
-            layout="fill"
-            objectFit="contain" // Ajusta la imagen para mantener la proporción
-            className="object-contain"
-          />
+          {imageUrl === "" ? (
+            ""
+          ) : (
+            <Image
+              src={imageUrl}
+              alt={title}
+              layout="fill"
+              objectFit="contain" // Ajusta la imagen para mantener la proporción
+              className="object-contain"
+            />
+          )}
         </div>
       </div>
     </Link>

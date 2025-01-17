@@ -5,7 +5,7 @@ import {
   TbMathFunction,
   TbMathXDivide2,
 } from "react-icons/tb";
-import { VscRunAll } from "react-icons/vsc";
+import { VscGraphLine, VscRunAll } from "react-icons/vsc";
 
 // *Lista de menús y submenús
 export const menuItems = [
@@ -25,6 +25,14 @@ export const menuItems = [
     labelEs: "Sobre mí",
     submenus: [],
   },
+  // {
+  //   name: "Dashboards",
+  //   link: "/dashboards",
+  //   icon: AiOutlineUser,
+  //   labelEn: "Dashboards",
+  //   labelEs: "Dashboards",
+  //   submenus: [],
+  // },
   {
     name: "Hanoi",
     link: "/hanoi",
@@ -64,6 +72,13 @@ export const menuItems = [
     labelEn: "Math",
     labelEs: "Matemáticas",
     submenus: [
+      {
+        name: "Probability",
+        link: "/math/probability",
+        icon: VscGraphLine,
+        labelEn: "Probability Distributions",
+        labelEs: "Distribuciones de Probabilidad",
+      },
       {
         name: "Collatz",
         link: "/math/collatz",

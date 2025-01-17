@@ -11,8 +11,22 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-pink-800 via-red-800 to-yellow-800"
         : "bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300",
     link: "/about",
-    imageUrl: "/about.png",
+    imageUrl: "/cards/about.png",
   },
+  // {
+  //   title: myLanguage === "eng" ? "Dashboards" : "Dashboards",
+  //   description:
+  //     myLanguage === "eng"
+  //       ? "Visualization of different type data in dashboards with graphs and analytics"
+  //       : "Visualización de distintos tipos de datos en dashboards con gráficas y analíticas",
+
+  //   gradientColor:
+  //     myTheme === "dark"
+  //       ? "bg-gradient-to-r from-green-600 via-blue-800 to-purple-900"
+  //       : "bg-gradient-to-r from-green-300 via-blue-500 to-purple-600",
+  //   link: "/dashboards",
+  //   imageUrl: "/cards/pie_graph.png",
+  // },
   {
     title: myLanguage === "eng" ? "Hanoi Tower" : "Torre de Hanoi",
     description:
@@ -25,7 +39,24 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-pink-800 via-purple-800 to-indigo-900"
         : "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400",
     link: "/hanoi",
-    imageUrl: "/hanoi.png",
+    imageUrl: "/cards/hanoi.png",
+  },
+  {
+    title:
+      myLanguage === "eng"
+        ? "Probability Distributions"
+        : "Distribuciones de Proababilidad",
+    description:
+      myLanguage === "eng"
+        ? "Visualize and understand how probability distributions work with examples and simple animations"
+        : "Visualiza y comprende cómo funcionan las distribuciones de probabilidad con ejemplos y animaciones sencillas",
+
+    gradientColor:
+      myTheme === "dark"
+        ? "bg-gradient-to-r from-blue-900 via-blue-800 to-gray-900"
+        : "bg-gradient-to-r from-blue-600 via-blue-500 to-gray-600",
+    link: "/math/probability",
+    imageUrl: "/cards/binomial.png",
   },
   {
     title:
@@ -44,7 +75,7 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         : "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400",
 
     link: "/freefall",
-    imageUrl: "/freefall.png",
+    imageUrl: "/cards/freefall.png",
   },
   {
     title: myLanguage === "eng" ? "Snake" : "Serpiente",
@@ -57,7 +88,7 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-gray-800 via-gray-900 to-black"
         : "bg-gradient-to-r from-gray-500 via-gray-400 to-slate-400",
     link: "/snake",
-    imageUrl: "/snake.png",
+    imageUrl: "/cards/snake.png",
   },
   {
     title: "Plane Block",
@@ -70,7 +101,7 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-rose-700 via-red-600 to-red-700"
         : "bg-gradient-to-r from-rose-400 via-red-300 to-red-400",
     link: "/plane-block",
-    imageUrl: "/plane.png",
+    imageUrl: "/cards/plane.png",
   },
   {
     title: "Collatz",
@@ -83,7 +114,7 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-800 via-emerald-800 to-teal-800"
         : "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-200 via-emerald-200 to-yellow-200",
     link: "/math/collatz",
-    imageUrl: "/collatz.png",
+    imageUrl: "/cards/collatz.png",
   },
   {
     title: myLanguage === "eng" ? "Prime Numbers" : "Números Primos",
@@ -96,6 +127,6 @@ export const subjects = (myLanguage: string, myTheme: string) => [
         ? "bg-gradient-to-r from-sky-900 via-rose-900 to-lime-900"
         : "bg-gradient-to-r from-sky-400 via-rose-400 to-lime-400",
     link: "/math/primes",
-    imageUrl: "/primes.png",
+    imageUrl: "/cards/primes.png",
   },
 ];
