@@ -136,7 +136,7 @@ function Binomial() {
         if (!ball.active) return ball; // Si no está activa, no la muevas.
 
         // Mover la bola hacia abajo.
-        let newY = ball.y + speedBalls; // Velocidad vertical.
+        const newY = ball.y + speedBalls; // Velocidad vertical.
         let newX = ball.x;
         let isAtEnd = false;
 
@@ -231,10 +231,10 @@ function Binomial() {
     stopAnimation();
   }, [n, p]);
 
-  const continueAnimation = () => {
-    setisPaused(false);
-    // setLastTimestamp(null);
-  };
+  // const continueAnimation = () => {
+  //   setisPaused(false);
+  //   // setLastTimestamp(null);
+  // };
 
   useEffect(() => {
     const canvas = canvasRef.current;
