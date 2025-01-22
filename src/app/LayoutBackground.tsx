@@ -5,13 +5,13 @@ function LayoutBackground() {
   const { myTheme } = useTheme();
 
   // Definir colores de fondo y gradientes según el tema
-  const backgroundFromColor = myTheme === "dark" ? "from-black" : "from-white";
+  // const backgroundFromColor = myTheme === "dark" ? "from-black" : "from-white";
   const circleFromColor = myTheme === "dark" ? "from-black" : "from-pink-400";
 
   return (
-    <div>
+    <div className={`${myTheme === "dark" ? "bg-black" : "bg-white"}`}>
       {/* Capas de fondo principal con colores condicionados */}
-      <div
+      {/* <div
         className={`absolute inset-0 w-full h-full bg-gradient-to-b ${backgroundFromColor} to-transparent opacity-100`}
       ></div>
       <div
@@ -27,6 +27,12 @@ function LayoutBackground() {
             ? "from-teal-950 to-purple-900"
             : "from-teal-300 to-purple-200"
         }  opacity-10`}
+      ></div> */}
+
+      <div
+        className={`absolute inset-0 w-full h-full ${
+          myTheme === "dark" ? "bg-black" : "bg-white"
+        }`}
       ></div>
 
       {/* Círculos fijos con efecto de gota de agua y gradientes condicionados */}
