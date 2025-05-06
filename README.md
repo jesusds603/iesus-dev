@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portafolio Personal con Next.js y Three.js
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=threedotjs&logoColor=white)](https://threejs.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 
-First, run the development server:
+![Captura de pantalla del portafolio](./swappy-20250505-192227.png)
 
+Bienvenido a mi portafolio personal desarrollado con Next.js y Three.js. Este sitio muestra mis proyectos interactivos que combinan programación, matemáticas y gráficos 3D/2D.
+
+## ✨ Demos Interactivas
+
+### 🎮 Juegos
+- **Juego de Naves 2D**: Un shooter espacial clásico desarrollado con Canvas API
+- **Snake Game**: El clásico juego de la serpiente con controles táctiles
+- **Torre de Hanoi**: Implementación interactiva del famoso rompecabezas matemático
+
+### 🧮 Proyectos Matemáticos
+- **Calculadora de Números Primos**: Visualización de la distribución de números primos
+- **Simulador de Conjetura de Collatz**: Exploración interactiva de esta secuencia matemática
+
+### 🚀 Simulaciones 3D
+- **Simulador de Tiro Libre**: Física de proyectiles en un entorno 3D interactivo
+- **Otras animaciones Three.js**: Efectos visuales y experiencias inmersivas
+
+## 🛠 Tecnologías Utilizadas
+- **Framework**: Next.js (React)
+- **Gráficos 3D**: Three.js, R3F (React Three Fiber)
+- **Animaciones**: Framer Motion
+- **Estilos**: Tailwind CSS
+- **Física**: Cannon.js (para simulaciones físicas)
+
+## 🚀 Cómo Ejecutar Localmente
+
+1. Clona el repositorio:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/tu-usuario/tu-repositorio.git
