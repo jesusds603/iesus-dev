@@ -6,7 +6,7 @@
 
 ![Captura de pantalla del portafolio](./swappy-20250505-192227.png)
 
-Bienvenido a mi portafolio personal desarrollado con Next.js y Three.js. Este sitio muestra mis proyectos interactivos que combinan programación, matemáticas y gráficos 3D/2D.
+Bienvenido a mi portafolio personal desarrollado con Next.js y Three.js. Este sitio muestra mis proyectos interactivos que combinan programación, matemáticas y gráficos 3D/2D. Puedes visitar mi sitio web aquí [https://www.iesus-dev.com/](https://www.iesus-dev.com/)
 
 ## ✨ Demos Interactivas
 
