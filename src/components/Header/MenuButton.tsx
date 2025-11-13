@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTheme } from "@/hooks/useTheme";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 

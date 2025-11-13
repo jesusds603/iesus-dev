@@ -12,14 +12,12 @@ interface CategoryNodeProps {
   category: Category;
   myLanguage: string;
   myTheme: string;
-  index: number;
 }
 
 const CategoryNode: React.FC<CategoryNodeProps> = ({ 
   category, 
   myLanguage, 
-  myTheme,
-  index 
+  myTheme 
 }) => {
   const isDark = myTheme === "dark";
   const hasSubmenus = category.submenus && category.submenus.length > 0;

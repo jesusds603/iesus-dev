@@ -59,13 +59,12 @@ const ProjectTree: React.FC<ProjectTreeProps> = ({
 
       {/* Categorías principales */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        {projects.submenus.map((category: Category, index: number) => (
+        {projects.submenus.map((category: Category) => (
           <CategoryNode 
             key={category.name}
             category={category}
             myLanguage={myLanguage}
             myTheme={myTheme}
-            index={index}
           />
         ))}
       </div>
