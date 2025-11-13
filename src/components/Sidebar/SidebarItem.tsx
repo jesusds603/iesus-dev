@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import SidebarSubItem from "./SidebarSubItem";
 import { useMenu } from "@/hooks/useMenu";
 
+// Define interfaces for menu items
+interface MenuItem {
+  name: string;
+  link: string;
+  icon: React.ElementType;
+  labelEn: string;
+  labelEs: string;
+  submenus: MenuItem[];
+}
+
 interface SidebarItemProps {
-  item: {
-    name: string;
-    link: string;
-    icon: React.ElementType;
-    labelEn: string;
-    labelEs: string;
-    submenus: Array<any>;
-  };
+  item: MenuItem;
   myLanguage: string;
   myTheme: string;
   index: number;
@@ -27,7 +29,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const { closeMenu } = useMenu();
   const router = useRouter();
 
@@ -83,17 +84,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       className="relative"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      {/* Efecto de fondo animado */}
-      <div
-        className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/10 to-purple-400/10 opacity-0 transition-opacity duration-500 ${
-          isHovered && isNavigable ? 'opacity-100' : ''
-        }`}
-      ></div>
-
       <div
         className={`${baseClasses} ${themeClasses} animate-slide-in-left`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         onClick={handleItemClick}
       >
         {/* Icono con efecto */}

@@ -9,13 +9,10 @@ interface MenuButtonProps {
 
 const MenuButton: React.FC<MenuButtonProps> = ({ isMenuOpen, toggleMenu }) => {
   const { myTheme } = useTheme();
-  const [isHovering, setIsHovering] = useState(false);
 
   return (
     <button 
       onClick={toggleMenu}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
       className={`
         relative z-10 text-2xl p-3 rounded-2xl transition-all duration-500 
         backdrop-blur-lg border-2 group

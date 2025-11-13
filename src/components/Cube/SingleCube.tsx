@@ -1,7 +1,12 @@
 import React, { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Group, Mesh, Color } from "three";
+import { Group, Mesh, Color, Material } from "three";
 import { getAmountSteps, getTimeStart } from "./motionManagers";
+
+// Define a type for materials with emissiveIntensity
+interface CustomMaterial extends Material {
+  emissiveIntensity?: number;
+}
 
 function SingleCube({
   position,
@@ -60,15 +65,6 @@ function SingleCube({
     emissiveIntensity: 0.8,
   }), [colors.secondary]);
 
-  // Material para los bordes
-  const edgeMaterialProps = useMemo(() => ({
-    color: colors.accent,
-    transparent: true,
-    opacity: 0.8,
-    emissive: new Color(colors.accent),
-    emissiveIntensity: 0.5,
-  }), [colors.accent]);
-
   useFrame((_, delta) => {
     if (!groupRef.current || !boxRef.current || !innerGlowRef.current) return;
 
@@ -124,14 +120,16 @@ function SingleCube({
       // Efecto de brillo intermitente
       const pulseIntensity = 0.3 + Math.sin(rotationAngle * 2) * 0.2;
       if (boxRef.current.material) {
-        (boxRef.current.material as any).emissiveIntensity = pulseIntensity;
+        const material = boxRef.current.material as CustomMaterial;
+        material.emissiveIntensity = pulseIntensity;
       }
     } else {
       // Reset cuando no está animando
       boxRef.current.scale.setScalar(1);
       innerGlowRef.current.scale.setScalar(1);
       if (boxRef.current.material) {
-        (boxRef.current.material as any).emissiveIntensity = 0.3;
+        const material = boxRef.current.material as CustomMaterial;
+        material.emissiveIntensity = 0.3;
       }
     }
   });
@@ -155,8 +153,6 @@ function SingleCube({
           {...glowMaterialProps}
         />
       </mesh>
-
-      
     </group>
   );
 }

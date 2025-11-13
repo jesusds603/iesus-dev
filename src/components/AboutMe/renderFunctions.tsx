@@ -4,7 +4,46 @@ import ProfileInfo from "./ProfileInfo";
 import ProfessionalSummary from "./ProfessionalSummary";
 import SkillCategory from "./SkillCategory";
 
-export const renderProfileContent = (isDark: boolean, myLanguage: string, profileData: any) => (
+// Define interfaces for all data types
+interface ProfileData {
+  name: string;
+  title: string;
+  location: string;
+  email: string;
+  phone: string;
+  website: string;
+  linkedin: string;
+  github: string;
+}
+
+interface ExperienceItem {
+  title: string;
+  period: string;
+  company: string;
+  description: string;
+}
+
+interface SkillsData {
+  programming: string[];
+  web: string[];
+  dataScience: string[];
+  mobile: string[];
+  tools: string[];
+  mathematics: string[];
+}
+
+interface EducationItem {
+  degree: string;
+  period: string;
+  institution: string;
+}
+
+// Update function signatures with proper types
+export const renderProfileContent = (
+  isDark: boolean, 
+  myLanguage: string, 
+  profileData: ProfileData
+) => (
   <div className="space-y-6">
     <div className={`p-6 rounded-2xl border backdrop-blur-sm ${
       isDark ? "border-cyan-500/30 bg-gray-800/40" : "border-blue-500/20 bg-white/60"
@@ -18,7 +57,10 @@ export const renderProfileContent = (isDark: boolean, myLanguage: string, profil
   </div>
 );
 
-export const renderExperienceContent = (isDark: boolean, experienceData: any[]) => (
+export const renderExperienceContent = (
+  isDark: boolean, 
+  experienceData: ExperienceItem[]
+) => (
   <div className="space-y-6">
     {experienceData.map((exp, index) => (
       <div key={index} className={`p-6 rounded-2xl border backdrop-blur-sm transform transition-all duration-500 hover:scale-105 ${
@@ -38,7 +80,7 @@ export const renderExperienceContent = (isDark: boolean, experienceData: any[]) 
         </div>
         <p className={`font-semibold mb-2 ${
           isDark ? "text-gray-200" : "text-gray-800"
-        }`}>
+          }`}>
           {exp.company}
         </p>
         <p className={`leading-relaxed ${
@@ -51,7 +93,11 @@ export const renderExperienceContent = (isDark: boolean, experienceData: any[]) 
   </div>
 );
 
-export const renderSkillsContent = (isDark: boolean, myLanguage: string, skillsData: any) => (
+export const renderSkillsContent = (
+  isDark: boolean, 
+  myLanguage: string, 
+  skillsData: SkillsData
+) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
     <SkillCategory 
       title={myLanguage === "eng" ? "Programming" : "Programación"} 
@@ -92,7 +138,10 @@ export const renderSkillsContent = (isDark: boolean, myLanguage: string, skillsD
   </div>
 );
 
-export const renderEducationContent = (isDark: boolean, educationData: any[]) => (
+export const renderEducationContent = (
+  isDark: boolean, 
+  educationData: EducationItem[]
+) => (
   <div className="space-y-6">
     {educationData.map((edu, index) => (
       <div key={index} className={`p-6 rounded-2xl border backdrop-blur-sm ${
@@ -120,7 +169,10 @@ export const renderEducationContent = (isDark: boolean, educationData: any[]) =>
   </div>
 );
 
-export const renderAchievementsContent = (isDark: boolean, achievementsData: string[]) => (
+export const renderAchievementsContent = (
+  isDark: boolean, 
+  achievementsData: string[]
+) => (
   <div className="space-y-4">
     {achievementsData.map((achievement, index) => (
       <div key={index} className={`p-4 rounded-xl border backdrop-blur-sm transform transition-all duration-300 hover:scale-105 ${

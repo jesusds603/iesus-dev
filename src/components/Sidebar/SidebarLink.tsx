@@ -2,15 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMenu } from "@/hooks/useMenu";
 
-const SidebarLink = ({
-  href,
-  icon: Icon,
-  labelEn,
-  labelEs,
-  myLanguage,
-  myTheme,
-  index,
-}: {
+interface SidebarLinkProps {
   href: string;
   icon: React.ElementType;
   labelEn: string;
@@ -18,9 +10,18 @@ const SidebarLink = ({
   myLanguage: string;
   myTheme: string;
   index: number;
+}
+
+const SidebarLink: React.FC<SidebarLinkProps> = ({
+  href,
+  icon: Icon,
+  labelEn,
+  labelEs,
+  myLanguage,
+  myTheme,
+  index,
 }) => {
   const [isActive, setIsActive] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const { closeMenu } = useMenu();
   const router = useRouter();
 
@@ -64,8 +65,6 @@ const SidebarLink = ({
     >
       <div
         className={`${baseClasses} ${themeClasses} animate-slide-in-left`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         onClick={handleLinkClick}
       >
         {/* Icono */}

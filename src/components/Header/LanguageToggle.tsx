@@ -17,7 +17,7 @@ const LanguageToggle: React.FC<LanguageToggleProps> = ({ myLanguage }) => {
   // Generar letras flotantes para el efecto
   useEffect(() => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    const newLetters = Array.from({ length: 8 }, (_, i) => ({
+    const newLetters = Array.from({ length: 8 }, () => ({
       char: chars[Math.floor(Math.random() * chars.length)],
       x: Math.random() * 100,
       y: Math.random() * 100,

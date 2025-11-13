@@ -1,13 +1,25 @@
 import React from "react";
 import ContactItem from "./ContactItem";
 
+// Define a proper type for profileData instead of using 'any'
+interface ProfileData {
+  name: string;
+  title: string;
+  location: string;
+  email: string;
+  phone: string;
+  website: string;
+  linkedin: string;
+  github: string;
+}
+
 interface ProfileInfoProps {
-  profileData: any;
+  profileData: ProfileData;
   isDark: boolean;
   myLanguage: string;
 }
 
-const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileData, isDark, myLanguage }) => {
+const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileData, isDark }) => {
   return (
     <div className="flex-1 text-center lg:text-left">
       <h3 className={`text-3xl font-bold mb-3 bg-clip-text text-transparent ${

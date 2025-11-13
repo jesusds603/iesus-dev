@@ -4,15 +4,18 @@ import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import SidebarLink from "./SidebarLink";
 import { useMenu } from "@/hooks/useMenu";
 
+// Define interface for submenu items
+interface SubMenuItem {
+  name: string;
+  link: string;
+  icon: React.ElementType;
+  labelEn: string;
+  labelEs: string;
+  submenus?: SubMenuItem[];
+}
+
 interface SidebarSubItemProps {
-  item: {
-    name: string;
-    link: string;
-    icon: React.ElementType;
-    labelEn: string;
-    labelEs: string;
-    submenus?: Array<any>;
-  };
+  item: SubMenuItem;
   myLanguage: string;
   myTheme: string;
   index: number;
@@ -26,7 +29,6 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const { closeMenu } = useMenu();
   const router = useRouter();
 
@@ -84,8 +86,6 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
     >
       <div
         className={`${baseClasses} ${themeClasses} animate-slide-in-left`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         onClick={handleItemClick}
       >
         {/* Icono */}

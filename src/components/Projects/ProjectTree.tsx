@@ -1,10 +1,31 @@
 import CategoryNode from "./CategoryNode";
+import { Project } from "./ProjectNode";
 
-const ProjectTree: React.FC<{
-  projects: any;
+// Define interface for the main projects data
+interface ProjectsData {
+  labelEn: string;
+  labelEs: string;
+  submenus: Category[];
+}
+
+interface Category {
+  name: string;
+  labelEn: string;
+  labelEs: string;
+  submenus: Project[];
+}
+
+interface ProjectTreeProps {
+  projects: ProjectsData;
   myLanguage: string;
   myTheme: string;
-}> = ({ projects, myLanguage, myTheme }) => {
+}
+
+const ProjectTree: React.FC<ProjectTreeProps> = ({ 
+  projects, 
+  myLanguage, 
+  myTheme 
+}) => {
   if (!projects) return null;
 
   const isDark = myTheme === "dark";
@@ -38,7 +59,7 @@ const ProjectTree: React.FC<{
 
       {/* Categorías principales */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        {projects.submenus.map((category: any, index: number) => (
+        {projects.submenus.map((category: Category, index: number) => (
           <CategoryNode 
             key={category.name}
             category={category}
@@ -52,4 +73,4 @@ const ProjectTree: React.FC<{
   );
 };
 
-export default ProjectTree
+export default ProjectTree;

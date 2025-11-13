@@ -1,11 +1,26 @@
-import ProjectNode from "./ProjectNode";
+import ProjectNode, { Project } from "./ProjectNode";
 
-const CategoryNode: React.FC<{
-  category: any;
+// Define interfaces for the category and project data
+
+interface Category {
+  labelEn: string;
+  labelEs: string;
+  submenus: Project[];
+}
+
+interface CategoryNodeProps {
+  category: Category;
   myLanguage: string;
   myTheme: string;
   index: number;
-}> = ({ category, myLanguage, myTheme }) => {
+}
+
+const CategoryNode: React.FC<CategoryNodeProps> = ({ 
+  category, 
+  myLanguage, 
+  myTheme,
+  index 
+}) => {
   const isDark = myTheme === "dark";
   const hasSubmenus = category.submenus && category.submenus.length > 0;
 
@@ -36,7 +51,7 @@ const CategoryNode: React.FC<{
       {/* Líneas horizontales a los proyectos */}
       {hasSubmenus && (
         <div className="mt-4 space-y-3">
-          {category.submenus.map((project: any, projectIndex: number) => (
+          {category.submenus.map((project: Project, projectIndex: number) => (
             <ProjectNode 
               key={project.name}
               project={project}
@@ -52,4 +67,4 @@ const CategoryNode: React.FC<{
   );
 };
 
-export default CategoryNode
+export default CategoryNode;

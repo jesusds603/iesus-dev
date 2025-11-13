@@ -1,12 +1,35 @@
 import Link from "next/link";
+import { IconType } from "react-icons";
 
-const ProjectNode: React.FC<{
-  project: any;
+// Define interfaces for the project data
+export interface Project {
+  name: string;
+  labelEn: string;
+  labelEs: string;
+  descriptionEn?: string;
+  descriptionEs?: string;
+  url?: string;
+  link: string;
+  icon: IconType;
+  technologies?: string[];
+  submenus?: Project[];
+}
+
+interface ProjectNodeProps {
+  project: Project;
   myLanguage: string;
   myTheme: string;
   projectIndex: number;
   totalProjects: number;
-}> = ({ project, myLanguage, myTheme, projectIndex, totalProjects }) => {
+}
+
+const ProjectNode: React.FC<ProjectNodeProps> = ({ 
+  project, 
+  myLanguage, 
+  myTheme, 
+  projectIndex, 
+  totalProjects 
+}) => {
   const isDark = myTheme === "dark";
   const isNavigable = project.link !== "#" && (!project.submenus || project.submenus.length === 0);
 
@@ -62,4 +85,4 @@ const ProjectNode: React.FC<{
   );
 };
 
-export default ProjectNode
+export default ProjectNode;

@@ -8,7 +8,6 @@ interface AnimatedNameProps {
 const AnimatedName: React.FC<AnimatedNameProps> = ({ isDark }) => {
   const [animationStage, setAnimationStage] = useState(0);
   const [displayText, setDisplayText] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
   const nameRef = useRef<HTMLDivElement>(null);
 
   const fullName = "IESUS\nDEV";
@@ -18,7 +17,6 @@ const AnimatedName: React.FC<AnimatedNameProps> = ({ isDark }) => {
   useEffect(() => {
     const startAnimations = async () => {
       // Stage 1: Typing animation
-      setIsTyping(true);
       setDisplayText("");
       
       for (let i = 0; i <= fullName.length; i++) {
@@ -26,7 +24,6 @@ const AnimatedName: React.FC<AnimatedNameProps> = ({ isDark }) => {
         await new Promise(resolve => setTimeout(resolve, typingSpeed));
       }
       
-      setIsTyping(false);
       setAnimationStage(1);
       
       // Stage 2: Gradient animation
