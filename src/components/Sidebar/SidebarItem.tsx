@@ -11,7 +11,7 @@ interface MenuItem {
   icon: React.ElementType;
   labelEn: string;
   labelEs: string;
-  submenus: MenuItem[];
+  submenus?: MenuItem[]; // Hacer submenus opcional
 }
 
 interface SidebarItemProps {
@@ -40,8 +40,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   const label = myLanguage === "eng" ? item.labelEn : item.labelEs;
 
   // Determinar si el item es navegable o solo desplegable
-  const isNavigable = item.link !== "#" && item.submenus.length === 0;
-  const isExpandable = item.submenus.length > 0;
+  const isNavigable = item.link !== "#" && (!item.submenus || item.submenus.length === 0);
+  const isExpandable = item.submenus && item.submenus.length > 0;
 
   const baseClasses = `
     relative flex items-center py-3 px-4 rounded-2xl 
@@ -131,7 +131,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       {/* Submenús con animación */}
       {isExpanded && isExpandable && (
         <div className="ml-6 mt-2 space-y-1 animate-expand">
-          {item.submenus.map((submenu, subIndex) => (
+          {item.submenus!.map((submenu, subIndex) => (
             <SidebarSubItem
               key={submenu.link}
               item={submenu}
