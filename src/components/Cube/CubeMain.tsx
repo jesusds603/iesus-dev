@@ -4,20 +4,19 @@ import BigCube from "./BigCube";
 
 function CubeMain() {
   return (
-    <Canvas style={{ height: "600px" }}>
-      <ambientLight intensity={1.5} />
-
+    <Canvas
+      style={{ height: "600px" }}
+      gl={{
+        antialias: false,
+        powerPreference: "high-performance",
+      }}
+      camera={{ position: [-5, 5, 5], fov: 50 }}
+    >
+      <fog attach="fog" args={['#000011', 10, 25]} />
+      <ambientLight intensity={0.8} />
+      <pointLight position={[10, 10, 10]} intensity={1.5} />
+      
       <BigCube />
-
-      {/* <Plane
-        args={[10, 10]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, -1.5, 0]}
-      >
-        <meshPhongMaterial>
-          <GradientTexture stops={[0, 1]} colors={["#68eeea", "#68ee8f"]} />
-        </meshPhongMaterial>
-      </Plane> */}
     </Canvas>
   );
 }

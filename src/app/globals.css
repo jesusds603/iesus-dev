@@ -39,3 +39,1283 @@ body {
   height: 5px;
   /* Altura del scroll horizontal */
 }
+
+/* ===== ESTILOS PARA EL FONDO FUTURISTA ===== */
+/* ===== ANIMACIONES Y EFECTOS MEJORADOS ===== */
+
+@keyframes spin-medium {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulse-ray-strong {
+  0%, 100% { 
+    opacity: 0.4;
+    transform: scaleY(1) rotate(var(--rotation, 0deg));
+  }
+  50% { 
+    opacity: 0.9;
+    transform: scaleY(1.3) rotate(var(--rotation, 0deg));
+  }
+}
+
+@keyframes float-glow-strong {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    opacity: 0.8;
+  }
+  33% { 
+    transform: translateY(-20px) scale(1.15);
+    opacity: 1;
+  }
+  66% { 
+    transform: translateY(15px) scale(0.95);
+    opacity: 0.9;
+  }
+}
+
+@keyframes pulse-particle-strong {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+.animate-spin-medium {
+  animation: spin-medium 15s linear infinite;
+}
+
+.animate-pulse-ray-strong {
+  animation: pulse-ray-strong 3s ease-in-out infinite;
+}
+
+.animate-float-glow-strong {
+  animation: float-glow-strong 5s ease-in-out infinite;
+}
+
+.animate-pulse-particle-strong {
+  animation: pulse-particle-strong 2.5s ease-in-out infinite;
+}
+
+/* ===== EFECTOS DE GLOW MÁS FUERTES ===== */
+
+.shadow-glow-orbital-strong {
+  box-shadow: 
+    0 0 60px 15px rgba(34, 211, 238, 0.4),
+    0 0 120px 30px rgba(34, 211, 238, 0.2);
+}
+
+.shadow-glow-orbital-purple-strong {
+  box-shadow: 
+    0 0 60px 15px rgba(192, 132, 252, 0.4),
+    0 0 120px 30px rgba(192, 132, 252, 0.2);
+}
+
+.shadow-glow-green-orbital {
+  box-shadow: 
+    0 0 50px 12px rgba(74, 222, 128, 0.4),
+    0 0 100px 25px rgba(74, 222, 128, 0.2);
+}
+
+.shadow-glow-cyan-ray-strong {
+  box-shadow: 
+    0 0 40px 12px rgba(34, 211, 238, 0.5),
+    0 0 80px 20px rgba(34, 211, 238, 0.3);
+}
+
+.shadow-glow-purple-ray-strong {
+  box-shadow: 
+    0 0 40px 12px rgba(192, 132, 252, 0.5),
+    0 0 80px 20px rgba(192, 132, 252, 0.3);
+}
+
+.shadow-glow-pink-ray-strong {
+  box-shadow: 
+    0 0 40px 12px rgba(236, 72, 153, 0.5),
+    0 0 80px 20px rgba(236, 72, 153, 0.3);
+}
+
+.shadow-glow-green-ray {
+  box-shadow: 
+    0 0 40px 12px rgba(74, 222, 128, 0.5),
+    0 0 80px 20px rgba(74, 222, 128, 0.3);
+}
+
+.shadow-glow-cyan-node-strong {
+  box-shadow: 
+    0 0 35px 15px rgba(34, 211, 238, 0.6),
+    0 0 70px 25px rgba(34, 211, 238, 0.4),
+    inset 0 0 25px 8px rgba(34, 211, 238, 0.5);
+}
+
+.shadow-glow-purple-node-strong {
+  box-shadow: 
+    0 0 35px 15px rgba(192, 132, 252, 0.6),
+    0 0 70px 25px rgba(192, 132, 252, 0.4),
+    inset 0 0 25px 8px rgba(192, 132, 252, 0.5);
+}
+
+.shadow-glow-pink-node-strong {
+  box-shadow: 
+    0 0 35px 15px rgba(236, 72, 153, 0.6),
+    0 0 70px 25px rgba(236, 72, 153, 0.4),
+    inset 0 0 25px 8px rgba(236, 72, 153, 0.5);
+}
+
+.shadow-glow-green-node {
+  box-shadow: 
+    0 0 35px 15px rgba(74, 222, 128, 0.6),
+    0 0 70px 25px rgba(74, 222, 128, 0.4),
+    inset 0 0 25px 8px rgba(74, 222, 128, 0.5);
+}
+
+.shadow-glow-cyan-node-light {
+  box-shadow: 
+    0 0 30px 12px rgba(6, 182, 212, 0.7),
+    0 0 60px 20px rgba(6, 182, 212, 0.5),
+    inset 0 0 20px 6px rgba(6, 182, 212, 0.6);
+}
+
+.shadow-glow-purple-node-light {
+  box-shadow: 
+    0 0 30px 12px rgba(168, 85, 247, 0.7),
+    0 0 60px 20px rgba(168, 85, 247, 0.5),
+    inset 0 0 20px 6px rgba(168, 85, 247, 0.6);
+}
+
+.shadow-glow-pink-node-light {
+  box-shadow: 
+    0 0 30px 12px rgba(236, 72, 153, 0.7),
+    0 0 60px 20px rgba(236, 72, 153, 0.5),
+    inset 0 0 20px 6px rgba(236, 72, 153, 0.6);
+}
+
+.shadow-glow-green-node-light {
+  box-shadow: 
+    0 0 30px 12px rgba(34, 197, 94, 0.7),
+    0 0 60px 20px rgba(34, 197, 94, 0.5),
+    inset 0 0 20px 6px rgba(34, 197, 94, 0.6);
+}
+
+.shadow-glow-line-strong {
+  box-shadow: 
+    0 0 30px 8px rgba(34, 211, 238, 0.4),
+    0 0 60px 15px rgba(34, 211, 238, 0.25);
+}
+
+/* ===== EFECTOS ESPECÍFICOS PARA TEMA CLARO ===== */
+
+/* Grid para tema claro */
+.bg-grid-blue {
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glow effects para tema claro */
+.shadow-glow-orbital-light {
+  box-shadow: 
+    0 0 50px 12px rgba(59, 130, 246, 0.3),
+    0 0 100px 25px rgba(59, 130, 246, 0.15);
+}
+
+.shadow-glow-orbital-purple-light {
+  box-shadow: 
+    0 0 50px 12px rgba(168, 85, 247, 0.3),
+    0 0 100px 25px rgba(168, 85, 247, 0.15);
+}
+
+.shadow-glow-green-orbital-light {
+  box-shadow: 
+    0 0 45px 10px rgba(16, 185, 129, 0.3),
+    0 0 90px 22px rgba(16, 185, 129, 0.15);
+}
+
+.shadow-glow-cyan-ray-light {
+  box-shadow: 
+    0 0 35px 10px rgba(59, 130, 246, 0.4),
+    0 0 70px 18px rgba(59, 130, 246, 0.25);
+}
+
+.shadow-glow-purple-ray-light {
+  box-shadow: 
+    0 0 35px 10px rgba(168, 85, 247, 0.4),
+    0 0 70px 18px rgba(168, 85, 247, 0.25);
+}
+
+.shadow-glow-pink-ray-light {
+  box-shadow: 
+    0 0 35px 10px rgba(236, 72, 153, 0.4),
+    0 0 70px 18px rgba(236, 72, 153, 0.25);
+}
+
+.shadow-glow-green-ray-light {
+  box-shadow: 
+    0 0 35px 10px rgba(16, 185, 129, 0.4),
+    0 0 70px 18px rgba(16, 185, 129, 0.25);
+}
+
+.shadow-glow-cyan-light {
+  box-shadow: 
+    0 0 20px 6px rgba(59, 130, 246, 0.5),
+    0 0 40px 12px rgba(59, 130, 246, 0.3);
+}
+
+.shadow-glow-purple-light {
+  box-shadow: 
+    0 0 20px 6px rgba(168, 85, 247, 0.5),
+    0 0 40px 12px rgba(168, 85, 247, 0.3);
+}
+
+.shadow-glow-line-light {
+  box-shadow: 
+    0 0 25px 6px rgba(59, 130, 246, 0.3),
+    0 0 50px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* Ya tenemos estos en la versión anterior, pero los dejo por si acaso */
+.shadow-glow-cyan-node-light {
+  box-shadow: 
+    0 0 30px 12px rgba(59, 130, 246, 0.6),
+    0 0 60px 20px rgba(59, 130, 246, 0.4),
+    inset 0 0 20px 6px rgba(59, 130, 246, 0.5);
+}
+
+.shadow-glow-purple-node-light {
+  box-shadow: 
+    0 0 30px 12px rgba(168, 85, 247, 0.6),
+    0 0 60px 20px rgba(168, 85, 247, 0.4),
+    inset 0 0 20px 6px rgba(168, 85, 247, 0.5);
+}
+
+.shadow-glow-pink-node-light {
+  box-shadow: 
+    0 0 30px 12px rgba(236, 72, 153, 0.6),
+    0 0 60px 20px rgba(236, 72, 153, 0.4),
+    inset 0 0 20px 6px rgba(236, 72, 153, 0.5);
+}
+
+.shadow-glow-green-node-light {
+  box-shadow: 
+    0 0 30px 12px rgba(16, 185, 129, 0.6),
+    0 0 60px 20px rgba(16, 185, 129, 0.4),
+    inset 0 0 20px 6px rgba(16, 185, 129, 0.5);
+}
+
+/* ===== EFECTOS ESPECÍFICOS PARA EL HEADER FUTURISTA ===== */
+
+/* Efectos de glow para botones */
+
+
+
+
+/* Efectos de texto con gradiente animado */
+@keyframes text-shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: text-shimmer 3s infinite;
+}
+
+/* Mejoras para transformaciones GPU */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Efectos de borde animado */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(34, 211, 238, 0.3); }
+  50% { border-color: rgba(34, 211, 238, 0.7); }
+}
+
+.animate-border-glow {
+  animation: border-glow 2s ease-in-out infinite;
+}
+
+/* Efecto de vidrio esmerilado mejorado */
+.backdrop-blur-md {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Sombras mejoradas */
+.shadow-2xl {
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* ===== ESTILOS PARA SIDEBAR FUTURISTA ===== */
+
+/* Grid patterns para sidebar */
+.bg-grid-sidebar-dark {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-grid-sidebar-light {
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Efectos de glow para sidebar */
+.shadow-glow-sidebar {
+  box-shadow: 
+    inset -10px 0 20px -10px rgba(34, 211, 238, 0.3),
+    0 0 30px 10px rgba(34, 211, 238, 0.1);
+}
+
+.shadow-glow-sidebar-light {
+  box-shadow: 
+    inset -10px 0 20px -10px rgba(59, 130, 246, 0.2),
+    0 0 30px 10px rgba(59, 130, 246, 0.05);
+}
+
+.shadow-glow-sidebar-item {
+  box-shadow: 
+    0 0 15px 5px rgba(34, 211, 238, 0.3),
+    inset 0 0 10px 2px rgba(34, 211, 238, 0.1);
+}
+
+.shadow-glow-sidebar-item-light {
+  box-shadow: 
+    0 0 15px 5px rgba(59, 130, 246, 0.2),
+    inset 0 0 10px 2px rgba(59, 130, 246, 0.05);
+}
+
+.shadow-glow-sidebar-subitem {
+  box-shadow: 
+    0 0 10px 3px rgba(192, 132, 252, 0.3),
+    inset 0 0 8px 1px rgba(192, 132, 252, 0.1);
+}
+
+.shadow-glow-sidebar-subitem-light {
+  box-shadow: 
+    0 0 10px 3px rgba(168, 85, 247, 0.2),
+    inset 0 0 8px 1px rgba(168, 85, 247, 0.05);
+}
+
+/* Animaciones para sidebar */
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes expand {
+  0% {
+    opacity: 0;
+    max-height: 0;
+  }
+  100% {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.5s ease-out both;
+}
+
+.animate-expand {
+  animation: expand 0.4s ease-out both;
+}
+
+/* Scrollbar personalizado */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #22d3ee, #a855f7);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #06b6d4, #9333ea);
+}
+
+/* ===== NUEVAS ANIMACIONES PARA EL HEADER FUTURISTA ===== */
+
+/* Animación de gradiente moviéndose */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 15s ease infinite;
+}
+
+/* Animaciones de flotación para partículas */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-10px) translateX(5px); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-8px) translateX(-3px); }
+}
+
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-5px) translateX(2px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 3s ease-in-out infinite;
+}
+
+/* Ping más lento y sutil */
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  75%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Glow pulsante para líneas */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 20px 2px rgba(34, 211, 238, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 30px 5px rgba(34, 211, 238, 0.5);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Efectos de glow mejorados */
+.shadow-glow-cyan-button {
+  box-shadow: 
+    0 0 25px 8px rgba(34, 211, 238, 0.4),
+    0 0 50px 15px rgba(34, 211, 238, 0.2),
+    inset 0 0 20px 5px rgba(34, 211, 238, 0.3);
+}
+
+.shadow-glow-blue-button {
+  box-shadow: 
+    0 0 25px 8px rgba(59, 130, 246, 0.4),
+    0 0 50px 15px rgba(59, 130, 246, 0.2),
+    inset 0 0 20px 5px rgba(59, 130, 246, 0.3);
+}
+
+.shadow-glow-yellow {
+  box-shadow: 
+    0 0 25px 8px rgba(250, 204, 21, 0.4),
+    0 0 50px 15px rgba(250, 204, 21, 0.2),
+    inset 0 0 20px 5px rgba(250, 204, 21, 0.3);
+}
+
+.shadow-glow-orange {
+  box-shadow: 
+    0 0 25px 8px rgba(249, 115, 22, 0.4),
+    0 0 50px 15px rgba(249, 115, 22, 0.2),
+    inset 0 0 20px 5px rgba(249, 115, 22, 0.3);
+}
+
+.shadow-glow-green {
+  box-shadow: 
+    0 0 25px 8px rgba(34, 197, 94, 0.4),
+    0 0 50px 15px rgba(34, 197, 94, 0.2),
+    inset 0 0 20px 5px rgba(34, 197, 94, 0.3);
+}
+
+.shadow-glow-emerald {
+  box-shadow: 
+    0 0 25px 8px rgba(16, 185, 129, 0.4),
+    0 0 50px 15px rgba(16, 185, 129, 0.2),
+    inset 0 0 20px 5px rgba(16, 185, 129, 0.3);
+}
+
+.shadow-glow-line {
+  box-shadow: 
+    0 0 25px 5px rgba(34, 211, 238, 0.4),
+    0 0 50px 10px rgba(34, 211, 238, 0.2);
+}
+
+.shadow-glow-line-light {
+  box-shadow: 
+    0 0 25px 5px rgba(59, 130, 246, 0.3),
+    0 0 50px 10px rgba(59, 130, 246, 0.15);
+}
+
+/* ===== NUEVAS ANIMACIONES 2D FUTURISTAS ===== */
+
+/* Orbitales que cruzan la pantalla */
+@keyframes orbit-large {
+  0% {
+    transform: translateX(-100px) translateY(0px) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50vw) translateY(-20px) scale(1.2);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(0px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes orbit-medium {
+  0% {
+    transform: translateX(-50px) translateY(10px) scale(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50vw) translateY(-15px) scale(1.1);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 50px)) translateY(10px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes orbit-small {
+  0% {
+    transform: translateX(-30px) translateY(-10px) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50vw) translateY(15px) scale(1.05);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 30px)) translateY(-10px) scale(1);
+    opacity: 0;
+  }
+}
+
+.animate-orbit-large {
+  animation: orbit-large 8s ease-in-out infinite;
+}
+
+.animate-orbit-medium {
+  animation: orbit-medium 6s ease-in-out infinite;
+}
+
+.animate-orbit-small {
+  animation: orbit-small 7s ease-in-out infinite;
+}
+
+/* Rayos de energía horizontales */
+@keyframes energy-beam {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes energy-beam-reverse {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-energy-beam {
+  animation: energy-beam 12s linear infinite;
+}
+
+.animate-energy-beam-reverse {
+  animation: energy-beam-reverse 15s linear infinite;
+}
+
+/* Partículas de datos flotantes */
+@keyframes data-particle {
+  0%, 100% {
+    transform: translateX(-20px) translateY(0px) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50vw) translateY(-10px) scale(1.2);
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 20px)) translateY(0px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.animate-data-particle {
+  animation: data-particle 6s ease-in-out infinite;
+}
+
+/* Efecto de scanning vertical */
+@keyframes scan {
+  0% {
+    transform: translateX(10%) translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(10%) translateY(200%);
+    opacity: 0;
+  }
+}
+
+.animate-scan {
+  animation: scan 8s ease-in-out infinite;
+}
+
+/* Efectos de glow adicionales */
+.shadow-glow-pink {
+  box-shadow: 
+    0 0 15px 4px rgba(236, 72, 153, 0.4),
+    0 0 30px 8px rgba(236, 72, 153, 0.2);
+}
+
+/* Mejora para los efectos existentes */
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 4s ease-in-out infinite;
+}
+
+/* Animaciones de rebote futurista */
+@keyframes bounce-futurist {
+  0%, 100% {
+    transform: translateX(-100px) translateY(0px) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(25vw) translateY(-60px) scale(1.1);
+  }
+  50% {
+    transform: translateX(50vw) translateY(0px) scale(1);
+  }
+  75% {
+    transform: translateX(75vw) translateY(-40px) scale(1.05);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(0px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce-futurist-delayed {
+  0%, 100% {
+    transform: translateX(-80px) translateY(0px) scale(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(30vw) translateY(-50px) scale(1.08);
+  }
+  55% {
+    transform: translateX(55vw) translateY(0px) scale(1);
+  }
+  80% {
+    transform: translateX(80vw) translateY(-35px) scale(1.03);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 80px)) translateY(0px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce-futurist-fast {
+  0%, 100% {
+    transform: translateX(-60px) translateY(0px) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  35% {
+    transform: translateX(35vw) translateY(-40px) scale(1.06);
+  }
+  60% {
+    transform: translateX(60vw) translateY(0px) scale(1);
+  }
+  85% {
+    transform: translateX(85vw) translateY(-25px) scale(1.02);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 60px)) translateY(0px) scale(1);
+    opacity: 0;
+  }
+}
+
+.animate-bounce-futurist {
+  animation: bounce-futurist 10s ease-in-out infinite;
+}
+
+.animate-bounce-futurist-delayed {
+  animation: bounce-futurist-delayed 9s ease-in-out infinite;
+}
+
+.animate-bounce-futurist-fast {
+  animation: bounce-futurist-fast 8s ease-in-out infinite;
+}
+
+/* ===== ANIMACIONES PARA EL BOTÓN DE TEMA FUTURISTA ===== */
+
+/* Efecto de cambio de tema */
+@keyframes theme-switch {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1); }
+}
+
+.animate-theme-switch {
+  animation: theme-switch 0.6s ease-in-out;
+}
+
+/* Transformación celestial */
+@keyframes celestial-transform {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.2) rotate(90deg); }
+  50% { transform: scale(0.8) rotate(180deg); }
+  75% { transform: scale(1.1) rotate(270deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+.animate-celestial-transform {
+  animation: celestial-transform 1s ease-in-out;
+}
+
+/* Partículas en órbita */
+@keyframes orbit-particle {
+  0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
+}
+
+.animate-orbit-particle {
+  animation: orbit-particle 4s linear infinite;
+}
+
+/* Pulso de energía */
+@keyframes energy-pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.7;
+  }
+  50% { 
+    transform: scale(1.5); 
+    opacity: 1;
+  }
+}
+
+.animate-energy-pulse {
+  animation: energy-pulse 2s ease-in-out infinite;
+}
+
+/* Nebulosa animada */
+@keyframes nebula {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.animate-nebula {
+  animation: nebula 8s ease-in-out infinite;
+}
+
+/* Estrellas parpadeantes */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Efecto ripple */
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 0.6s ease-out;
+}
+
+/* Pulso rápido para animación */
+@keyframes pulse-rapid {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.animate-pulse-rapid {
+  animation: pulse-rapid 0.3s ease-in-out 3;
+}
+
+/* Pulso suave */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Flotación gentil */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* Efectos de glow específicos */
+.shadow-glow-cyber {
+  box-shadow: 
+    0 0 25px 5px rgba(34, 211, 238, 0.3),
+    0 0 50px 15px rgba(34, 211, 238, 0.2),
+    inset 0 0 20px 5px rgba(34, 211, 238, 0.1);
+}
+
+.shadow-glow-cyber-light {
+  box-shadow: 
+    0 0 25px 5px rgba(59, 130, 246, 0.3),
+    0 0 50px 15px rgba(59, 130, 246, 0.2),
+    inset 0 0 20px 5px rgba(59, 130, 246, 0.1);
+}
+
+.shadow-glow-cyber-hover {
+  box-shadow: 
+    0 0 35px 10px rgba(34, 211, 238, 0.4),
+    0 0 70px 20px rgba(34, 211, 238, 0.3),
+    inset 0 0 25px 8px rgba(34, 211, 238, 0.2);
+}
+
+.shadow-glow-cyber-tooltip {
+  box-shadow: 
+    0 0 20px 5px rgba(34, 211, 238, 0.4),
+    0 0 40px 10px rgba(34, 211, 238, 0.2);
+}
+
+/* Sombras para iconos */
+.drop-shadow-glow-sun {
+  filter: drop-shadow(0 0 10px rgba(253, 230, 138, 0.6));
+}
+
+.drop-shadow-glow-moon {
+  filter: drop-shadow(0 0 10px rgba(147, 197, 253, 0.6));
+}
+
+/* Animaciones específicas para sol y luna */
+@keyframes ping-sun {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.animate-ping-sun {
+  animation: ping-sun 2s ease-out infinite;
+}
+
+@keyframes pulse-moon {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse-moon {
+  animation: pulse-moon 3s ease-in-out infinite;
+}
+
+/* ===== ANIMACIONES PARA EL BOTÓN DE IDIOMA LINGÜÍSTICO ===== */
+
+/* Efecto de cambio de idioma */
+@keyframes language-switch {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05) rotate(3deg); }
+  100% { transform: scale(1); }
+}
+
+.animate-language-switch {
+  animation: language-switch 0.8s ease-in-out;
+}
+
+/* Rotación del globo */
+@keyframes globe-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.animate-globe-spin {
+  animation: globe-spin 0.8s ease-in-out;
+}
+
+/* Flip del texto de idioma */
+@keyframes language-flip {
+  0% { transform: rotateX(0deg); opacity: 1; }
+  50% { transform: rotateX(90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+.animate-language-flip {
+  animation: language-flip 0.8s ease-in-out;
+}
+
+/* Idioma objetivo apareciendo */
+@keyframes target-language {
+  0% { opacity: 0; transform: translateY(10px); }
+  50% { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.animate-target-language {
+  animation: target-language 0.8s ease-in-out;
+}
+
+/* Pulso de traducción */
+@keyframes translate-pulse {
+  0%, 100% { transform: scale(1); }
+  25%, 75% { transform: scale(1.2); }
+  50% { transform: scale(0.9); }
+}
+
+.animate-translate-pulse {
+  animation: translate-pulse 0.8s ease-in-out;
+}
+
+/* Partículas de traducción */
+@keyframes translation-particle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(var(--tx, 50px) * (random() * 2 - 1)),
+      calc(var(--ty, 50px) * (random() * 2 - 1))
+    ) scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-translation-particle {
+  animation: translation-particle 2s ease-out infinite;
+}
+
+/* Letras flotantes */
+@keyframes float-letter {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.1;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px) rotate(180deg);
+    opacity: 0.2;
+  }
+  75% {
+    opacity: 0.3;
+  }
+}
+
+.animate-float-letter {
+  animation: float-letter 12s ease-in-out infinite;
+}
+
+/* Código binario scrolling */
+@keyframes binary-scroll {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+}
+
+.animate-binary-scroll {
+  animation: binary-scroll 15s linear infinite;
+}
+
+/* Onda de lenguaje */
+@keyframes language-wave {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+.animate-language-wave {
+  animation: language-wave 6s ease-in-out infinite;
+}
+
+/* Anillos de pulso */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.animate-pulse-ring-delayed {
+  animation: pulse-ring 2s ease-out infinite;
+  animation-delay: 1s;
+}
+
+/* Onda de sonido */
+@keyframes sound-wave {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.animate-sound-wave {
+  animation: sound-wave 2s ease-out infinite;
+}
+
+/* Explosión de traducción */
+@keyframes translation-burst {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-translation-burst {
+  animation: translation-burst 0.8s ease-out;
+}
+
+/* Pulso de comunicación */
+@keyframes pulse-communication {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+}
+
+.animate-pulse-communication {
+  animation: pulse-communication 2s infinite;
+}
+
+/* Ping de comunicación */
+@keyframes ping-communication {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping-communication {
+  animation: ping-communication 1.5s ease-out infinite;
+}
+
+/* Efectos de glow específicos para lenguaje */
+.shadow-glow-linguistic {
+  box-shadow: 
+    0 0 25px 5px rgba(16, 185, 129, 0.3),
+    0 0 50px 15px rgba(16, 185, 129, 0.2),
+    inset 0 0 20px 5px rgba(16, 185, 129, 0.1);
+}
+
+.shadow-glow-linguistic-light {
+  box-shadow: 
+    0 0 25px 5px rgba(34, 197, 94, 0.3),
+    0 0 50px 15px rgba(34, 197, 94, 0.2),
+    inset 0 0 20px 5px rgba(34, 197, 94, 0.1);
+}
+
+.shadow-glow-linguistic-hover {
+  box-shadow: 
+    0 0 35px 10px rgba(16, 185, 129, 0.4),
+    0 0 70px 20px rgba(16, 185, 129, 0.3),
+    inset 0 0 25px 8px rgba(16, 185, 129, 0.2);
+}
+
+.shadow-glow-linguistic-tooltip {
+  box-shadow: 
+    0 0 20px 5px rgba(16, 185, 129, 0.4),
+    0 0 40px 10px rgba(16, 185, 129, 0.2);
+}
+
+/* Sombras para iconos de lenguaje */
+.drop-shadow-glow-language {
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.6));
+}
+
+.drop-shadow-glow-language-light {
+  filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.6));
+}

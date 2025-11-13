@@ -5,6 +5,8 @@ import React, { createContext, useState, useContext } from "react";
 interface MenuContextType {
   isMenuOpen: boolean;
   toggleMenu: () => void;
+  closeMenu: () => void;
+  openMenu: () => void;
 }
 
 const MenuContext = createContext<MenuContextType | undefined>(undefined);
@@ -28,8 +30,16 @@ export default function MenuProvider({
     setIsMenuOpen((prevMenu) => !prevMenu);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const openMenu = () => {
+    setIsMenuOpen(true);
+  };
+
   return (
-    <MenuContext.Provider value={{ isMenuOpen, toggleMenu }}>
+    <MenuContext.Provider value={{ isMenuOpen, toggleMenu, closeMenu, openMenu }}>
       {children}
     </MenuContext.Provider>
   );

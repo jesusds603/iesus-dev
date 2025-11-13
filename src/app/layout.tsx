@@ -5,7 +5,7 @@ import LanguageProvider from "@/hooks/useLanguage";
 import MenuProvider from "@/hooks/useMenu";
 import ThemeProvider from "@/hooks/useTheme";
 import LayoutContent from "./LayoutContent";
-import HeaderApp from "@/components/HeaderApp";
+import HeaderApp from "@/components/Header/HeaderApp";
 import { ShipProvider } from "../hooks/useShip";
 import { SphereProvider } from "../hooks/useSphere";
 

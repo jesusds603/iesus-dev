@@ -1,179 +1,30 @@
 //* Esta funcion nos dice cuantas unidades se debe mover para salir y para entrar segun la fila en la que esté sin importar la capa
 export const getAmountSteps = (iz: number) => {
-  if (iz === 1) {
-    return {
-      zP: 1,
-      zN: 3,
-    };
-  }
-
-  if (iz === 0) {
-    return {
-      zP: 2,
-      zN: 2,
-    };
-  }
-
-  if (iz === -1) {
-    return {
-      zP: 3,
-      zN: 1,
-    };
-  }
-
-  return {
-    zP: 0,
-    zN: 0,
-  };
+  if (iz === 1) return { zP: 1, zN: 3 };
+  if (iz === 0) return { zP: 2, zN: 2 };
+  if (iz === -1) return { zP: 3, zN: 1 };
+  return { zP: 0, zN: 0 };
 };
 
 //* Esta función nos dice el tiempo en el que debe comenzar a moverse el cubo
-// Los intervalos de tiempo no dependen de los segundos
 export const getTimeStart = (ix: number, iy: number, iz: number) => {
-  // * Capa baja
-  // Cubo en medio de la primer fila
-  if (iz === 1 && iy === -1 && ix === 0) {
-    return 1;
-  }
+  // Mapeo simplificado de tiempos
+  const timeMap: { [key: string]: number } = {
+    // Capa baja (iy = -1)
+    '1,-1,-1': 1, '1,-1,0': 2, '1,-1,1': 3,
+    '0,-1,-1': 4, '0,-1,0': 5, '0,-1,1': 6,
+    '-1,-1,-1': 7, '-1,-1,0': 8, '-1,-1,1': 9,
+    
+    // Capa media (iy = 0)
+    '1,0,-1': 15, '1,0,0': 16, '1,0,1': 17,
+    '0,0,-1': 18, '0,0,0': 19, '0,0,1': 20,
+    '-1,0,-1': 21, '-1,0,0': 22, '-1,0,1': 23,
+    
+    // Capa alta (iy = 1)
+    '1,1,-1': 29, '1,1,0': 30, '1,1,1': 31,
+    '0,1,-1': 32, '0,1,0': 33, '0,1,1': 34,
+    '-1,1,-1': 35, '-1,1,0': 36, '-1,1,1': 37,
+  };
 
-  // Cubo a la derecha de la primer fila
-  if (iz === 1 && iy === -1 && ix === 1) {
-    return 2;
-  }
-
-  // Cubo a la izquierda de la primer fila
-  if (iz === 1 && iy === -1 && ix === -1) {
-    return 3;
-  }
-
-  // Cubo en medio de la segunda fila
-  if (iz === 0 && iy === -1 && ix === 0) {
-    return 4;
-  }
-
-  // Cubo a la izquierda de la segunda fila
-  if (iz === 0 && iy === -1 && ix === -1) {
-    return 5;
-  }
-
-  // Cubo a la derecha de la segunda fila
-  if (iz === 0 && iy === -1 && ix === 1) {
-    return 6;
-  }
-
-  // Cubo a la izquierda de la tercera fila
-  if (iz === -1 && iy === -1 && ix === -1) {
-    return 7;
-  }
-
-  // Cubo a la derecha de la tercera fila
-  if (iz === -1 && iy === -1 && ix === 1) {
-    return 8;
-  }
-
-  // Cubo en medio de la tercera fila
-  if (iz === -1 && iy === -1 && ix === 0) {
-    return 9;
-  }
-
-  // * Capa media
-  // Cubo en medio de la primer fila
-  if (iz === 1 && iy === 0 && ix === 0) {
-    return 15;
-  }
-
-  // Cubo a la derecha de la primer fila
-  if (iz === 1 && iy === 0 && ix === 1) {
-    return 16;
-  }
-
-  // Cubo a la izquierda de la primer fila
-  if (iz === 1 && iy === 0 && ix === -1) {
-    return 17;
-  }
-
-  // Cubo en medio de la segunda fila
-  if (iz === 0 && iy === 0 && ix === 0) {
-    return 18;
-  }
-
-  // Cubo a la izquierda de la segunda fila
-  if (iz === 0 && iy === 0 && ix === -1) {
-    return 19;
-  }
-
-  // Cubo a la derecha de la segunda fila
-  if (iz === 0 && iy === 0 && ix === 1) {
-    return 20;
-  }
-
-  // Cubo a la izquierda de la tercera fila
-  if (iz === -1 && iy === 0 && ix === -1) {
-    return 21;
-  }
-
-  // Cubo a la derecha de la tercera fila
-  if (iz === -1 && iy === 0 && ix === 1) {
-    return 22;
-  }
-
-  // Cubo en medio de la tercera fila
-  if (iz === -1 && iy === 0 && ix === 0) {
-    return 23;
-  }
-
-  // * Capa alta
-  // Cubo en medio de la primer fila
-  if (iz === 1 && iy === 1 && ix === 0) {
-    return 29;
-  }
-
-  // Cubo a la derecha de la primer fila
-  if (iz === 1 && iy === 1 && ix === 1) {
-    return 30;
-  }
-
-  // Cubo a la izquierda de la primer fila
-  if (iz === 1 && iy === 1 && ix === -1) {
-    return 31;
-  }
-
-  // Cubo en medio de la segunda fila
-  if (iz === 0 && iy === 1 && ix === 0) {
-    return 32;
-  }
-
-  // Cubo a la izquierda de la segunda fila
-  if (iz === 0 && iy === 1 && ix === -1) {
-    return 33;
-  }
-
-  // Cubo a la derecha de la segunda fila
-  if (iz === 0 && iy === 1 && ix === 1) {
-    return 34;
-  }
-
-  // Cubo a la izquierda de la tercera fila
-  if (iz === -1 && iy === 1 && ix === -1) {
-    return 35;
-  }
-
-  // Cubo a la derecha de la tercera fila
-  if (iz === -1 && iy === 1 && ix === 1) {
-    return 36;
-  }
-
-  // Cubo en medio de la tercera fila
-  if (iz === -1 && iy === 1 && ix === 0) {
-    return 37;
-  }
-
-  return 1;
+  return timeMap[`${iz},${iy},${ix}`] || 1;
 };
-
-// Por capa
-// 2 | 3 | 1     ix=-1
-// 3 | 1 | 2     ix= 0
-// 1 | 2 | 3     ix= 1
-
-//z=-1|0 | 1

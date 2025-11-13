@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { FaCopy } from "react-icons/fa";
-import Laptop from "../Laptop/LaptopIndex";
+import Laptop from "../Laptop/Laptop";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useTheme } from "@/hooks/useTheme";
 
