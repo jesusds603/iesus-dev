@@ -13,20 +13,6 @@ export const subjects = (myLanguage: string, myTheme: string) => [
     link: "/about",
     imageUrl: "/cards/about.png",
   },
-  // {
-  //   title: myLanguage === "eng" ? "Dashboards" : "Dashboards",
-  //   description:
-  //     myLanguage === "eng"
-  //       ? "Visualization of different type data in dashboards with graphs and analytics"
-  //       : "Visualización de distintos tipos de datos en dashboards con gráficas y analíticas",
-
-  //   gradientColor:
-  //     myTheme === "dark"
-  //       ? "bg-gradient-to-r from-green-600 via-blue-800 to-purple-900"
-  //       : "bg-gradient-to-r from-green-300 via-blue-500 to-purple-600",
-  //   link: "/dashboards",
-  //   imageUrl: "/cards/pie_graph.png",
-  // },
   {
     title: myLanguage === "eng" ? "Hanoi Tower" : "Torre de Hanoi",
     description:

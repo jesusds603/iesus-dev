@@ -12,20 +12,7 @@ interface SidebarItemProps {
     icon: React.ElementType;
     labelEn: string;
     labelEs: string;
-    submenus: Array<{
-      name: string;
-      link: string;
-      icon: React.ElementType;
-      labelEn: string;
-      labelEs: string;
-      submenus?: Array<{
-        name: string;
-        link: string;
-        icon: React.ElementType;
-        labelEn: string;
-        labelEs: string;
-      }>;
-    }>;
+    submenus: Array<any>;
   };
   myLanguage: string;
   myTheme: string;
@@ -51,39 +38,44 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   const isDark = myTheme === "dark";
   const label = myLanguage === "eng" ? item.labelEn : item.labelEs;
 
+  // Determinar si el item es navegable o solo desplegable
+  const isNavigable = item.link !== "#" && item.submenus.length === 0;
+  const isExpandable = item.submenus.length > 0;
+
   const baseClasses = `
-    relative flex items-center py-3 px-4 cursor-pointer rounded-2xl 
+    relative flex items-center py-3 px-4 rounded-2xl 
     transition-all duration-500 transform-gpu overflow-hidden
     ${isActive ? 'scale-[1.02]' : 'scale-100'}
+    ${isNavigable ? 'cursor-pointer' : 'cursor-default'}
   `;
 
   const themeClasses = isDark
     ? `
         text-white/90 backdrop-blur-sm border border-white/10
-        hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-purple-500/20
-        hover:border-cyan-400/30 hover:shadow-glow-sidebar-item
+        ${isNavigable ? 'hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-purple-500/20 hover:border-cyan-400/30 hover:shadow-glow-sidebar-item' : ''}
         ${isActive ? 'bg-gradient-to-r from-cyan-500/30 to-purple-500/30 border-cyan-400/50 shadow-glow-sidebar-item' : ''}
       `
     : `
         text-gray-800 backdrop-blur-sm border border-gray-200/50
-        hover:bg-gradient-to-r hover:from-blue-500/15 hover:to-purple-500/15
-        hover:border-blue-400/40 hover:shadow-glow-sidebar-item-light
+        ${isNavigable ? 'hover:bg-gradient-to-r hover:from-blue-500/15 hover:to-purple-500/15 hover:border-blue-400/40 hover:shadow-glow-sidebar-item-light' : ''}
         ${isActive ? 'bg-gradient-to-r from-blue-500/25 to-purple-500/25 border-blue-400/60 shadow-glow-sidebar-item-light' : ''}
       `;
 
   const toggleExpansion = (event: React.MouseEvent) => {
     event.stopPropagation();
-    setIsExpanded(!isExpanded);
+    if (isExpandable) {
+      setIsExpanded(!isExpanded);
+    }
   };
 
-  const handleLinkClick = (event: React.MouseEvent, link: string) => {
-    event.preventDefault();
-    
-    // Cerrar el menú
-    closeMenu();
-    
-    // Navegar a la ruta
-    router.push(link);
+  const handleItemClick = (event: React.MouseEvent) => {
+    if (isNavigable) {
+      event.preventDefault();
+      closeMenu();
+      router.push(item.link);
+    } else if (isExpandable) {
+      toggleExpansion(event);
+    }
   };
 
   return (
@@ -94,7 +86,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       {/* Efecto de fondo animado */}
       <div
         className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/10 to-purple-400/10 opacity-0 transition-opacity duration-500 ${
-          isHovered ? 'opacity-100' : ''
+          isHovered && isNavigable ? 'opacity-100' : ''
         }`}
       ></div>
 
@@ -102,6 +94,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         className={`${baseClasses} ${themeClasses} animate-slide-in-left`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={handleItemClick}
       >
         {/* Icono con efecto */}
         <div className={`relative z-10 p-2 rounded-xl transition-all duration-300 ${
@@ -113,15 +106,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         </div>
 
         {/* Texto del label */}
-        <div 
-          className="flex items-center w-full relative z-10 cursor-pointer"
-          onClick={(e) => handleLinkClick(e, item.link)}
-        >
+        <div className="flex items-center w-full relative z-10">
           <span className="mx-3 flex-1 font-medium tracking-wide">{label}</span>
         </div>
 
         {/* Flecha para submenús */}
-        {item.submenus.length > 0 && (
+        {isExpandable && (
           <div 
             className={`relative z-10 p-1 rounded-lg transition-all duration-300 ${
               isDark ? 'bg-black/20' : 'bg-white/30'
@@ -147,7 +137,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       </div>
 
       {/* Submenús con animación */}
-      {isExpanded && item.submenus.length > 0 && (
+      {isExpanded && isExpandable && (
         <div className="ml-6 mt-2 space-y-1 animate-expand">
           {item.submenus.map((submenu, subIndex) => (
             <SidebarSubItem

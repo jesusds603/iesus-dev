@@ -11,13 +11,7 @@ interface SidebarSubItemProps {
     icon: React.ElementType;
     labelEn: string;
     labelEs: string;
-    submenus?: Array<{
-      name: string;
-      link: string;
-      icon: React.ElementType;
-      labelEn: string;
-      labelEs: string;
-    }>;
+    submenus?: Array<any>;
   };
   myLanguage: string;
   myTheme: string;
@@ -43,35 +37,44 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
   const isDark = myTheme === "dark";
   const label = myLanguage === "eng" ? item.labelEn : item.labelEs;
 
+  // Determinar si el item es navegable o solo desplegable
+  const isNavigable = item.link !== "#" && (!item.submenus || item.submenus.length === 0);
+  const isExpandable = item.submenus && item.submenus.length > 0;
+
   const baseClasses = `
-    relative flex items-center py-2 px-4 cursor-pointer rounded-xl 
+    relative flex items-center py-2 px-4 rounded-xl 
     transition-all duration-400 transform-gpu overflow-hidden
     ${isActive ? 'scale-[1.02]' : 'scale-100'}
+    ${isNavigable ? 'cursor-pointer' : 'cursor-default'}
   `;
 
   const themeClasses = isDark
     ? `
         text-white/80 backdrop-blur-sm
-        hover:bg-gradient-to-r hover:from-purple-500/15 hover:to-pink-500/15
-        hover:shadow-glow-sidebar-subitem
+        ${isNavigable ? 'hover:bg-gradient-to-r hover:from-purple-500/15 hover:to-pink-500/15 hover:shadow-glow-sidebar-subitem' : ''}
         ${isActive ? 'bg-gradient-to-r from-purple-500/25 to-pink-500/25 shadow-glow-sidebar-subitem' : ''}
       `
     : `
         text-gray-700 backdrop-blur-sm
-        hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10
-        hover:shadow-glow-sidebar-subitem-light
+        ${isNavigable ? 'hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 hover:shadow-glow-sidebar-subitem-light' : ''}
         ${isActive ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 shadow-glow-sidebar-subitem-light' : ''}
       `;
 
   const toggleExpansion = (event: React.MouseEvent) => {
     event.stopPropagation();
-    setIsExpanded(!isExpanded);
+    if (isExpandable) {
+      setIsExpanded(!isExpanded);
+    }
   };
 
-  const handleLinkClick = (event: React.MouseEvent, link: string) => {
-    event.preventDefault();
-    closeMenu();
-    router.push(link);
+  const handleItemClick = (event: React.MouseEvent) => {
+    if (isNavigable) {
+      event.preventDefault();
+      closeMenu();
+      router.push(item.link);
+    } else if (isExpandable) {
+      toggleExpansion(event);
+    }
   };
 
   return (
@@ -83,6 +86,7 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
         className={`${baseClasses} ${themeClasses} animate-slide-in-left`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={handleItemClick}
       >
         {/* Icono */}
         <div className={`relative z-10 p-1.5 rounded-lg transition-all duration-300 ${
@@ -94,15 +98,12 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
         </div>
 
         {/* Texto */}
-        <div 
-          className="flex items-center w-full relative z-10 cursor-pointer"
-          onClick={(e) => handleLinkClick(e, item.link)}
-        >
+        <div className="flex items-center w-full relative z-10">
           <span className="mx-3 flex-1 font-medium text-sm tracking-wide">{label}</span>
         </div>
 
         {/* Flecha para sub-submenús */}
-        {item.submenus && item.submenus.length > 0 && (
+        {isExpandable && (
           <div 
             className={`relative z-10 p-1 rounded transition-all duration-300 ${
               isDark ? 'bg-black/15' : 'bg-white/25'
@@ -128,9 +129,9 @@ const SidebarSubItem: React.FC<SidebarSubItemProps> = ({
       </div>
 
       {/* Sub-submenús */}
-      {isExpanded && item.submenus && item.submenus.length > 0 && (
+      {isExpanded && isExpandable && (
         <div className="ml-6 mt-1 space-y-1 animate-expand">
-          {item.submenus.map((submenu, subIndex) => (
+          {item.submenus!.map((submenu, subIndex) => (
             <SidebarLink
               key={submenu.link}
               href={submenu.link}

@@ -1,8 +1,8 @@
 import { useMenu } from "@/hooks/useMenu";
 import { useTheme } from "@/hooks/useTheme";
 import { useLanguage } from "@/hooks/useLanguage";
-import { menuItems } from "./menu-items";
 import SidebarItem from "./SidebarItem";
+import { menuItems } from "./menu-items";
 
 function Sidebar() {
   const { isMenuOpen } = useMenu();
