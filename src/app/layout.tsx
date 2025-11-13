@@ -7,7 +7,7 @@ import ThemeProvider from "@/hooks/useTheme";
 import LayoutContent from "./LayoutContent";
 import HeaderApp from "@/components/Header/HeaderApp";
 import { ShipProvider } from "../hooks/useShip";
-import { SphereProvider } from "../hooks/useSphere";
+import { SphereProvider } from "../hooks/useSphereGame";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

@@ -1,20 +1,20 @@
 "use client";
 import React, { Fragment, useState } from "react";
 import "katex/dist/katex.min.css";
-import { useSphere } from "../../hooks/useSphere";
-import { FormState, defaultState } from "@/components/FreeFall/constants";
 import MainC from "@/components/FreeFall/MainC";
 import Formulas from "@/components/FreeFall/Formulas";
 import Calculator from "@/components/FreeFall/Calculator";
 import Head from "next/head";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useSphereGame } from "@/hooks/useSphereGame";
+import { FormState, defaultState } from "@/components/FreeFall/constants";
 
 const Page = () => {
   const [formState, setFormState] = useState<FormState>(defaultState);
   const [simulationRunning, setSimulationRunning] = useState<boolean>(false);
   const [sliderTime, setSliderTime] = useState<number>(0);
   // const { position, updatePosition } = useShip();
-  const { posSphere, timeS } = useSphere();
+  const { posSphere, timeS } = useSphereGame();
   const { myLanguage } = useLanguage();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
