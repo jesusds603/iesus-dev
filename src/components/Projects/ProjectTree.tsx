@@ -16,7 +16,7 @@ interface Category {
 }
 
 interface ProjectTreeProps {
-  projects: ProjectsData;
+  projects?: ProjectsData; // Hacerlo opcional
   myLanguage: string;
   myTheme: string;
 }
