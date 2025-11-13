@@ -6,7 +6,7 @@ import { Vector3 } from "three";
 import * as THREE from "three";
 import "katex/dist/katex.min.css";
 import { FormState } from "./constants";
-import { useSphere } from "@/hooks/useSphere";
+import { useSphereGame } from "@/hooks/useSphereGame";
 
 export const MovingSphere = ({
   formState,
@@ -25,7 +25,7 @@ export const MovingSphere = ({
     y: number;
     z: number;
   } | null>(null);
-  const { updatePosSphere, updateTimeS } = useSphere();
+  const { updatePosSphere, updateTimeS } = useSphereGame();
 
   useEffect(() => {
     if (startSimulation) {

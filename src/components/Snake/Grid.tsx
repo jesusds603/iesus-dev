@@ -8,11 +8,6 @@ import {
   Position,
 } from "@/components/Snake/constants";
 import { useTheme } from "@/hooks/useTheme";
-import {
-  MainBackgroundGradient,
-  AdditionalBackgroundLayer1,
-  AdditionalBackgroundLayer2,
-} from "@/components/BackgroundGradients";
 import { getRotationAngle } from "./getRotationAngle";
 
 function Grid({
@@ -61,10 +56,6 @@ function Grid({
         />
       ))}
 
-      {/* Fondos */}
-      <MainBackgroundGradient />
-      <AdditionalBackgroundLayer1 />
-      <AdditionalBackgroundLayer2 />
 
       {/* Snake */}
       {snake.map((segment, index) => (

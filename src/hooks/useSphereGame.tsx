@@ -37,7 +37,7 @@ export const SphereProvider = ({ children }: { children: ReactNode }) => {
 };
 
 // Hook personalizado para usar el contexto
-export const useSphere = (): SphereContextType => {
+export const useSphereGame = (): SphereContextType => {
   const context = useContext(SphereContext);
   if (context === undefined) {
     throw new Error("useSphere must be used within a SphereProvider");

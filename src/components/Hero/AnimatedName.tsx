@@ -13,7 +13,7 @@ const AnimatedName: React.FC<AnimatedNameProps> = ({ isDark }) => {
 
   const fullName = "IESUS\nDEV";
   const typingSpeed = 100;
-  const stageDelay = 800;
+  const stageDelay = 400;
 
   useEffect(() => {
     const startAnimations = async () => {

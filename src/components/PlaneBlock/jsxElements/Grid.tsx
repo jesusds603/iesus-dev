@@ -1,11 +1,6 @@
 import React from "react";
 import { Plane, Bullet, Star } from "@/components/PlaneBlock/constants";
 import { useTheme } from "@/hooks/useTheme";
-import {
-  MainBackgroundGradient,
-  AdditionalBackgroundLayer1,
-  AdditionalBackgroundLayer2,
-} from "@/components/BackgroundGradients";
 import { renderPlane } from "@/components/PlaneBlock/jsxElements/RenderPlane";
 import RenderBullet from "./RenderBullet";
 import RenderPlayerBullet from "./RenderPlayerBullet";
@@ -72,9 +67,7 @@ function GridPlane({
       ))}
 
       {/* Fondos */}
-      <MainBackgroundGradient />
-      <AdditionalBackgroundLayer1 />
-      <AdditionalBackgroundLayer2 />
+     
 
       {stars.map((star, index) => (
         <RenderStar

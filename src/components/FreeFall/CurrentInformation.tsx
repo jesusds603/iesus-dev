@@ -1,8 +1,8 @@
 import React from "react";
 import { InlineMath } from "react-katex";
-import { useSphere } from "@/hooks/useSphere";
 import { useShip } from "@/hooks/useShip";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useSphereGame } from "@/hooks/useSphereGame";
 
 function CurrentInformation({
   finalKineticEnergy,
@@ -13,7 +13,7 @@ function CurrentInformation({
   finalPotentialEnergy: number;
   totalEnergy: number;
 }) {
-  const { posSphere, timeS } = useSphere();
+  const { posSphere, timeS } = useSphereGame();
   const { position } = useShip();
   const { myLanguage } = useLanguage();
 
