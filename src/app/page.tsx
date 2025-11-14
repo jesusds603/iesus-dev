@@ -14,11 +14,7 @@ const Home: React.FC = () => {
   const projectsItem = menuItems.find(item => item.name === "Projects");
 
   return (
-    <div className={`min-h-screen ${
-      myTheme === "dark" 
-        ? "bg-gradient-to-br from-gray-900 to-gray-800 text-white" 
-        : "bg-gradient-to-br from-blue-50 to-purple-50 text-gray-800"
-    }`}>
+    <div className="min-h-screen">
       <AnimatedHero />
       
       {/* Projects Tree Section */}
