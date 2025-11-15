@@ -23,21 +23,21 @@ const AnimatedHero: React.FC = () => {
 
   return (
     <section className="flex flex-col items-center justify-center min-h-screen text-center px-6 relative overflow-hidden">
-      {/* Fondo animado futurista */}
+      {/* Fondo animado futurista - MÁS TRANSPARENTE */}
       <div className="absolute inset-0 overflow-hidden">
         <div className={`absolute inset-0 ${
           isDark 
-            ? "bg-gradient-to-br from-gray-900 via-purple-900/20 to-cyan-900/10" 
-            : "bg-gradient-to-br from-blue-50 via-purple-50/40 to-cyan-50/30"
+            ? "bg-gradient-to-br from-gray-900/70 via-purple-900/10 to-cyan-900/5" 
+            : "bg-gradient-to-br from-blue-50/70 via-purple-50/20 to-cyan-50/15"
         }`}></div>
         
-        {/* Partículas animadas */}
-        <div className="absolute inset-0 opacity-30">
+        {/* Partículas animadas - MÁS TRANSPARENTES */}
+        <div className="absolute inset-0 opacity-20">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
               className={`absolute rounded-full ${
-                isDark ? "bg-cyan-400/20" : "bg-blue-400/20"
+                isDark ? "bg-cyan-400/15" : "bg-blue-400/15"
               }`}
               style={{
                 width: Math.random() * 6 + 2 + 'px',
@@ -51,9 +51,9 @@ const AnimatedHero: React.FC = () => {
           ))}
         </div>
 
-        {/* Efectos de grid sutil */}
+        {/* Efectos de grid sutil - MÁS TRANSPARENTE */}
         <div className={`absolute inset-0 ${
-          isDark ? "bg-grid-white/[0.02]" : "bg-grid-gray-900/[0.02]"
+          isDark ? "bg-grid-white/[0.01]" : "bg-grid-gray-900/[0.01]"
         } bg-[size:60px_60px]`}></div>
       </div>
 

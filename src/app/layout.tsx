@@ -8,6 +8,7 @@ import LayoutContent from "./LayoutContent";
 import HeaderApp from "@/components/Header/HeaderApp";
 import { ShipProvider } from "../hooks/useShip";
 import { SphereProvider } from "../hooks/useSphereGame";
+import { SpaceShipControlsProvider } from "@/hooks/useSpaceShipControls";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -52,16 +53,19 @@ export default function RootLayout({
       <MenuProvider>
         <LanguageProvider>
           <ShipProvider>
-            <SphereProvider>
-              <html lang="en">
-                <body
-                  className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-                >
-                  <HeaderApp />
-                  <LayoutContent> {children}</LayoutContent>
-                </body>
-              </html>
-            </SphereProvider>
+            <SpaceShipControlsProvider>
+              <SphereProvider>
+                <html lang="en">
+                  <body
+                    className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                  >
+                    <HeaderApp />
+                    <LayoutContent> {children}</LayoutContent>
+                  </body>
+                </html>
+              </SphereProvider>
+            </SpaceShipControlsProvider>
+            
           </ShipProvider>
         </LanguageProvider>
       </MenuProvider>

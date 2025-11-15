@@ -47,21 +47,29 @@ function MainC({
   resetSimulation,
 }: MainCProps) {
   return (
-    <div className="flex flex-col md:flex-row">
-      <InitialConfiguration
-        formState={formState}
-        handleChange={handleChange}
-        handleStartSimulation={handleStartSimulation}
-      />
+    <div className="flex flex-col gap-4 mb-6">
+      {/* Fila superior: Tres componentes que se adaptan al espacio disponible */}
+      <div className="flex flex-col md:flex-row flex-wrap gap-3 min-w-0">
+        {/* Configuración inicial - Ancho flexible */}
+        <div className="flex-1 min-w-[180px] max-w-[300px] lg:max-w-none">
+          <InitialConfiguration
+            formState={formState}
+            handleChange={handleChange}
+            handleStartSimulation={handleStartSimulation}
+          />
+        </div>
 
-      <div className="flex flex-col w-full mt-2 md:mt-0 md:ml-2">
-        <div className="flex flex-wrap md:flex-nowrap">
+        {/* Información actual - Ancho flexible */}
+        <div className="flex-1 min-w-[180px] max-w-[300px] lg:max-w-none">
           <CurrentInformation
             finalKineticEnergy={finalKineticEnergy}
             finalPotentialEnergy={finalPotentialEnergy}
             totalEnergy={totalEnergy}
           />
+        </div>
 
+        {/* Información absoluta - Ancho flexible */}
+        <div className="flex-1 min-w-[180px] max-w-[300px] lg:max-w-none">
           <AbsoluteInformation
             formState={formState}
             initialKineticEnergy={initialKineticEnergy}
@@ -75,7 +83,10 @@ function MainC({
             zFloor={zFloor}
           />
         </div>
+      </div>
 
+      {/* Canvas 3D - Ancho completo siempre */}
+      <div className="bg-black/40 rounded-xl border-2 border-cyan-500/30 backdrop-blur-sm overflow-hidden min-h-[500px] w-full">
         <CanvasC
           formState={formState}
           simulationRunning={simulationRunning}

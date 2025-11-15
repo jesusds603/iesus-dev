@@ -7,11 +7,11 @@ export const StyledInput: React.FC<StyledInputProps> = ({
   ...props
 }) => {
   return (
-    <div className="flex flex-row items-center mt-1 w-full">
-      <label className="text-teal-200 font-semibold mr-2">{label}:</label>
+    <div className="flex flex-col space-y-1">
+      <label className="text-cyan-300 font-medium text-xs">{label}</label>
       <input
         {...props}
-        className="p-1 rounded-lg bg-gray-700 text-white border border-teal-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent w-[50px]"
+        className="p-2 text-sm rounded-lg bg-gray-700 text-white border border-cyan-500/30 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-transparent transition-all duration-200"
       />
     </div>
   );

@@ -1,16 +1,28 @@
 "use client";
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useCallback } from "react";
 import { useTheme } from "@/hooks/useTheme";
 import {
   Position,
   INITIAL_DIRECTION,
   INITIAL_SNAKE,
+  GRID_WIDTH,
+  GRID_HEIGHT,
+  INITIAL_GAME_SPEED,
+  SCORE_PER_LEVEL,
+  SPEED_INCREASE_THRESHOLDS,
+  MIN_GAME_SPEED
 } from "@/components/Snake/constants";
 import { generateFood } from "@/components/Snake/generateFood";
 import { getNewDirection } from "@/components/Snake/getNewDirection";
 import Grid from "@/components/Snake/Grid";
 import { updateSnake } from "@/components/Snake/updateSnake";
+import { calculateReward } from "@/components/Snake/calculateReward";
 import Head from "next/head";
+import TouchControls from "@/components/Snake/TouchControls";
+import GameHeader from "@/components/Snake/GameHeader";
+import GameControls from "@/components/Snake/GameControls";
+import GameStatus from "@/components/Snake/GameStatus";
+import GameInstructions from "@/components/Snake/GameInstructions";
 
 function SnakeGame() {
   const [snake, setSnake] = useState<Position[]>(INITIAL_SNAKE);
@@ -20,15 +32,55 @@ function SnakeGame() {
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [collisionMessage, setCollisionMessage] = useState<string>("");
   const [moveQueue, setMoveQueue] = useState<Position[]>([]);
+  const [score, setScore] = useState<number>(0);
+  const [highScore, setHighScore] = useState<number>(0);
+  const [gameSpeed, setGameSpeed] = useState<number>(INITIAL_GAME_SPEED);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
+  const [currentLevel, setCurrentLevel] = useState<number>(1);
+  const [speedBoostActive, setSpeedBoostActive] = useState<boolean>(false);
   const { myTheme } = useTheme();
 
+  // Cargar high score desde localStorage
   useEffect(() => {
-    if (isGameOver) return;
+    const savedHighScore = localStorage.getItem('snakeHighScore');
+    if (savedHighScore) {
+      setHighScore(parseInt(savedHighScore));
+    }
+  }, []);
+
+  // Guardar high score
+  useEffect(() => {
+    if (score > highScore) {
+      setHighScore(score);
+      localStorage.setItem('snakeHighScore', score.toString());
+    }
+  }, [score, highScore]);
+
+  // Efecto para actualizar el nivel actual
+  useEffect(() => {
+    const level = Math.floor(score / SCORE_PER_LEVEL) + 1;
+    const newLevel = Math.min(level, SPEED_INCREASE_THRESHOLDS + 1);
+    setCurrentLevel(newLevel);
+    
+    // Efecto visual cuando se sube de nivel
+    if (level > 1 && score % SCORE_PER_LEVEL === 10) {
+      setSpeedBoostActive(true);
+      const timer = setTimeout(() => setSpeedBoostActive(false), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [score]);
+
+  // Controles de teclado
+  useEffect(() => {
+    if (isGameOver || !gameStarted || isPaused) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      const newDirection = getNewDirection(e.key);
+      if (e.key === ' ' || e.key === 'Spacebar') {
+        setIsPaused(prev => !prev);
+        return;
+      }
 
-      // Asegurarse de que no se agregue la dirección opuesta
+      const newDirection = getNewDirection(e.key);
       if (newDirection) {
         setMoveQueue((prevQueue) => [...prevQueue, newDirection]);
       }
@@ -36,10 +88,11 @@ function SnakeGame() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isGameOver]);
+  }, [isGameOver, gameStarted, isPaused]);
 
+  // Game loop
   useEffect(() => {
-    if (!gameStarted || isGameOver) return;
+    if (!gameStarted || isGameOver || isPaused) return;
 
     const gameInterval = setInterval(() => {
       updateSnake(
@@ -49,18 +102,18 @@ function SnakeGame() {
         direction,
         moveQueue,
         setDirection,
+        setMoveQueue,
         setIsGameOver,
-        setCollisionMessage
+        setCollisionMessage,
+        setScore,
+        setGameSpeed
       );
-    }, 200);
+    }, gameSpeed);
 
     return () => clearInterval(gameInterval);
-  }, [direction, food, isGameOver, moveQueue, gameStarted]);
+  }, [direction, food, isGameOver, moveQueue, gameStarted, gameSpeed, isPaused]);
 
-  //* Rewards
-  // const reward = calculateReward(snake.length, GRID_WIDTH, GRID_HEIGHT);
-
-  const startGame = () => {
+  const startGame = useCallback(() => {
     setSnake(INITIAL_SNAKE);
     setDirection(INITIAL_DIRECTION);
     setFood(generateFood(INITIAL_SNAKE));
@@ -68,13 +121,27 @@ function SnakeGame() {
     setCollisionMessage("");
     setMoveQueue([]);
     setGameStarted(true);
-  };
+    setScore(0);
+    setGameSpeed(INITIAL_GAME_SPEED);
+    setIsPaused(false);
+    setCurrentLevel(1);
+    setSpeedBoostActive(false);
+  }, []);
 
-  // const handleClaimReward = () => {
-  //   // Lógica para reclamar recompensas
-  //   console.log("Recompensas reclamadas:", reward);
-  //   // Resetear el juego o manejar recompensas aquí
-  // };
+  const handleDirectionChange = useCallback((newDirection: Position) => {
+    setMoveQueue((prevQueue) => [...prevQueue, newDirection]);
+  }, []);
+
+  const reward = calculateReward(score, GRID_WIDTH, GRID_HEIGHT);
+
+  // Calcular porcentaje de velocidad para mostrar
+  const speedPercentage = Math.round(
+    ((INITIAL_GAME_SPEED - gameSpeed) / (INITIAL_GAME_SPEED - MIN_GAME_SPEED)) * 100
+  );
+
+  // Calcular progreso hacia el siguiente nivel
+  const progressToNextLevel = (score % SCORE_PER_LEVEL) / SCORE_PER_LEVEL * 100;
+  const pointsToNextLevel = Math.max(0, SCORE_PER_LEVEL - (score % SCORE_PER_LEVEL));
 
   return (
     <Fragment>
@@ -101,57 +168,94 @@ function SnakeGame() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center">
-        <div
-          className={`text-2xl font-bold mb-4 p-4 rounded-xl text-center ${
-            myTheme === "dark"
-              ? "bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600"
-              : "bg-gradient-to-r from-green-500 to-blue-500"
-          } opacity-90`}
-        >
-          {isGameOver ? (
-            <>
-              <div>Game Over</div>
-              <div className="">
-                <p className="text-red-600">{collisionMessage}</p>
-                {/* <p>Recompensas: {reward} SHUNA</p> */}
-              </div>
+      <div className="min-h-[calc(100vh-64px)] flex flex-col lg:flex-row items-center justify-center p-4 bg-gradient-to-br from-gray-900 to-gray-800 gap-6">
+        
+        {/* Sección izquierda: Juego y Header */}
+        <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
+          {/* Header del juego */}
+          <div className="w-full max-w-2xl lg:max-w-none mb-6">
+            <GameHeader 
+              isGameOver={isGameOver}
+              speedBoostActive={speedBoostActive}
+              score={score}
+              highScore={highScore}
+              currentLevel={currentLevel}
+              speedPercentage={speedPercentage}
+              reward={reward}
+              progressToNextLevel={progressToNextLevel}
+              pointsToNextLevel={pointsToNextLevel}
+            />
+          </div>
 
-              {/* <button
-              onClick={handleClaimReward}
-              className="mt-4 px-4 py-2 bg-teal-500 text-white font-semibold rounded-lg shadow-lg hover:bg-teal-600 transition duration-200"
-            >
-              Reclamar Recompensas
-            </button> */}
-            </>
-          ) : (
-            "Snake Game"
-          )}
+          {/* Mensajes de estado del juego */}
+          <GameStatus 
+            isGameOver={isGameOver}
+            collisionMessage={collisionMessage}
+            score={score}
+            currentLevel={currentLevel}
+            reward={reward}
+            isPaused={isPaused}
+          />
+
+          {/* Controles del juego */}
+          <GameControls 
+            gameStarted={gameStarted}
+            isGameOver={isGameOver}
+            isPaused={isPaused}
+            onStartGame={startGame}
+            onTogglePause={() => setIsPaused(!isPaused)}
+            onRestart={startGame}
+          />
+
+          {/* Grid del juego */}
+          <div className="relative">
+            <Grid snake={snake} direction={direction} food={food} />
+            
+            {/* Overlay para cuando el juego no está activo */}
+            {(!gameStarted || isPaused) && (
+              <div className="absolute inset-0 bg-black/70 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <div className="text-white text-center p-6 bg-gray-800/90 rounded-2xl border border-white/20 max-w-xs">
+                  <div className="text-2xl font-bold mb-3">
+                    {!gameStarted ? "🎯 Ready to Play?" : "⏸️ Game Paused"}
+                  </div>
+                  <div className="text-lg mb-4 opacity-90">
+                    {!gameStarted ? "Eat food, grow longer!" : "Take a break..."}
+                  </div>
+                  <div className="text-sm opacity-75 bg-black/30 p-3 rounded-lg border border-white/10">
+                    {!gameStarted ? "🎮 Press Start to begin!" : "⌨️ Press SPACE to continue"}
+                  </div>
+                  {!gameStarted && highScore > 0 && (
+                    <div className="mt-4 text-amber-300 text-sm">
+                      🏆 Personal Best: {highScore}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
-        <h2 className="text-lg mb-4">
-          Food Count: <span className="font-bold">{snake.length}</span>
-        </h2>
+        {/* Sección derecha: Controles e Instrucciones (solo en desktop) */}
+        <div className="hidden lg:flex flex-col gap-6 min-w-80">
+          {/* Controles táctiles */}
+          <div className="w-full">
+            <TouchControls onDirectionChange={handleDirectionChange} />
+          </div>
 
-        {!gameStarted ? (
-          <button
-            onClick={startGame}
-            className="mb-4 p-2 bg-blue-500 text-white rounded"
-          >
-            Start Game
-          </button>
-        ) : (
-          isGameOver && (
-            <button
-              onClick={startGame}
-              className="mb-4 p-2 bg-blue-500 text-white rounded"
-            >
-              Restart Game
-            </button>
-          )
-        )}
+          {/* Instrucciones del juego */}
+          <GameInstructions />
+        </div>
 
-        <Grid snake={snake} direction={direction} food={food} />
+        {/* Sección inferior: Controles e Instrucciones (solo en móvil) */}
+        <div className="flex lg:hidden flex-col gap-6 w-full max-w-md mt-6">
+          {/* Controles táctiles */}
+          <div className="w-full">
+            <TouchControls onDirectionChange={handleDirectionChange} />
+          </div>
+
+          {/* Instrucciones del juego */}
+          <GameInstructions />
+        </div>
       </div>
     </Fragment>
   );

@@ -13,7 +13,6 @@ const Page = () => {
   const [formState, setFormState] = useState<FormState>(defaultState);
   const [simulationRunning, setSimulationRunning] = useState<boolean>(false);
   const [sliderTime, setSliderTime] = useState<number>(0);
-  // const { position, updatePosition } = useShip();
   const { posSphere, timeS } = useSphereGame();
   const { myLanguage } = useLanguage();
 
@@ -29,76 +28,46 @@ const Page = () => {
     setSimulationRunning(false);
   };
 
-  // const setShipPosition = (x: number, y: number, z: number) => {
-  //   updatePosition({ x, y, z });
-  // };
+  // Cálculos optimizados
+  const angleRad = (parseFloat(formState.angle) * Math.PI) / 180;
+  const thetaRad = (parseFloat(formState.theta) * Math.PI) / 180;
+  const velocity = parseFloat(formState.velocity);
+  const gravity = parseFloat(formState.gravity);
+  const initialY = parseFloat(formState.initialY);
 
-  const v0x =
-    parseFloat(formState.velocity) *
-    Math.cos((parseFloat(formState.angle) * Math.PI) / 180) *
-    Math.cos((parseFloat(formState.theta) * Math.PI) / 180);
-  const v0z =
-    parseFloat(formState.velocity) *
-    Math.cos((parseFloat(formState.angle) * Math.PI) / 180) *
-    Math.sin((parseFloat(formState.theta) * Math.PI) / 180);
-  const v0y =
-    parseFloat(formState.velocity) *
-    Math.sin((parseFloat(formState.angle) * Math.PI) / 180);
+  const v0x = velocity * Math.cos(angleRad) * Math.cos(thetaRad);
+  const v0z = velocity * Math.cos(angleRad) * Math.sin(thetaRad);
+  const v0y = velocity * Math.sin(angleRad);
 
-  const tMax = v0y > 0 ? v0y / parseFloat(formState.gravity) : 0;
-  const yMax =
-    v0y > 0
-      ? parseFloat(formState.initialY) +
-        (v0y * v0y) / (2 * parseFloat(formState.gravity))
-      : parseFloat(formState.initialY);
+  const tMax = v0y > 0 ? v0y / gravity : 0;
+  const yMax = v0y > 0 ? initialY + (v0y * v0y) / (2 * gravity) : initialY;
 
-  const tFloor =
-    (parseFloat(formState.velocity) *
-      Math.sin((parseFloat(formState.angle) * Math.PI) / 180) +
-      Math.sqrt(
-        (parseFloat(formState.velocity) *
-          Math.sin((parseFloat(formState.angle) * Math.PI) / 180)) **
-          2 +
-          2 * parseFloat(formState.gravity) * parseFloat(formState.initialY)
-      )) /
-    parseFloat(formState.gravity);
+  const discriminant = (v0y * v0y) + (2 * gravity * initialY);
+  const tFloor = (v0y + Math.sqrt(discriminant)) / gravity;
   const xFloor = parseFloat(formState.initialX) + v0x * tFloor;
   const zFloor = parseFloat(formState.initialZ) + v0z * tFloor;
 
-  // Calcula la energía total inicial
-  const initialVelocity = parseFloat(formState.velocity);
-  const initialY = parseFloat(formState.initialY);
+  // Cálculos de energía
   const mass = parseFloat(formState.mass);
-  const gravity = parseFloat(formState.gravity);
-
-  const initialKineticEnergy = 0.5 * mass * Math.pow(initialVelocity, 2);
+  const initialKineticEnergy = 0.5 * mass * Math.pow(velocity, 2);
   const initialPotentialEnergy = mass * gravity * initialY;
   const totalEnergy = initialKineticEnergy + initialPotentialEnergy;
 
-  // Valores ajustados para la posición final
-  // const finalY = posSphere.y < 0 ? 0 : posSphere.y;
-  const finalKineticEnergy =
-    posSphere.y <= 0
-      ? totalEnergy
-      : 0.5 *
-        mass *
-        (v0x * v0x +
-          (v0y - gravity * timeS) * (v0y - gravity * timeS) +
-          v0z * v0z);
-  const finalPotentialEnergy =
-    posSphere.y < 0 ? 0 : mass * gravity * posSphere.y;
+  const finalKineticEnergy = posSphere.y <= 0
+    ? totalEnergy
+    : 0.5 * mass * (v0x * v0x + Math.pow(v0y - gravity * timeS, 2) + v0z * v0z);
+  
+  const finalPotentialEnergy = posSphere.y < 0 ? 0 : mass * gravity * posSphere.y;
 
-  //* Para la calculadora que calcula valores en función de t
+  // Handlers
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSliderTime(parseFloat(e.target.value));
   };
 
   const handleTimeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTime = parseFloat(e.target.value);
-    setSliderTime(newTime);
+    setSliderTime(parseFloat(e.target.value));
   };
 
-  //* RETURN
   return (
     <Fragment>
       <Head>
@@ -124,42 +93,48 @@ const Page = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="flex flex-col">
-        <p className="text-center">
-          {myLanguage === "eng"
-            ? "Use the WASD keys to rotate the ship and the arrow keys to move it."
-            : "Usa las teclas WASD para rotar la nave y las teclas de flecha para moverla."}
-        </p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900/20 to-cyan-900/10">
+        {/* Header con instrucciones */}
+        <div className="bg-black/50 backdrop-blur-sm border-b border-cyan-500/30 py-3">
+          <p className="text-center text-cyan-300 text-sm font-medium px-4">
+            {myLanguage === "eng"
+              ? "Use WASD to rotate the ship and arrow keys to move it. Configure parameters and start simulation."
+              : "Usa WASD para rotar la nave y flechas para moverla. Configura parámetros e inicia simulación."}
+          </p>
+        </div>
 
-        <MainC
-          formState={formState}
-          handleChange={handleChange}
-          handleStartSimulation={handleStartSimulation}
-          initialKineticEnergy={initialKineticEnergy}
-          finalKineticEnergy={finalKineticEnergy}
-          initialPotentialEnergy={initialPotentialEnergy}
-          finalPotentialEnergy={finalPotentialEnergy}
-          totalEnergy={totalEnergy}
-          tMax={tMax}
-          yMax={yMax}
-          v0x={v0x}
-          v0z={v0z}
-          tFloor={tFloor}
-          xFloor={xFloor}
-          zFloor={zFloor}
-          simulationRunning={simulationRunning}
-          resetSimulation={resetSimulation}
-        />
+        {/* Contenido principal */}
+        <div className="container mx-auto px-4 py-6">
+          <MainC
+            formState={formState}
+            handleChange={handleChange}
+            handleStartSimulation={handleStartSimulation}
+            initialKineticEnergy={initialKineticEnergy}
+            finalKineticEnergy={finalKineticEnergy}
+            initialPotentialEnergy={initialPotentialEnergy}
+            finalPotentialEnergy={finalPotentialEnergy}
+            totalEnergy={totalEnergy}
+            tMax={tMax}
+            yMax={yMax}
+            v0x={v0x}
+            v0z={v0z}
+            tFloor={tFloor}
+            xFloor={xFloor}
+            zFloor={zFloor}
+            simulationRunning={simulationRunning}
+            resetSimulation={resetSimulation}
+          />
 
-        <Calculator
-          formState={formState}
-          sliderTime={sliderTime}
-          tFloor={tFloor}
-          handleSliderChange={handleSliderChange}
-          handleTimeInputChange={handleTimeInputChange}
-        />
+          <Calculator
+            formState={formState}
+            sliderTime={sliderTime}
+            tFloor={tFloor}
+            handleSliderChange={handleSliderChange}
+            handleTimeInputChange={handleTimeInputChange}
+          />
 
-        <Formulas />
+          <Formulas />
+        </div>
       </div>
     </Fragment>
   );

@@ -21,99 +21,84 @@ function Calculator({
 
   const valuesAtTime = calculateValuesAtTime(sliderTime, formState);
 
+  const infoItems = [
+    { label: <InlineMath math="x" />, value: valuesAtTime.position.x.toFixed(2), unit: "m" },
+    { label: <InlineMath math="y" />, value: valuesAtTime.position.y.toFixed(2), unit: "m" },
+    { label: <InlineMath math="z" />, value: valuesAtTime.position.z.toFixed(2), unit: "m" },
+    { label: <InlineMath math="v_x" />, value: valuesAtTime.velocity.vx.toFixed(2), unit: "m/s" },
+    { label: <InlineMath math="v_y" />, value: valuesAtTime.velocity.vy.toFixed(2), unit: "m/s" },
+    { label: <InlineMath math="v_z" />, value: valuesAtTime.velocity.vz.toFixed(2), unit: "m/s" },
+    { label: <InlineMath math="v" />, value: Math.sqrt(
+      valuesAtTime.velocity.vx ** 2 +
+      valuesAtTime.velocity.vy ** 2 +
+      valuesAtTime.velocity.vz ** 2
+    ).toFixed(2), unit: "m/s" },
+    { label: <InlineMath math="E_k" />, value: valuesAtTime.kineticEnergy.toFixed(2), unit: "J" },
+    { label: <InlineMath math="E_p" />, value: valuesAtTime.potentialEnergy.toFixed(2), unit: "J" },
+    { label: <InlineMath math="E_t" />, value: valuesAtTime.totalEnergy.toFixed(2), unit: "J" }
+  ];
+
   return (
-    <div className="w-full flex flex-col mt-4">
-      <div className="w-full mt-4 px-4">
-        <h1 className="text-xl font-bold text-teal-400 my-2">
-          {myLanguage === "eng" ? "Calculator" : "Calculadora"}
-        </h1>
+    <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border-2 border-teal-500/30 p-6 backdrop-blur-sm mb-8">
+      <h2 className="text-xl font-bold text-teal-400 mb-4 flex items-center">
+        <span className="w-2 h-2 bg-teal-400 rounded-full mr-2"></span>
+        {myLanguage === "eng" ? "Time Calculator" : "Calculadora de Tiempo"}
+      </h2>
 
-        <label htmlFor="timeSlider" className="text-white font-semibold">
-          {myLanguage === "eng" ? "Time " : "Tiempo "} (t):{" "}
-          {sliderTime.toFixed(2)} s
-        </label>
+      {/* Control de tiempo */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-2">
+          <label className="text-white font-semibold">
+            {myLanguage === "eng" ? "Time" : "Tiempo"} <InlineMath math="t" />: 
+            <span className="text-cyan-300 ml-1">{sliderTime.toFixed(2)} s</span>
+          </label>
+          
+          <div className="flex items-center">
+            <input
+              type="number"
+              min="0"
+              max={tFloor}
+              step="0.01"
+              value={sliderTime}
+              onChange={handleTimeInputChange}
+              className="p-2 rounded-lg bg-gray-700 text-white border border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-500 w-24 text-center"
+            />
+            <span className="text-white ml-2">s</span>
+          </div>
+        </div>
 
-        <div className="flex flex-row">
-          <p className="flex flex-row mr-2">
-            0 <InlineMath math="s" />
-          </p>
+        <div className="flex items-center space-x-3">
+          <span className="text-sm text-gray-400">0 s</span>
           <input
-            id="timeSlider"
             type="range"
             min="0"
             max={tFloor}
             step="0.01"
             value={sliderTime}
             onChange={handleSliderChange}
-            className="w-full mt-2"
+            className="flex-1 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb"
           />
-
-          <p className="flex flex-row ml-2">
-            {tFloor.toFixed(2)}
-            <InlineMath math="s" />
-          </p>
-        </div>
-
-        <div className="mt-2">
-          <label htmlFor="timeInput" className="text-white font-semibold mr-2">
-            {myLanguage === "eng" ? "Time " : "Tiempo "}
-            (t):
-          </label>
-          <input
-            id="timeInput"
-            type="number"
-            min="0"
-            max={tFloor}
-            step="0.01"
-            value={sliderTime}
-            onChange={handleTimeInputChange}
-            className="p-1 rounded-lg bg-gray-700 text-white border border-teal-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent w-[100px]"
-          />
+          <span className="text-sm text-gray-400">{tFloor.toFixed(2)} s</span>
         </div>
       </div>
 
-      <div className="flex flex-col relative w-full md:w-[49%] p-2 m-1 bg-black rounded-xl border-2 border-teal-400 mt-4 ">
-        <h2 className="text-lg font-semibold text-white mb-2">
-          {myLanguage === "eng"
-            ? "Information at time "
-            : "Información a tiempo "}
-          <InlineMath math="t" />
-        </h2>
-        <div>
-          <InlineMath math="t" /> = {sliderTime.toFixed(2)} s
-        </div>
-        <div className="break-words">
-          {<InlineMath math="x" />} = {valuesAtTime.position.x.toFixed(2)},
-          {"   "}
-          {<InlineMath math="y" />} = {valuesAtTime.position.y.toFixed(2)},
-          {"   "}
-          {<InlineMath math="z" />} = {valuesAtTime.position.z.toFixed(2)}
-        </div>
-        <div className="break-words">
-          {<InlineMath math="v_x" />} = {valuesAtTime.velocity.vx.toFixed(2)},
-          {"   "}
-          {<InlineMath math="v_y" />} = {valuesAtTime.velocity.vy.toFixed(2)},
-          {"   "}
-          {<InlineMath math="v_z" />} = {valuesAtTime.velocity.vz.toFixed(2)}
-        </div>
-        <div className="break-words">
-          {" "}
-          {<InlineMath math="v" />} ={" "}
-          {Math.sqrt(
-            valuesAtTime.velocity.vx ** 2 +
-              valuesAtTime.velocity.vy ** 2 +
-              valuesAtTime.velocity.vz ** 2
-          ).toFixed(2)}
-        </div>
-        <div className="break-words">
-          <InlineMath math="E_k" /> = {valuesAtTime.kineticEnergy.toFixed(2)} J
-        </div>
-        <div className="break-words">
-          <InlineMath math="E_p" /> = {valuesAtTime.potentialEnergy.toFixed(2)}{" "}
-          J
-        </div>
-        <div className="break-words">
-          <InlineMath math="E_t" /> = {valuesAtTime.totalEnergy.toFixed(2)} J
+      {/* Información en el tiempo seleccionado */}
+      <div>
+        <h3 className="text-lg font-semibold text-white mb-3">
+          {myLanguage === "eng" ? "Values at time" : "Valores en tiempo"} <InlineMath math="t" /> = {sliderTime.toFixed(2)} s
+        </h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {infoItems.map((item, index) => (
+            <div key={index} className="bg-black/40 rounded-lg p-3 border border-cyan-500/20">
+              <div className="flex items-center justify-between">
+                <span className="text-cyan-300 font-medium">{item.label}</span>
+                <span className="text-white font-bold">
+                  {item.value} <span className="text-sm text-gray-400">{item.unit}</span>
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

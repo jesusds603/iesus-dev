@@ -1,33 +1,21 @@
-// Calcular la recompensa basada en la longitud de la serpiente
 export const calculateReward = (
-  snakeLength: number,
+  score: number,
   gridWidth: number,
   gridHeight: number
 ) => {
-  //* 100,000 millones de tokens diarios
-  //* = 3650 billones en 100 años
-  //* 5 millones de jugadores diarios
-  //* 2 horas de juego diarias
-  //* Una comida cada 3 segundos
-  //* = 12,000 millones de cuadritos comida diarios
-  //* = 10 tokens por cuadrito comida
-  const threshold1 = (3 * (gridWidth * gridHeight)) / 4;
-  const threshold2 = (gridWidth * gridHeight) / 2;
-  const threshold3 = (gridWidth * gridHeight) / 4;
-  const threshold4 = (gridWidth * gridHeight) / 10;
-  const threshold5 = (gridWidth * gridHeight) / 20;
+  const maxPossibleScore = gridWidth * gridHeight;
+  const scorePercentage = score / maxPossibleScore;
 
-  if (snakeLength > threshold1) {
-    return snakeLength * 50;
-  } else if (snakeLength > threshold2) {
-    return snakeLength * 25;
-  } else if (snakeLength > threshold3) {
-    return snakeLength * 10;
-  } else if (snakeLength > threshold4) {
-    return snakeLength * 5;
-  } else if (snakeLength > threshold5) {
-    return snakeLength * 3;
+  // Sistema de recompensas basado en porcentaje del score máximo
+  if (scorePercentage >= 0.8) {
+    return Math.floor(score * 5); // 50 SHUNA por punto
+  } else if (scorePercentage >= 0.6) {
+    return Math.floor(score * 3); // 30 SHUNA por punto
+  } else if (scorePercentage >= 0.4) {
+    return Math.floor(score * 2); // 20 SHUNA por punto
+  } else if (scorePercentage >= 0.2) {
+    return Math.floor(score * 1.5); // 15 SHUNA por punto
   } else {
-    return snakeLength * 2; // Si no se cumple ninguna condición
+    return Math.floor(score * 1); // 10 SHUNA por punto
   }
 };

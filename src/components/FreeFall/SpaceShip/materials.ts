@@ -1,0 +1,60 @@
+import * as THREE from "three";
+
+// Materiales de la nave mejorados con efectos futuristas
+export const materials = {
+  Plane: new THREE.MeshPhysicalMaterial({
+    color: "#0a0a0a",
+    metalness: 0.9,
+    roughness: 0.1,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.1,
+    reflectivity: 1,
+    envMapIntensity: 2,
+  }),
+  Plane_1: new THREE.MeshPhysicalMaterial({
+    color: "#1a1a1a",
+    metalness: 0.8,
+    roughness: 0.2,
+    clearcoat: 0.5,
+    clearcoatRoughness: 0.3,
+    reflectivity: 0.8,
+  }),
+  Plane_2: new THREE.MeshPhysicalMaterial({
+    color: "#88ccff",
+    metalness: 0.3,
+    roughness: 0.1,
+    transmission: 0.9,
+    transparent: true,
+    opacity: 0.8,
+    thickness: 1,
+    ior: 1.2,
+    specularIntensity: 1,
+    envMapIntensity: 3,
+  }),
+  Plane_3: new THREE.MeshPhysicalMaterial({
+    color: "#ff00ff",
+    metalness: 0.7,
+    roughness: 0.2,
+    emissive: "#ff00ff",
+    emissiveIntensity: 0.3,
+    clearcoat: 0.8,
+    clearcoatRoughness: 0.2,
+  }),
+  Plane_4: new THREE.MeshPhysicalMaterial({
+    color: "#00ffff",
+    metalness: 0.6,
+    roughness: 0.1,
+    emissive: "#00ffff",
+    emissiveIntensity: 0.5,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.1,
+  }),
+  Plane_5: new THREE.MeshPhysicalMaterial({
+    color: "#ff4444",
+    metalness: 0.5,
+    roughness: 0.3,
+    emissive: "#ff4444",
+    emissiveIntensity: 0.2,
+    clearcoat: 0.6,
+  }),
+};

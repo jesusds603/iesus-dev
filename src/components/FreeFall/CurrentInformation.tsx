@@ -17,47 +17,58 @@ function CurrentInformation({
   const { position } = useShip();
   const { myLanguage } = useLanguage();
 
+  const infoItems = [
+    {
+      label: myLanguage === "eng" ? "Time" : "Tiempo",
+      value: `${timeS.toFixed(2)} s`,
+      math: "t"
+    },
+    {
+      label: myLanguage === "eng" ? "Sphere Position" : "Posición Esfera",
+      value: `X:${posSphere.x.toFixed(1)} Y:${posSphere.y.toFixed(1)} Z:${posSphere.z.toFixed(1)}`,
+      math: ""
+    },
+    {
+      label: myLanguage === "eng" ? "Ship Position" : "Posición Nave",
+      value: `X:${position.x.toFixed(1)} Y:${position.y.toFixed(1)} Z:${position.z.toFixed(1)}`,
+      math: ""
+    },
+    {
+      label: myLanguage === "eng" ? "Kinetic Energy" : "Energía Cinética",
+      value: `${finalKineticEnergy.toFixed(2)} J`,
+      math: "E_k"
+    },
+    {
+      label: myLanguage === "eng" ? "Potential Energy" : "Energía Potencial",
+      value: `${finalPotentialEnergy.toFixed(2)} J`,
+      math: "E_p"
+    },
+    {
+      label: myLanguage === "eng" ? "Total Energy" : "Energía Total",
+      value: `${totalEnergy.toFixed(2)} J`,
+      math: "E_t"
+    }
+  ];
+
   return (
-    <div className="flex flex-col relative w-full md:w-[49%] p-2 m-1 bg-black rounded-xl border-2 border-teal-400">
-      <h2 className="text-lg font-semibold text-white mb-2">
-        {myLanguage === "eng" ? "Current information" : "Información actual"}
+    <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border-2 border-teal-500/30 p-3 backdrop-blur-sm h-full">
+      <h2 className="text-base font-bold text-teal-400 mb-2 flex items-center">
+        <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2"></span>
+        {myLanguage === "eng" ? "Current Information" : "Información Actual"}
       </h2>
-      <div>
-        <InlineMath math="t" />
-        {`: ${timeS.toFixed(2)} `} <InlineMath math="s" />
-      </div>
 
-      <div className="break-words">
-        {myLanguage === "eng" ? "Sphere position: " : "Posición esfera: "}
-
-        <InlineMath math="x" />
-        {`: ${posSphere.x.toFixed(2)}, Y: ${posSphere.y.toFixed(
-          2
-        )}, Z: ${posSphere.z.toFixed(2)}`}
-      </div>
-
-      <div className="break-words">
-        {myLanguage === "eng" ? "Ship position: " : "Posición esfera: "}
-
-        {` X: ${position.x.toFixed(2)}, Y: ${position.y.toFixed(
-          2
-        )}, Z: ${position.z.toFixed(2)}`}
-      </div>
-
-      <div className="break-words">
-        {myLanguage === "eng" ? "Kinetic enegery: " : "Energía cinética: "}
-
-        {`${finalKineticEnergy.toFixed(2)} J`}
-      </div>
-      <div className="break-words">
-        {myLanguage === "eng" ? "Potential energy: " : "Energía potencial: "}
-
-        {`${finalPotentialEnergy.toFixed(2)} J`}
-      </div>
-      <div className="break-words">
-        {myLanguage === "eng" ? "Total energy: " : "Energía total: "}
-
-        {`${totalEnergy.toFixed(2)} J`}
+      <div className="space-y-1.5">
+        {infoItems.map((item, index) => (
+          <div key={index} className="flex items-center justify-between text-xs">
+            <div className="flex items-center text-cyan-300 font-medium flex-shrink-0">
+              {item.math && <InlineMath math={item.math} />}
+              <span className="truncate">{item.label}:</span>
+            </div>
+            <div className="text-white text-right font-mono flex-shrink-0 ml-2">
+              {item.value}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
