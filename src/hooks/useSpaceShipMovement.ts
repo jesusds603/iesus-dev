@@ -1,4 +1,4 @@
-import { useRef, useState, MutableRefObject } from "react";
+import { useState, MutableRefObject } from "react";
 import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 import { KeysPressed } from "./useSpaceShipControls";
@@ -14,7 +14,6 @@ export function useSpaceShipMovement({
   keysPressed,
   onPositionUpdate,
 }: UseSpaceshipMovementProps) {
-  const { camera } = useThree();
   const [engineIntensity, setEngineIntensity] = useState(0);
 
   useFrame((state) => {

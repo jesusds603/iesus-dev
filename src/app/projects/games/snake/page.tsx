@@ -20,9 +20,10 @@ import { calculateReward } from "@/components/Snake/calculateReward";
 import Head from "next/head";
 import TouchControls from "@/components/Snake/TouchControls";
 import GameHeader from "@/components/Snake/GameHeader";
-import GameControls from "@/components/Snake/GameControls";
 import GameStatus from "@/components/Snake/GameStatus";
+import GameControls from "@/components/Snake/GameControls";
 import GameInstructions from "@/components/Snake/GameInstructions";
+
 
 function SnakeGame() {
   const [snake, setSnake] = useState<Position[]>(INITIAL_SNAKE);
@@ -38,7 +39,6 @@ function SnakeGame() {
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [currentLevel, setCurrentLevel] = useState<number>(1);
   const [speedBoostActive, setSpeedBoostActive] = useState<boolean>(false);
-  const { myTheme } = useTheme();
 
   // Cargar high score desde localStorage
   useEffect(() => {

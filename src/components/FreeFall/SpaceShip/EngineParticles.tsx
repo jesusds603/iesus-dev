@@ -1,4 +1,4 @@
-import { useRef, MutableRefObject, useMemo, useEffect } from "react";
+import { MutableRefObject, useMemo, useEffect } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
