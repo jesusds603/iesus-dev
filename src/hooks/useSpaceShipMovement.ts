@@ -1,6 +1,6 @@
 import { useState, MutableRefObject } from "react";
 import * as THREE from "three";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame} from "@react-three/fiber";
 import { KeysPressed } from "./useSpaceShipControls";
 
 interface UseSpaceshipMovementProps {

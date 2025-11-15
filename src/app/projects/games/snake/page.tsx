@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, Fragment, useCallback } from "react";
-import { useTheme } from "@/hooks/useTheme";
 import {
   Position,
   INITIAL_DIRECTION,
